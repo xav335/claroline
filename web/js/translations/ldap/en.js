@@ -1,0 +1,31 @@
+(function (Translator) {
+    // en
+    Translator.add("Add server", "Add server", "ldap", "en");
+    Translator.add("Allow account creation at the firs login", "Allow account creation at the first login.", "ldap", "en");
+    Translator.add("Export LDAP users", "Export LDAP users", "ldap", "en");
+    Translator.add("LDAP settings", "LDAP settings", "ldap", "en");
+    Translator.add("Save settings", "Save settings", "ldap", "en");
+    Translator.add("Servers settings", "Server settings", "ldap", "en");
+    Translator.add("There are no configured servers", "There are no configured servers.", "ldap", "en");
+    Translator.add("There is not users settings", "There are not users settings;", "ldap", "en");
+    Translator.add("Users and groups settings", "Users and groups settings", "ldap", "en");
+    Translator.add("Users and groups", "Users and groups", "ldap", "en");
+    Translator.add("groups_settings", "Groups settings", "ldap", "en");
+    Translator.add("ldap_already_exists", "There is already a server with this name.", "ldap", "en");
+    Translator.add("ldap_cant_connect", "Unable to connect to server.", "ldap", "en");
+    Translator.add("ldap_error_conexion", "Could not connect to LDAP server.", "ldap", "en");
+    Translator.add("ldap_group_class", "Group class", "ldap", "en");
+    Translator.add("ldap_save_groups_settings_error", "In order to save the settings, you must provide the name and the code.", "ldap", "en");
+    Translator.add("ldap_save_users_settings_error", "In order to save the settings, you must provide the username, name, last name, email and password.", "ldap", "en");
+    Translator.add("ldap_user_class", "User class", "ldap", "en");
+    Translator.add("users_settings", "Users settings", "ldap", "en");
+    Translator.add("name", "Name", "ldap", "en");
+    Translator.add("host", "Host", "ldap", "en");
+    Translator.add("port", "Port", "ldap", "en");
+    Translator.add("distinguished_name", "DN", "ldap", "en");
+    Translator.add("username", "Username", "ldap", "en");
+    Translator.add("password", "Password", "ldap", "en");
+    Translator.add("protocol_version", "Version", "ldap", "en");
+    Translator.add("append_dn", "Concat DN", "ldap", "en");
+    Translator.add("auto_creation", "Create user if missing.", "ldap", "en");
+})(Translator);

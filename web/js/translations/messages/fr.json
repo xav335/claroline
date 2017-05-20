@@ -1,0 +1,3 @@
+{
+    "translations": {"fr":{"messages":{"innova_path_name":"Nom","innova_path_description":"Description","innova_path_published":"Publier la ressource","innova_path_breadcrumbs":"Afficher le fil d'Ariane ?","innova_path_summaryDisplayed":"Ouvrir le sommaire par d\u00e9faut ?","innova_path_completeBlockingCondition":"Conditions bloquantes pour toutes les \u00e9tapes enfants ?","innova_path_manualProgressionAllowed":"Permettre \u00e0 l'utilisateur d'indiquer manuellement sa progression ?"}}}
+}

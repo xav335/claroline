@@ -1,0 +1,1 @@
+module.exports={cursus:require("/home/jenkins/workspace/release/vendor/claroline/distribution/plugin/cursus/Resources/config/config.js")};

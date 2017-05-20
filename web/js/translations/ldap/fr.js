@@ -1,0 +1,31 @@
+(function (Translator) {
+    // fr
+    Translator.add("Add server", "Ajouter un serveur", "ldap", "fr");
+    Translator.add("Allow account creation at the first login", "Permettre la cr\u00e9ation d'un compte lors de la premi\u00e8re connexion", "ldap", "fr");
+    Translator.add("Export LDAP users", "Exporter les utilisateurs LDAP", "ldap", "fr");
+    Translator.add("LDAP settings", "Param\u00e8tres LDAP", "ldap", "fr");
+    Translator.add("Save settings", "Enregistrer les param\u00e8tres", "ldap", "fr");
+    Translator.add("Servers settings", "R\u00e9glages des serveurs", "ldap", "fr");
+    Translator.add("There are no configured servers", "Il n'y a pas de serveur configur\u00e9", "ldap", "fr");
+    Translator.add("There is not users settings", "Il n'y a pas de param\u00e8tres utilisateurs", "ldap", "fr");
+    Translator.add("Users and groups settings", "R\u00e9glages d'utilisateurs et groupes", "ldap", "fr");
+    Translator.add("Users and groups", "Utilisateurs et groupes", "ldap", "fr");
+    Translator.add("groups_settings", "R\u00e9glages des groupes", "ldap", "fr");
+    Translator.add("ldap_already_exists", "Il existe d\u00e9j\u00e0 un serveur avec ce nom", "ldap", "fr");
+    Translator.add("ldap_cant_connect", "Impossible de se connecter au serveur", "ldap", "fr");
+    Translator.add("ldap_error_conexion", "Impossible de se connecter au serveur LDAP", "ldap", "fr");
+    Translator.add("ldap_group_class", "Classe d''un groupe", "ldap", "fr");
+    Translator.add("ldap_save_groups_settings_error", "Afin d'enregistrer les param\u00e8tres, vous devez fournir le nom et le code", "ldap", "fr");
+    Translator.add("ldap_save_users_settings_error", "Afin d'enregistrer les param\u00e8tres, vous devez fournir le nom d''utilisateur, nom, pr\u00e9nom, courriel et mot de passe.", "ldap", "fr");
+    Translator.add("ldap_user_class", "Classe d'utilisateur", "ldap", "fr");
+    Translator.add("users_settings", "R\u00e9glages d'utilisateurs", "ldap", "fr");
+    Translator.add("name", "Nom", "ldap", "fr");
+    Translator.add("host", "H\u00f4te", "ldap", "fr");
+    Translator.add("port", "Port", "ldap", "fr");
+    Translator.add("distinguished_name", "DN", "ldap", "fr");
+    Translator.add("username", "Utilisateur", "ldap", "fr");
+    Translator.add("password", "Mot de passe", "ldap", "fr");
+    Translator.add("protocol_version", "Version", "ldap", "fr");
+    Translator.add("append_dn", "Ajouter le DN au nom d'utilisateur", "ldap", "fr");
+    Translator.add("auto_creation", "Cr\u00e9er l'utilisateur s'il n'existe pas", "ldap", "fr");
+})(Translator);

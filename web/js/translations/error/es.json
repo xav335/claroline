@@ -1,0 +1,3 @@
+{
+    "translations": {"es":{"error":{"insufficient_permissions":"Permisos insuficientes.","invalid_move":"No se puede mover un directorio dentro de s\u00ed mismo.","recursivity_not_supported":"La recursividad no est\u00e1 soportada."}}}
+}

@@ -1,0 +1,1 @@
+<?php return unserialize('a:2:{i:0;O:30:"Doctrine\\ORM\\Mapping\\OneToMany":6:{s:8:"mappedBy";s:7:"session";s:12:"targetEntity";s:42:"Claroline\\CursusBundle\\Entity\\SessionEvent";s:7:"cascade";N;s:5:"fetch";s:4:"LAZY";s:13:"orphanRemoval";b:0;s:7:"indexBy";N;}i:1;O:32:"JMS\\Serializer\\Annotation\\Groups":1:{s:6:"groups";a:2:{i:0;s:10:"api_cursus";i:1;s:12:"api_user_min";}}}');

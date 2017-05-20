@@ -1,0 +1,11 @@
+{
+    "name": "claroline/front-end-bundle",
+    "description": "Front-end dependencies bundle for Claroline 2.0",
+    "license": "GPL-3.0+",
+    "require": {
+        "php": ">=5.5"
+    },
+    "autoload": {
+        "psr-4": { "Claroline\\Bundle\\FrontEndBundle\\": "" }
+    }
+}

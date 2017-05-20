@@ -1,0 +1,1 @@
+<?php return unserialize('a:2:{i:0;O:30:"Doctrine\\ORM\\Mapping\\OneToMany":6:{s:8:"mappedBy";s:10:"panelFacet";s:12:"targetEntity";s:48:"Claroline\\CoreBundle\\Entity\\Facet\\PanelFacetRole";s:7:"cascade";N;s:5:"fetch";s:4:"LAZY";s:13:"orphanRemoval";b:0;s:7:"indexBy";N;}i:1;O:32:"JMS\\Serializer\\Annotation\\Groups":1:{s:6:"groups";a:1:{i:0;s:15:"api_facet_admin";}}}');

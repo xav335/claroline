@@ -1,0 +1,37 @@
+(function (Translator) {
+    // es
+    Translator.add("agenda", "Agenda", "tools", "es");
+    Translator.add("analytics", "Tablero de control", "tools", "es");
+    Translator.add("desktop_and_home", "desktop_and_home", "tools", "es");
+    Translator.add("desktop_tools", "desktop_tools", "tools", "es");
+    Translator.add("home", "Inicio", "tools", "es");
+    Translator.add("home_tabs", "Pesta\u00f1as", "tools", "es");
+    Translator.add("learning_outcomes", "learning_outcomes", "tools", "es");
+    Translator.add("learning_profil", "Perfil de aprendizaje", "tools", "es");
+    Translator.add("logs", "Registros", "tools", "es");
+    Translator.add("my_contacts", "Mis contactos", "tools", "es");
+    Translator.add("parameters", "Par\u00e1metros", "tools", "es");
+    Translator.add("platform_analytics", "An\u00e1lisis de la plataforma", "tools", "es");
+    Translator.add("platform_logs", "Registros de la plataforma", "tools", "es");
+    Translator.add("platform_parameters", "Par\u00e1metros de la plataforma", "tools", "es");
+    Translator.add("platform_plugins", "Plugins de la plataforma", "tools", "es");
+    Translator.add("registration_to_workspace", "Inscripci\u00f3n a un espacio de trabajo", "tools", "es");
+    Translator.add("resource_manager", "Recursos", "tools", "es");
+    Translator.add("roles_management", "Gesti\u00f3n de roles", "tools", "es");
+    Translator.add("user_management", "Gesti\u00f3n de usuarios", "tools", "es");
+    Translator.add("users", "Usuarios", "tools", "es");
+    Translator.add("widgets_management", "Gesti\u00f3n de Widgets", "tools", "es");
+    Translator.add("workspace_management", "Gesti\u00f3n de espacios de trabajo", "tools", "es");
+    Translator.add("agenda_", "Agenda", "tools", "es");
+    Translator.add("reservation_tool", "Reservation_tool", "tools", "es");
+    Translator.add("message", "Mensajer\u00eda", "tools", "es");
+    Translator.add("claroline_team_tool", "Equipo", "tools", "es");
+    Translator.add("activities_from", "Actividades de", "tools", "es");
+    Translator.add("activity", "Actividad", "tools", "es");
+    Translator.add("all_activities", "Todas las actividades", "tools", "es");
+    Translator.add("claroline_activity_tool", "Mis actividades", "tools", "es");
+    Translator.add("end_date", "Fecha de  finalizaci\u00f3n", "tools", "es");
+    Translator.add("instructions", "Instrucciones", "tools", "es");
+    Translator.add("start_date", "Fecha de inicio", "tools", "es");
+    Translator.add("badges", "Insignias", "tools", "es");
+})(Translator);

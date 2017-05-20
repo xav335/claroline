@@ -1,0 +1,1 @@
+<?php return unserialize('a:1:{i:0;O:36:"JMS\\DiExtraBundle\\Annotation\\Observe":2:{s:5:"event";s:64:"create_notification_item_resource-claroline_forum-create_message";s:8:"priority";i:0;}}');

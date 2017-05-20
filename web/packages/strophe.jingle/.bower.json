@@ -1,0 +1,12 @@
+{
+  "name": "strophe.jingle",
+  "homepage": "https://github.com/ESTOS/strophe.jingle",
+  "_release": "529df0b12c",
+  "_resolution": {
+    "type": "commit",
+    "commit": "529df0b12cae47ca4a0e74172f7c0b83a57e68e7"
+  },
+  "_source": "https://github.com/ESTOS/strophe.jingle.git",
+  "_target": "529df0b12cae47ca4a0e74172f7c0b83a57e68e7",
+  "_originalSource": "https://github.com/ESTOS/strophe.jingle.git"
+}

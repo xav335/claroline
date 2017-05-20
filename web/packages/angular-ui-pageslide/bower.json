@@ -1,0 +1,20 @@
+{
+  "name": "angular-ui-pageslide",
+  "homepage": "https://github.com/Elorfin/angular-ui-pageslide",
+  "description": "Angular page slide effect directive",
+  "main": "angular-ui-pageslide.js",
+  "moduleType": [],
+  "keywords": [
+    "angular",
+    "claroline",
+    "pageslide"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

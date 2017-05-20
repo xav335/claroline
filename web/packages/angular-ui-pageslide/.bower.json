@@ -1,0 +1,30 @@
+{
+  "name": "angular-ui-pageslide",
+  "homepage": "https://github.com/Elorfin/angular-ui-pageslide",
+  "description": "Angular page slide effect directive",
+  "main": "angular-ui-pageslide.js",
+  "moduleType": [],
+  "keywords": [
+    "angular",
+    "claroline",
+    "pageslide"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "version": "1.0.0",
+  "_release": "1.0.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "1.0.0",
+    "commit": "c77dda0530ada72fd61555e9bafbe64547241718"
+  },
+  "_source": "https://github.com/Elorfin/angular-ui-pageslide.git",
+  "_target": "1.0.0",
+  "_originalSource": "angular-ui-pageslide"
+}

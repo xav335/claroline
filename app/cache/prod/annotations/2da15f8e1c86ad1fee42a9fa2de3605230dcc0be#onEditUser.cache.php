@@ -1,0 +1,1 @@
+<?php return unserialize('a:1:{i:0;O:36:"JMS\\DiExtraBundle\\Annotation\\Observe":2:{s:5:"event";s:22:"admin_user_action_edit";s:8:"priority";i:0;}}');

@@ -1,0 +1,31 @@
+(function (Translator) {
+    // es
+    Translator.add("Add server", "Agregar un servidor", "ldap", "es");
+    Translator.add("Allow account creation at the first login", "Permitir la creaci\u00f3n de cuentas en el primer inicio de sesi\u00f3n", "ldap", "es");
+    Translator.add("Export LDAP users", "Exportar los usuarios de LDAP", "ldap", "es");
+    Translator.add("LDAP settings", "Configuraci\u00f3n de LDAP", "ldap", "es");
+    Translator.add("Save settings", "Guardar la configuraci\u00f3n", "ldap", "es");
+    Translator.add("Servers settings", "Configuraci\u00f3n de servidores", "ldap", "es");
+    Translator.add("There are no configured servers", "No hay servidores configurados", "ldap", "es");
+    Translator.add("There is not users settings", "No hay configuraci\u00f3n de usuarios", "ldap", "es");
+    Translator.add("Users and groups settings", "Configuraci\u00f3n de usuarios y grupos", "ldap", "es");
+    Translator.add("Users and groups", "Usuarios y grupos", "ldap", "es");
+    Translator.add("groups_settings", "Configuraci\u00f3n de grupos", "ldap", "es");
+    Translator.add("ldap_already_exists", "Ya existe un servidor con este nombre", "ldap", "es");
+    Translator.add("ldap_cant_connect", "No se puede conectar con el servidor", "ldap", "es");
+    Translator.add("ldap_error_conexion", "Imposible de conectarse con el servidor LDAP", "ldap", "es");
+    Translator.add("ldap_group_class", "Clase de grupo", "ldap", "es");
+    Translator.add("ldap_save_groups_settings_error", "Con el fin de guardar la configuraci\u00f3n, debe proporcionar el nombre y el codigo", "ldap", "es");
+    Translator.add("ldap_save_users_settings_error", "Con el fin de guardar la configuraci\u00f3n, debe proporcionar el nombre de usuario, nombre, apellido, correo electr\u00f3nico y contrase\u00f1a", "ldap", "es");
+    Translator.add("ldap_user_class", "Clase de usuario", "ldap", "es");
+    Translator.add("users_settings", "Configuraci\u00f3n de usuarios", "ldap", "es");
+    Translator.add("name", "name", "ldap", "es");
+    Translator.add("host", "host", "ldap", "es");
+    Translator.add("port", "port", "ldap", "es");
+    Translator.add("distinguished_name", "distinguished_name", "ldap", "es");
+    Translator.add("username", "username", "ldap", "es");
+    Translator.add("password", "password", "ldap", "es");
+    Translator.add("protocol_version", "protocol_version", "ldap", "es");
+    Translator.add("append_dn", "append_dn", "ldap", "es");
+    Translator.add("auto_creation", "auto_creation", "ldap", "es");
+})(Translator);

@@ -1,0 +1,1 @@
+<?php return unserialize('a:1:{i:0;O:36:"JMS\\DiExtraBundle\\Annotation\\Observe":2:{s:5:"event";s:33:"edit_dropzone_innova_collecticiel";s:8:"priority";i:0;}}');

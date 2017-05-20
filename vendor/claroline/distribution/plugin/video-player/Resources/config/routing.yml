@@ -1,0 +1,7 @@
+claro_video_api:
+    resource: "@ClarolineVideoPlayerBundle/Controller/API/VideoController.php"
+    type: rest
+    prefix: api
+    defaults: {_format: json}
+    options:
+        expose: true
