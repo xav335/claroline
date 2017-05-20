@@ -1,0 +1,11 @@
+{% extends 'ClarolineCoreBundle::layout.html.twig' %}
+
+{% set httpCode = 503 %}
+
+{% block title %}{{ parent() ~ ' - ' ~ 'internal_error' | trans({}, 'platform') | striptags | raw }}{% endblock %}
+
+{% block content %}
+    <div class="alert alert-danger" style="text-align: center;">
+        {{'unavailable_platform'|trans({}, 'platform')}}
+    </div>
+{% endblock %}

@@ -1,0 +1,1 @@
+<?php return unserialize('a:2:{i:0;O:36:"JMS\\DiExtraBundle\\Annotation\\Observe":2:{s:5:"event";s:23:"export_scorm_file_video";s:8:"priority";i:0;}i:1;O:36:"JMS\\DiExtraBundle\\Annotation\\Observe":2:{s:5:"event";s:23:"export_scorm_file_audio";s:8:"priority";i:0;}}');

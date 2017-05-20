@@ -1,0 +1,92 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string",
+      "pattern": "^application/x\\.[^/]+\\+json$"
+    },
+    "title": {
+      "type": "string"
+    },
+    "content": {
+      "type": "string",
+      "description": "The content of the question"
+    },
+    "description": {
+      "type": "string",
+      "description": "Supplementary information about the question"
+    },
+    "meta": {
+      "$ref": "http://json-quiz.github.io/json-quiz/schemas/metadata/schema.json"
+    },
+    "objects": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "$ref": "http://json-quiz.github.io/json-quiz/schemas/content/schema.json"
+      }
+    },
+    "resources": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "$ref": "http://json-quiz.github.io/json-quiz/schemas/content/schema.json"
+      }
+    },
+    "hints": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "$ref": "http://json-quiz.github.io/json-quiz/schemas/hint/schema.json"
+      }
+    },
+    "feedback": {
+      "type": "string"
+    },
+    "score": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "enum": ["sum"]
+            }
+          },
+          "required": ["type"]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "enum": ["fixed"]
+            },
+            "success": {
+              "type": "number"
+            },
+            "failure": {
+              "type": "number"
+            }
+          },
+          "required": ["type", "success", "failure"]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "enum": ["manual"]
+            },
+            "max": {
+              "type": "number"
+            }
+          },
+          "required": ["type", "max"]
+        }
+      ]
+    }
+  },
+  "required": ["id", "type", "content"]
+}

@@ -1,0 +1,1 @@
+<?php return unserialize('a:2:{i:0;O:48:"FOS\\RestBundle\\Controller\\Annotations\\NamePrefix":1:{s:5:"value";s:4:"api_";}i:1;O:47:"JMS\\SecurityExtraBundle\\Annotation\\PreAuthorize":2:{s:4:"expr";s:35:"canOpenAdminTool(\'user_management\')";s:10:"publicOnly";b:1;}}');

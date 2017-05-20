@@ -1,0 +1,30 @@
+(function (Translator) {
+    // en
+    Translator.add("best_score", "Best score", "scorm", "en");
+    Translator.add("best_status", "Best status", "scorm", "en");
+    Translator.add("browsed", "Browsed", "scorm", "en");
+    Translator.add("completed", "Completed", "scorm", "en");
+    Translator.add("completion_status", "Completion status", "scorm", "en");
+    Translator.add("desktop", "Desktop", "scorm", "en");
+    Translator.add("details", "Details", "scorm", "en");
+    Translator.add("display_details", "Display details", "scorm", "en");
+    Translator.add("display_menu", "Display menu", "scorm", "en");
+    Translator.add("display_results", "Display results", "scorm", "en");
+    Translator.add("exit_destination", "Exit destination", "scorm", "en");
+    Translator.add("failed", "Failed", "scorm", "en");
+    Translator.add("full_screen", "Full screen", "scorm", "en");
+    Translator.add("hide_top_bar", "Hide top bar", "scorm", "en");
+    Translator.add("incomplete", "Incomplete", "scorm", "en");
+    Translator.add("last_status", "Last status", "scorm", "en");
+    Translator.add("last_score", "Last score", "scorm", "en");
+    Translator.add("no_detail", "No detail", "scorm", "en");
+    Translator.add("no_result", "No result", "scorm", "en");
+    Translator.add("not attempted", "Not attempted", "scorm", "en");
+    Translator.add("not_attempted", "Not attempted", "scorm", "en");
+    Translator.add("passed", "Passed", "scorm", "en");
+    Translator.add("session_time", "Last session time", "scorm", "en");
+    Translator.add("scorm_results", "SCORM results", "scorm", "en");
+    Translator.add("success_status", "Success status", "scorm", "en");
+    Translator.add("unknown", "Unknown", "scorm", "en");
+    Translator.add("workspace_opening", "Workspace opening", "scorm", "en");
+})(Translator);

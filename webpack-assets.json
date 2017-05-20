@@ -1,0 +1,140 @@
+{
+  "claroline-distribution-main-core-admin-home-tabs-config": {
+    "js": "claroline-distribution-main-core-admin-home-tabs-config-33209cc0c61dc6c3d137.js"
+  },
+  "claroline-distribution-main-core-core-js": {
+    "js": "claroline-distribution-main-core-core-js-33209cc0c61dc6c3d137.js"
+  },
+  "claroline-distribution-main-core-desktop-home": {
+    "js": "claroline-distribution-main-core-desktop-home-33209cc0c61dc6c3d137.js"
+  },
+  "claroline-distribution-main-core-facet-management": {
+    "js": "claroline-distribution-main-core-facet-management-33209cc0c61dc6c3d137.js"
+  },
+  "claroline-distribution-main-core-modernizr": {
+    "js": "claroline-distribution-main-core-modernizr-33209cc0c61dc6c3d137.js"
+  },
+  "claroline-distribution-main-core-organization-management": {
+    "js": "claroline-distribution-main-core-organization-management-33209cc0c61dc6c3d137.js"
+  },
+  "claroline-distribution-main-core-plugin-management": {
+    "js": "claroline-distribution-main-core-plugin-management-33209cc0c61dc6c3d137.js"
+  },
+  "claroline-distribution-main-core-portal": {
+    "js": "claroline-distribution-main-core-portal-33209cc0c61dc6c3d137.js"
+  },
+  "claroline-distribution-main-core-private-profile": {
+    "js": "claroline-distribution-main-core-private-profile-33209cc0c61dc6c3d137.js"
+  },
+  "claroline-distribution-main-core-tinymce": {
+    "js": "claroline-distribution-main-core-tinymce-33209cc0c61dc6c3d137.js"
+  },
+  "claroline-distribution-main-core-user-management": {
+    "js": "claroline-distribution-main-core-user-management-33209cc0c61dc6c3d137.js"
+  },
+  "claroline-distribution-main-core-whatwg-fetch": {
+    "js": "claroline-distribution-main-core-whatwg-fetch-33209cc0c61dc6c3d137.js"
+  },
+  "claroline-distribution-main-core-workspace-home": {
+    "js": "claroline-distribution-main-core-workspace-home-33209cc0c61dc6c3d137.js"
+  },
+  "claroline-distribution-plugin-audio-recorder-recorder": {
+    "js": "claroline-distribution-plugin-audio-recorder-recorder-33209cc0c61dc6c3d137.js"
+  },
+  "claroline-distribution-plugin-blog-app": {
+    "js": "claroline-distribution-plugin-blog-app-33209cc0c61dc6c3d137.js"
+  },
+  "claroline-distribution-plugin-blog-widget-tagcanvas": {
+    "js": "claroline-distribution-plugin-blog-widget-tagcanvas-33209cc0c61dc6c3d137.js"
+  },
+  "claroline-distribution-plugin-chat-room": {
+    "js": "claroline-distribution-plugin-chat-room-33209cc0c61dc6c3d137.js"
+  },
+  "claroline-distribution-plugin-claco-form-resource": {
+    "js": "claroline-distribution-plugin-claco-form-resource-33209cc0c61dc6c3d137.js"
+  },
+  "claroline-distribution-plugin-cursus-group-management": {
+    "js": "claroline-distribution-plugin-cursus-group-management-33209cc0c61dc6c3d137.js"
+  },
+  "claroline-distribution-plugin-cursus-group-registration-management": {
+    "js": "claroline-distribution-plugin-cursus-group-registration-management-33209cc0c61dc6c3d137.js"
+  },
+  "claroline-distribution-plugin-cursus-management": {
+    "js": "claroline-distribution-plugin-cursus-management-33209cc0c61dc6c3d137.js"
+  },
+  "claroline-distribution-plugin-cursus-registration": {
+    "js": "claroline-distribution-plugin-cursus-registration-33209cc0c61dc6c3d137.js"
+  },
+  "claroline-distribution-plugin-cursus-user-management": {
+    "js": "claroline-distribution-plugin-cursus-user-management-33209cc0c61dc6c3d137.js"
+  },
+  "claroline-distribution-plugin-cursus-user-registration-management": {
+    "js": "claroline-distribution-plugin-cursus-user-registration-management-33209cc0c61dc6c3d137.js"
+  },
+  "claroline-distribution-plugin-dashboard-app": {
+    "js": "claroline-distribution-plugin-dashboard-app-33209cc0c61dc6c3d137.js"
+  },
+  "claroline-distribution-plugin-exo-bank": {
+    "js": "claroline-distribution-plugin-exo-bank-33209cc0c61dc6c3d137.js"
+  },
+  "claroline-distribution-plugin-exo-docimology": {
+    "js": "claroline-distribution-plugin-exo-docimology-33209cc0c61dc6c3d137.js"
+  },
+  "claroline-distribution-plugin-exo-quiz": {
+    "js": "claroline-distribution-plugin-exo-quiz-33209cc0c61dc6c3d137.js"
+  },
+  "claroline-distribution-plugin-flashcard-list": {
+    "js": "claroline-distribution-plugin-flashcard-list-33209cc0c61dc6c3d137.js"
+  },
+  "claroline-distribution-plugin-lesson-list": {
+    "js": "claroline-distribution-plugin-lesson-list-33209cc0c61dc6c3d137.js"
+  },
+  "claroline-distribution-plugin-media-resource-admin": {
+    "js": "claroline-distribution-plugin-media-resource-admin-33209cc0c61dc6c3d137.js"
+  },
+  "claroline-distribution-plugin-media-resource-players": {
+    "js": "claroline-distribution-plugin-media-resource-players-33209cc0c61dc6c3d137.js"
+  },
+  "claroline-distribution-plugin-path-editor": {
+    "js": "claroline-distribution-plugin-path-editor-33209cc0c61dc6c3d137.js"
+  },
+  "claroline-distribution-plugin-path-player": {
+    "js": "claroline-distribution-plugin-path-player-33209cc0c61dc6c3d137.js"
+  },
+  "claroline-distribution-plugin-pdf-player-pdf-viewer": {
+    "js": "claroline-distribution-plugin-pdf-player-pdf-viewer-33209cc0c61dc6c3d137.js"
+  },
+  "claroline-distribution-plugin-portfolio-checklist-model": {
+    "js": "claroline-distribution-plugin-portfolio-checklist-model-33209cc0c61dc6c3d137.js"
+  },
+  "claroline-distribution-plugin-result-list": {
+    "js": "claroline-distribution-plugin-result-list-33209cc0c61dc6c3d137.js"
+  },
+  "claroline-distribution-plugin-scorm-results": {
+    "js": "claroline-distribution-plugin-scorm-results-33209cc0c61dc6c3d137.js"
+  },
+  "claroline-distribution-plugin-video-player-track-management": {
+    "js": "claroline-distribution-plugin-video-player-track-management-33209cc0c61dc6c3d137.js"
+  },
+  "claroline-distribution-plugin-video-player-watcher": {
+    "js": "claroline-distribution-plugin-video-player-watcher-33209cc0c61dc6c3d137.js"
+  },
+  "claroline-distribution-plugin-video-recorder-recorder": {
+    "js": "claroline-distribution-plugin-video-recorder-recorder-33209cc0c61dc6c3d137.js"
+  },
+  "claroline-distribution-plugin-website-edit-app": {
+    "js": "claroline-distribution-plugin-website-edit-app-33209cc0c61dc6c3d137.js"
+  },
+  "claroline-distribution-plugin-website-view-app-horizontal": {
+    "js": "claroline-distribution-plugin-website-view-app-horizontal-33209cc0c61dc6c3d137.js"
+  },
+  "claroline-distribution-plugin-website-view-app-vertical": {
+    "js": "claroline-distribution-plugin-website-view-app-vertical-33209cc0c61dc6c3d137.js"
+  },
+  "claroline-distribution-plugin-wiki-list": {
+    "js": "claroline-distribution-plugin-wiki-list-33209cc0c61dc6c3d137.js"
+  },
+  "commons": {
+    "js": "commons-33209cc0c61dc6c3d137.js"
+  }
+}

@@ -1,0 +1,93 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "meta": {
+      "$ref": "http://json-quiz.github.io/json-quiz/schemas/metadata/schema.json"
+    },
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "duration": {
+          "type": "number",
+          "minimum": 0,
+          "description": "The allowed duration to pass the step",
+          "default": 0
+        },
+        "maxAttempts": {
+          "type": "number",
+          "minimum": 0,
+          "description": "The number of times a user can try the step. If 0, there is no limit",
+          "default": 0
+        },
+        "randomOrder": {
+          "enum": ["once", "never", "always"],
+          "description": "Randomize order of items in the step",
+          "default": "never"
+        },
+        "randomPick": {
+          "enum": ["once", "never", "always"],
+          "description": "Pick a random sub set of items in the step",
+          "default": "never"
+        },
+        "pick": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Number of items to use when a user try the step. If 0, all the items are used",
+          "default": 0
+        }
+      }
+    },
+    "items": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "oneOf": [
+          {
+            "$ref": "http://json-quiz.github.io/json-quiz/schemas/content/schema.json"
+          },
+          {
+            "$ref": "http://json-quiz.github.io/json-quiz/schemas/question/choice/schema.json"
+          },
+          {
+            "$ref": "http://json-quiz.github.io/json-quiz/schemas/question/match/schema.json"
+          },
+          {
+            "$ref": "http://json-quiz.github.io/json-quiz/schemas/question/sort/schema.json"
+          },
+          {
+            "$ref": "http://json-quiz.github.io/json-quiz/schemas/question/cloze/schema.json"
+          },
+          {
+            "$ref": "http://json-quiz.github.io/json-quiz/schemas/question/words/schema.json"
+          },
+          {
+            "$ref": "http://json-quiz.github.io/json-quiz/schemas/question/open/schema.json"
+          },
+          {
+            "$ref": "http://json-quiz.github.io/json-quiz/schemas/question/graphic/schema.json"
+          },
+          {
+            "$ref": "http://json-quiz.github.io/json-quiz/schemas/question/set/schema.json"
+          },
+          {
+            "$ref": "http://json-quiz.github.io/json-quiz/schemas/question/pair/schema.json"
+          },
+          {
+            "$ref": "http://json-quiz.github.io/json-quiz/schemas/question/grid/schema.json"
+          }
+        ]
+      }
+    }
+  },
+  "required": ["id", "items"]
+}

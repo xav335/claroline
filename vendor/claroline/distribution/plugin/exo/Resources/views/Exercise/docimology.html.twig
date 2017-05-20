@@ -1,0 +1,27 @@
+{% extends "ClarolineCoreBundle:Workspace:layout.html.twig" %}
+
+{% block stylesheets %}
+    {{ parent() }}
+
+    {% stylesheets debug=false filter='less, cssmin' output='vendor/ujmexo/docimology.css'
+        '@UJMExoBundle/Resources/less/main.less'
+    %}
+    <link rel="stylesheet" media="screen" href="{{ asset_url }}" />
+    {% endstylesheets %}
+{% endblock %}
+
+{# Title of the Page #}
+{% block title %}
+    {{ _resource.resourceNode.name }} : {{ 'docimology' | trans({}, 'ujm_exo') }}
+{% endblock %}
+
+{# Content of the Page #}
+{% block section_panel %}
+    <div id="docimology" data-exercise="{{ exercise | json_encode | raw | escape }}"></div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script src="{{ hotAsset('dist/claroline-distribution-plugin-exo-docimology.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,12 @@
+{
+  "name": "tinymce-codemirror",
+  "homepage": "https://github.com/christiaan/tinymce-codemirror",
+  "_release": "20c1bbe708",
+  "_resolution": {
+    "type": "commit",
+    "commit": "20c1bbe708"
+  },
+  "_source": "https://github.com/christiaan/tinymce-codemirror.git",
+  "_target": "20c1bbe708",
+  "_originalSource": "https://github.com/christiaan/tinymce-codemirror.git"
+}

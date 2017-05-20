@@ -1,0 +1,12 @@
+{
+  "name": "jquery-tagcanvas",
+  "homepage": "https://github.com/goat1000/TagCanvas",
+  "_release": "ab3cb98be8",
+  "_resolution": {
+    "type": "commit",
+    "commit": "ab3cb98be8753247d674a385a17c085a2dc950db"
+  },
+  "_source": "https://github.com/goat1000/TagCanvas.git",
+  "_target": "ab3cb98be8753247d674a385a17c085a2dc950db",
+  "_originalSource": "https://github.com/goat1000/TagCanvas.git"
+}

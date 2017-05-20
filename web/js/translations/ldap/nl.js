@@ -1,0 +1,31 @@
+(function (Translator) {
+    // nl
+    Translator.add("Add server", "Een server toevoegen", "ldap", "nl");
+    Translator.add("Allow account creation at the first login", "Permettre la cr\u00e9ation d'un compte lors de la premi\u00e8re connexion", "ldap", "nl");
+    Translator.add("Export LDAP users", "De LDAP-gebruikers uitvoeren", "ldap", "nl");
+    Translator.add("LDAP settings", "LDAP instellingen", "ldap", "nl");
+    Translator.add("Save settings", "De instellingen opslaan", "ldap", "nl");
+    Translator.add("Servers settings", "De servers instellen", "ldap", "nl");
+    Translator.add("There are no configured servers", "Il n'y a pas de serveur configur\u00e9", "ldap", "nl");
+    Translator.add("There is not users settings", "Il n'y a pas de param\u00e8tres utilisateurs", "ldap", "nl");
+    Translator.add("Users and groups settings", "R\u00e9glages d'utilisateurs et groupes", "ldap", "nl");
+    Translator.add("Users and groups", "Gebruikers en groepen", "ldap", "nl");
+    Translator.add("groups_settings", "De groepen instellen", "ldap", "nl");
+    Translator.add("ldap_already_exists", "Il existe d\u00e9j\u00e0 un serveur avec ce nom", "ldap", "nl");
+    Translator.add("ldap_cant_connect", "Impossible de se connecter au serveur", "ldap", "nl");
+    Translator.add("ldap_error_conexion", "Impossible de se connecter au serveur LDAP", "ldap", "nl");
+    Translator.add("ldap_group_class", "Klasse van een groep", "ldap", "nl");
+    Translator.add("ldap_save_groups_settings_error", "Afin d'enregistrer les param\u00e8tres, vous devez fournir le nom et le code", "ldap", "nl");
+    Translator.add("ldap_save_users_settings_error", "Afin d'enregistrer les param\u00e8tres, vous devez fournir le nom d''utilisateur, nom, pr\u00e9nom, courriel et mot de passe.", "ldap", "nl");
+    Translator.add("ldap_user_class", "Classe d'utilisateur", "ldap", "nl");
+    Translator.add("users_settings", "R\u00e9glages d'utilisateurs", "ldap", "nl");
+    Translator.add("name", "Naam", "ldap", "nl");
+    Translator.add("host", "H\u00f4te", "ldap", "nl");
+    Translator.add("port", "Port", "ldap", "nl");
+    Translator.add("distinguished_name", "DN", "ldap", "nl");
+    Translator.add("username", "Gebruiker", "ldap", "nl");
+    Translator.add("password", "Paswoord", "ldap", "nl");
+    Translator.add("protocol_version", "Versie", "ldap", "nl");
+    Translator.add("append_dn", "Ajouter le DN au nom d'utilisateur", "ldap", "nl");
+    Translator.add("auto_creation", "De gebruiker maken indien hij niet bestaat", "ldap", "nl");
+})(Translator);

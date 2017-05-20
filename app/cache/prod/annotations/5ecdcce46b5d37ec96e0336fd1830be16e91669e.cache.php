@@ -1,0 +1,1 @@
+<?php return unserialize('a:1:{i:0;O:37:"JMS\\DiExtraBundle\\Annotation\\FormType":1:{s:5:"alias";s:25:"badge_usage_widget_config";}}');

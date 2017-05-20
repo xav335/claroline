@@ -1,0 +1,24 @@
+parameters:
+    database_driver: pdo_mysql
+    database_host: localhost
+    database_port: null
+    database_name: claroline
+    database_user: root
+    database_password: admin339
+    test_database_driver: '%database_driver%'
+    test_database_host: '%database_host%'
+    test_database_port: '%database_port%'
+    test_database_name: '%database_name%_test'
+    test_database_user: '%database_user%'
+    test_database_password: '%database_password%'
+    mailer_transport: smtp
+    mailer_encryption: null
+    mailer_auth_mode: null
+    mailer_host: null
+    mailer_port: null
+    mailer_user: null
+    mailer_password: null
+    locale: fr
+    secret: 59cbe0c36869fd6f6a1cf71e8c3e7bb9
+    non_repeatable_log_time_in_seconds: 600
+    chosenRangeKeys: '[''yesterday'', ''last_seven_days'', ''last_thirty_days'', ''this_month'', ''last_month'', ''this_school_year'', ''last_school_year'']'

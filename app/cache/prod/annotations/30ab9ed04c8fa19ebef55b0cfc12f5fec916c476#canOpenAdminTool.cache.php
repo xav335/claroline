@@ -1,0 +1,1 @@
+<?php return unserialize('a:1:{i:0;O:45:"JMS\\DiExtraBundle\\Annotation\\SecurityFunction":1:{s:8:"function";s:26:"canOpenAdminTool(toolName)";}}');

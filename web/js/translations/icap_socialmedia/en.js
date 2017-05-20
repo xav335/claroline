@@ -1,0 +1,31 @@
+(function (Translator) {
+    // en
+    Translator.add("people_who_like_this", "People who like this", "icap_socialmedia", "en");
+    Translator.add("unlike_action", "Unlike", "icap_socialmedia", "en");
+    Translator.add("see_more", "See more", "icap_socialmedia", "en");
+    Translator.add("no_like", "Be the first to like this resource", "icap_socialmedia", "en");
+    Translator.add("choose_share_network", "Choose network to share this resource on:", "icap_socialmedia", "en");
+    Translator.add("shared_on", "Shared on \"%network%\" :", "icap_socialmedia", "en");
+    Translator.add("liked", "Liked :", "icap_socialmedia", "en");
+    Translator.add("commented", "Commented :", "icap_socialmedia", "en");
+    Translator.add("date_format", "F j Y \\a\\t H:i", "icap_socialmedia", "en");
+    Translator.add("no_wall_item", "No activity so far", "icap_socialmedia", "en");
+    Translator.add("comments", "Comments", "icap_socialmedia", "en");
+    Translator.add("no_comment", "Be the first to write a comment", "icap_socialmedia", "en");
+    Translator.add("submit_comment", "Submit comment", "icap_socialmedia", "en");
+    Translator.add("no_note", "Write your first note for this resource", "icap_socialmedia", "en");
+    Translator.add("your_notes", "Your reminders", "icap_socialmedia", "en");
+    Translator.add("submit_note", "Submit note", "icap_socialmedia", "en");
+    Translator.add("share_published_also_in_wall", "Your share is automatically published on your wall", "icap_socialmedia", "en");
+    Translator.add("load_previous_comments", "View previous comments", "icap_socialmedia", "en");
+    Translator.add("load_next_notes", "View more reminders", "icap_socialmedia", "en");
+    Translator.add("load_next_likes", "View more likes", "icap_socialmedia", "en");
+    Translator.add("load_next_wall_items", "View more items", "icap_socialmedia", "en");
+    Translator.add("comments_are_public", "Comments are public", "icap_socialmedia", "en");
+    Translator.add("notes_are_private", "Reminders are personal", "icap_socialmedia", "en");
+    Translator.add("platform_share_message", "Shares on platform", "icap_socialmedia", "en");
+    Translator.add("facebook_share_message", "Shares on Facebook", "icap_socialmedia", "en");
+    Translator.add("twitter_share_message", "Shares on Twitter are not available due to its new policy", "icap_socialmedia", "en");
+    Translator.add("google_share_message", "Shares on Google+", "icap_socialmedia", "en");
+    Translator.add("linkedin_share_message", "Shares on LinkedIn", "icap_socialmedia", "en");
+})(Translator);

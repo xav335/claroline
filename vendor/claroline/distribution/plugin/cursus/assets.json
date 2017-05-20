@@ -1,0 +1,12 @@
+{
+  "webpack": {
+    "entry": {
+      "registration": "Registration/module",
+      "management": "Management/management",
+      "user-management": "User/userManagement",
+      "user-registration-management": "User/userRegistrationManagement",
+      "group-management": "Group/groupManagement",
+      "group-registration-management": "Group/groupRegistrationManagement"
+    }
+  }
+}

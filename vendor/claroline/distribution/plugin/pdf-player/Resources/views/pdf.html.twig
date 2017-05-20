@@ -1,0 +1,28 @@
+{% set layout = "ClarolineCoreBundle:Workspace:layout.html.twig" %}
+
+{% if isDesktop() %}
+    {% set layout = "ClarolineCoreBundle:Desktop:layout.html.twig" %}
+{% else %}
+    {% set workspace = pdf.getResourceNode().getWorkspace() %}
+{% endif %}
+
+{% extends layout %}
+
+{% block title %}{{ pdf.getResourceNode().getName() ~ ' - ' ~ parent() | striptags | raw }}{% endblock %}
+
+{% block section_panel %}
+    <div data-ng-app="PdfViewer" data-ng-cloak="">
+        <pdf-viewer
+                data-id="{{ pdf.resourceNode.id }}"
+                data-name="'{{ pdf.resourceNode.name|ng_escape }}'"
+                data-url="'{{ path('claro_pdf', {node: pdf.resourceNode.id}) }}'"
+                data-download="{{ canDownload }}">
+        </pdf-viewer>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script src="{{ hotAsset('dist/claroline-distribution-plugin-pdf-player-pdf-viewer.js') }}" ></script>
+{% endblock %}
