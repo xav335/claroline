@@ -52,8 +52,8 @@ CREATE TABLE `cardtype_fieldlabel_answer` (
   PRIMARY KEY (`cardtype_id`,`fieldlabel_id`),
   KEY `IDX_73F017734E403864` (`cardtype_id`),
   KEY `IDX_73F01773A9D5EBE4` (`fieldlabel_id`),
-  CONSTRAINT `FK_73F01773A9D5EBE4` FOREIGN KEY (`fieldlabel_id`) REFERENCES `claro_fcbundle_field_label` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `FK_73F017734E403864` FOREIGN KEY (`cardtype_id`) REFERENCES `claro_fcbundle_card_type` (`id`) ON DELETE CASCADE
+  CONSTRAINT `FK_73F017734E403864` FOREIGN KEY (`cardtype_id`) REFERENCES `claro_fcbundle_card_type` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `FK_73F01773A9D5EBE4` FOREIGN KEY (`fieldlabel_id`) REFERENCES `claro_fcbundle_field_label` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -80,8 +80,8 @@ CREATE TABLE `cardtype_fieldlabel_question` (
   PRIMARY KEY (`cardtype_id`,`fieldlabel_id`),
   KEY `IDX_4FCC37F84E403864` (`cardtype_id`),
   KEY `IDX_4FCC37F8A9D5EBE4` (`fieldlabel_id`),
-  CONSTRAINT `FK_4FCC37F8A9D5EBE4` FOREIGN KEY (`fieldlabel_id`) REFERENCES `claro_fcbundle_field_label` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `FK_4FCC37F84E403864` FOREIGN KEY (`cardtype_id`) REFERENCES `claro_fcbundle_card_type` (`id`) ON DELETE CASCADE
+  CONSTRAINT `FK_4FCC37F84E403864` FOREIGN KEY (`cardtype_id`) REFERENCES `claro_fcbundle_card_type` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `FK_4FCC37F8A9D5EBE4` FOREIGN KEY (`fieldlabel_id`) REFERENCES `claro_fcbundle_field_label` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -116,9 +116,9 @@ CREATE TABLE `claro__event` (
   KEY `IDX_42A594A482D40A1F` (`workspace_id`),
   KEY `IDX_42A594A4D62B0FA` (`time_slot_id`),
   KEY `name_idx` (`name`),
-  CONSTRAINT `FK_42A594A4D62B0FA` FOREIGN KEY (`time_slot_id`) REFERENCES `claro__time_slot` (`id`) ON DELETE CASCADE,
   CONSTRAINT `FK_42A594A482D40A1F` FOREIGN KEY (`workspace_id`) REFERENCES `claro_workspace` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `FK_42A594A4A76ED395` FOREIGN KEY (`user_id`) REFERENCES `claro_user` (`id`) ON DELETE CASCADE
+  CONSTRAINT `FK_42A594A4A76ED395` FOREIGN KEY (`user_id`) REFERENCES `claro_user` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `FK_42A594A4D62B0FA` FOREIGN KEY (`time_slot_id`) REFERENCES `claro__time_slot` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -203,8 +203,8 @@ CREATE TABLE `claro__location_organization` (
   PRIMARY KEY (`organization_id`,`location_id`),
   KEY `IDX_C4EBDE032C8A3DE` (`organization_id`),
   KEY `IDX_C4EBDE064D218E` (`location_id`),
-  CONSTRAINT `FK_C4EBDE064D218E` FOREIGN KEY (`location_id`) REFERENCES `claro__location` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `FK_C4EBDE032C8A3DE` FOREIGN KEY (`organization_id`) REFERENCES `claro__organization` (`id`) ON DELETE CASCADE
+  CONSTRAINT `FK_C4EBDE032C8A3DE` FOREIGN KEY (`organization_id`) REFERENCES `claro__organization` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `FK_C4EBDE064D218E` FOREIGN KEY (`location_id`) REFERENCES `claro__location` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -238,7 +238,7 @@ CREATE TABLE `claro__organization` (
   PRIMARY KEY (`id`),
   KEY `IDX_B68DD0D5727ACA70` (`parent_id`),
   CONSTRAINT `FK_B68DD0D5727ACA70` FOREIGN KEY (`parent_id`) REFERENCES `claro__organization` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -324,8 +324,8 @@ CREATE TABLE `claro__time_slot` (
   PRIMARY KEY (`id`),
   KEY `IDX_2EA6030D32C8A3DE` (`organization_id`),
   KEY `IDX_2EA6030DEC8B7ADE` (`period_id`),
-  CONSTRAINT `FK_2EA6030DEC8B7ADE` FOREIGN KEY (`period_id`) REFERENCES `claro__period` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `FK_2EA6030D32C8A3DE` FOREIGN KEY (`organization_id`) REFERENCES `claro__organization` (`id`) ON DELETE CASCADE
+  CONSTRAINT `FK_2EA6030D32C8A3DE` FOREIGN KEY (`organization_id`) REFERENCES `claro__organization` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `FK_2EA6030DEC8B7ADE` FOREIGN KEY (`period_id`) REFERENCES `claro__period` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -385,10 +385,10 @@ CREATE TABLE `claro_activity` (
   UNIQUE KEY `UNIQ_E4A67CAC88BD9C1F` (`parameters_id`),
   UNIQUE KEY `UNIQ_E4A67CACB87FAB32` (`resourceNode_id`),
   KEY `IDX_E4A67CAC52410EEC` (`primaryResource_id`),
-  CONSTRAINT `FK_E4A67CACB87FAB32` FOREIGN KEY (`resourceNode_id`) REFERENCES `claro_resource_node` (`id`) ON DELETE CASCADE,
   CONSTRAINT `FK_E4A67CAC52410EEC` FOREIGN KEY (`primaryResource_id`) REFERENCES `claro_resource_node` (`id`) ON DELETE SET NULL,
-  CONSTRAINT `FK_E4A67CAC88BD9C1F` FOREIGN KEY (`parameters_id`) REFERENCES `claro_activity_parameters` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  CONSTRAINT `FK_E4A67CAC88BD9C1F` FOREIGN KEY (`parameters_id`) REFERENCES `claro_activity_parameters` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `FK_E4A67CACB87FAB32` FOREIGN KEY (`resourceNode_id`) REFERENCES `claro_resource_node` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -397,7 +397,7 @@ CREATE TABLE `claro_activity` (
 
 LOCK TABLES `claro_activity` WRITE;
 /*!40000 ALTER TABLE `claro_activity` DISABLE KEYS */;
-INSERT INTO `claro_activity` VALUES (1,1,'Suites arithmétiques avec Geogebra','<p>Pour visualiser des suites arithm&eacute;tiques.</p>\r\n<p>2 curseurs pour u0 et r.</p>\r\n<p>&nbsp;</p>',NULL,8);
+INSERT INTO `claro_activity` VALUES (1,1,'Suites arithmétiques avec Geogebra','<p>Pour visualiser des suites arithm&eacute;tiques.</p>\r\n<p>2 curseurs pour u0 et r.</p>\r\n<p>&nbsp;</p>',NULL,8),(2,2,'PPI Vecteurs','<p>Activit&eacute; de fin de s&eacute;quence.</p>\r\n<p>R&eacute;alis&eacute; en groupe.</p>',NULL,11);
 /*!40000 ALTER TABLE `claro_activity` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -430,10 +430,10 @@ CREATE TABLE `claro_activity_evaluation` (
   KEY `IDX_F75EC869A76ED395` (`user_id`),
   KEY `IDX_F75EC869896F55DB` (`activity_parameters_id`),
   KEY `IDX_F75EC869EA675D86` (`log_id`),
-  CONSTRAINT `FK_F75EC869EA675D86` FOREIGN KEY (`log_id`) REFERENCES `claro_log` (`id`) ON DELETE SET NULL,
   CONSTRAINT `FK_F75EC869896F55DB` FOREIGN KEY (`activity_parameters_id`) REFERENCES `claro_activity_parameters` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `FK_F75EC869A76ED395` FOREIGN KEY (`user_id`) REFERENCES `claro_user` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  CONSTRAINT `FK_F75EC869A76ED395` FOREIGN KEY (`user_id`) REFERENCES `claro_user` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `FK_F75EC869EA675D86` FOREIGN KEY (`log_id`) REFERENCES `claro_log` (`id`) ON DELETE SET NULL
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -442,7 +442,7 @@ CREATE TABLE `claro_activity_evaluation` (
 
 LOCK TABLES `claro_activity_evaluation` WRITE;
 /*!40000 ALTER TABLE `claro_activity_evaluation` DISABLE KEYS */;
-INSERT INTO `claro_activity_evaluation` VALUES (1,1,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `claro_activity_evaluation` VALUES (1,1,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(2,3,2,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `claro_activity_evaluation` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -465,7 +465,7 @@ CREATE TABLE `claro_activity_parameters` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `UNIQ_E2EE25E281C06096` (`activity_id`),
   CONSTRAINT `FK_E2EE25E281C06096` FOREIGN KEY (`activity_id`) REFERENCES `claro_activity` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -474,7 +474,7 @@ CREATE TABLE `claro_activity_parameters` (
 
 LOCK TABLES `claro_activity_parameters` WRITE;
 /*!40000 ALTER TABLE `claro_activity_parameters` DISABLE KEYS */;
-INSERT INTO `claro_activity_parameters` VALUES (1,1,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO `claro_activity_parameters` VALUES (1,1,NULL,NULL,NULL,NULL,NULL,NULL),(2,2,NULL,NULL,NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `claro_activity_parameters` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -504,9 +504,9 @@ CREATE TABLE `claro_activity_past_evaluation` (
   KEY `IDX_F1A76182A76ED395` (`user_id`),
   KEY `IDX_F1A76182896F55DB` (`activity_parameters_id`),
   KEY `IDX_F1A76182EA675D86` (`log_id`),
-  CONSTRAINT `FK_F1A76182EA675D86` FOREIGN KEY (`log_id`) REFERENCES `claro_log` (`id`) ON DELETE SET NULL,
   CONSTRAINT `FK_F1A76182896F55DB` FOREIGN KEY (`activity_parameters_id`) REFERENCES `claro_activity_parameters` (`id`) ON DELETE SET NULL,
-  CONSTRAINT `FK_F1A76182A76ED395` FOREIGN KEY (`user_id`) REFERENCES `claro_user` (`id`) ON DELETE SET NULL
+  CONSTRAINT `FK_F1A76182A76ED395` FOREIGN KEY (`user_id`) REFERENCES `claro_user` (`id`) ON DELETE SET NULL,
+  CONSTRAINT `FK_F1A76182EA675D86` FOREIGN KEY (`log_id`) REFERENCES `claro_log` (`id`) ON DELETE SET NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -651,8 +651,8 @@ CREATE TABLE `claro_admin_tool_role` (
   PRIMARY KEY (`admintool_id`,`role_id`),
   KEY `IDX_940800692B80F4B6` (`admintool_id`),
   KEY `IDX_94080069D60322AC` (`role_id`),
-  CONSTRAINT `FK_94080069D60322AC` FOREIGN KEY (`role_id`) REFERENCES `claro_role` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `FK_940800692B80F4B6` FOREIGN KEY (`admintool_id`) REFERENCES `claro_admin_tools` (`id`) ON DELETE CASCADE
+  CONSTRAINT `FK_940800692B80F4B6` FOREIGN KEY (`admintool_id`) REFERENCES `claro_admin_tools` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `FK_94080069D60322AC` FOREIGN KEY (`role_id`) REFERENCES `claro_role` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -799,8 +799,8 @@ CREATE TABLE `claro_api_access_token` (
   UNIQUE KEY `UNIQ_CE948285F37A13B` (`token`),
   KEY `IDX_CE9482819EB6921` (`client_id`),
   KEY `IDX_CE94828A76ED395` (`user_id`),
-  CONSTRAINT `FK_CE94828A76ED395` FOREIGN KEY (`user_id`) REFERENCES `claro_user` (`id`),
-  CONSTRAINT `FK_CE9482819EB6921` FOREIGN KEY (`client_id`) REFERENCES `claro_api_client` (`id`)
+  CONSTRAINT `FK_CE9482819EB6921` FOREIGN KEY (`client_id`) REFERENCES `claro_api_client` (`id`),
+  CONSTRAINT `FK_CE94828A76ED395` FOREIGN KEY (`user_id`) REFERENCES `claro_user` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -832,8 +832,8 @@ CREATE TABLE `claro_api_auth_code` (
   UNIQUE KEY `UNIQ_9DFA4575F37A13B` (`token`),
   KEY `IDX_9DFA45719EB6921` (`client_id`),
   KEY `IDX_9DFA457A76ED395` (`user_id`),
-  CONSTRAINT `FK_9DFA457A76ED395` FOREIGN KEY (`user_id`) REFERENCES `claro_user` (`id`),
-  CONSTRAINT `FK_9DFA45719EB6921` FOREIGN KEY (`client_id`) REFERENCES `claro_api_client` (`id`)
+  CONSTRAINT `FK_9DFA45719EB6921` FOREIGN KEY (`client_id`) REFERENCES `claro_api_client` (`id`),
+  CONSTRAINT `FK_9DFA457A76ED395` FOREIGN KEY (`user_id`) REFERENCES `claro_user` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -923,8 +923,8 @@ CREATE TABLE `claro_api_refresh_token` (
   UNIQUE KEY `UNIQ_B1292B905F37A13B` (`token`),
   KEY `IDX_B1292B9019EB6921` (`client_id`),
   KEY `IDX_B1292B90A76ED395` (`user_id`),
-  CONSTRAINT `FK_B1292B90A76ED395` FOREIGN KEY (`user_id`) REFERENCES `claro_user` (`id`),
-  CONSTRAINT `FK_B1292B9019EB6921` FOREIGN KEY (`client_id`) REFERENCES `claro_api_client` (`id`)
+  CONSTRAINT `FK_B1292B9019EB6921` FOREIGN KEY (`client_id`) REFERENCES `claro_api_client` (`id`),
+  CONSTRAINT `FK_B1292B90A76ED395` FOREIGN KEY (`user_id`) REFERENCES `claro_user` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -985,8 +985,8 @@ CREATE TABLE `claro_badge_claim` (
   UNIQUE KEY `badge_claim_unique` (`user_id`,`badge_id`),
   KEY `IDX_487A496AA76ED395` (`user_id`),
   KEY `IDX_487A496AF7A2C2FC` (`badge_id`),
-  CONSTRAINT `FK_487A496AF7A2C2FC` FOREIGN KEY (`badge_id`) REFERENCES `claro_badge` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `FK_487A496AA76ED395` FOREIGN KEY (`user_id`) REFERENCES `claro_user` (`id`) ON DELETE CASCADE
+  CONSTRAINT `FK_487A496AA76ED395` FOREIGN KEY (`user_id`) REFERENCES `claro_user` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `FK_487A496AF7A2C2FC` FOREIGN KEY (`badge_id`) REFERENCES `claro_badge` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -1041,8 +1041,8 @@ CREATE TABLE `claro_badge_collection_user_badges` (
   PRIMARY KEY (`badgecollection_id`,`userbadge_id`),
   KEY `IDX_85F018D4134B8A11` (`badgecollection_id`),
   KEY `IDX_85F018D4DBE73D8B` (`userbadge_id`),
-  CONSTRAINT `FK_85F018D4DBE73D8B` FOREIGN KEY (`userbadge_id`) REFERENCES `claro_user_badge` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `FK_85F018D4134B8A11` FOREIGN KEY (`badgecollection_id`) REFERENCES `claro_badge_collection` (`id`) ON DELETE CASCADE
+  CONSTRAINT `FK_85F018D4134B8A11` FOREIGN KEY (`badgecollection_id`) REFERENCES `claro_badge_collection` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `FK_85F018D4DBE73D8B` FOREIGN KEY (`userbadge_id`) REFERENCES `claro_user_badge` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -1079,8 +1079,8 @@ CREATE TABLE `claro_badge_rule` (
   KEY `IDX_805FCB8FF7A2C2FC` (`badge_id`),
   KEY `IDX_805FCB8F16F956BA` (`associated_badge`),
   KEY `IDX_805FCB8F89329D25` (`resource_id`),
-  CONSTRAINT `FK_805FCB8F89329D25` FOREIGN KEY (`resource_id`) REFERENCES `claro_resource_node` (`id`) ON DELETE CASCADE,
   CONSTRAINT `FK_805FCB8F16F956BA` FOREIGN KEY (`associated_badge`) REFERENCES `claro_badge` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `FK_805FCB8F89329D25` FOREIGN KEY (`resource_id`) REFERENCES `claro_resource_node` (`id`) ON DELETE CASCADE,
   CONSTRAINT `FK_805FCB8FF7A2C2FC` FOREIGN KEY (`badge_id`) REFERENCES `claro_badge` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -1285,8 +1285,8 @@ CREATE TABLE `claro_clacoformbundle_category_manager` (
   PRIMARY KEY (`category_id`,`user_id`),
   KEY `IDX_562FC19412469DE2` (`category_id`),
   KEY `IDX_562FC194A76ED395` (`user_id`),
-  CONSTRAINT `FK_562FC194A76ED395` FOREIGN KEY (`user_id`) REFERENCES `claro_user` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `FK_562FC19412469DE2` FOREIGN KEY (`category_id`) REFERENCES `claro_clacoformbundle_category` (`id`) ON DELETE CASCADE
+  CONSTRAINT `FK_562FC19412469DE2` FOREIGN KEY (`category_id`) REFERENCES `claro_clacoformbundle_category` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `FK_562FC194A76ED395` FOREIGN KEY (`user_id`) REFERENCES `claro_user` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -1341,8 +1341,8 @@ CREATE TABLE `claro_clacoformbundle_claco_form_widget_config` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `UNIQ_D1521187AB7B5A55` (`widgetInstance_id`),
   KEY `IDX_D1521187F7D9CC0C` (`claco_form_id`),
-  CONSTRAINT `FK_D1521187F7D9CC0C` FOREIGN KEY (`claco_form_id`) REFERENCES `claro_resource_node` (`id`) ON DELETE SET NULL,
-  CONSTRAINT `FK_D1521187AB7B5A55` FOREIGN KEY (`widgetInstance_id`) REFERENCES `claro_widget_instance` (`id`) ON DELETE CASCADE
+  CONSTRAINT `FK_D1521187AB7B5A55` FOREIGN KEY (`widgetInstance_id`) REFERENCES `claro_widget_instance` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `FK_D1521187F7D9CC0C` FOREIGN KEY (`claco_form_id`) REFERENCES `claro_resource_node` (`id`) ON DELETE SET NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -1400,8 +1400,8 @@ CREATE TABLE `claro_clacoformbundle_comment` (
   PRIMARY KEY (`id`),
   KEY `IDX_23B30E0A76ED395` (`user_id`),
   KEY `IDX_23B30E0BA364942` (`entry_id`),
-  CONSTRAINT `FK_23B30E0BA364942` FOREIGN KEY (`entry_id`) REFERENCES `claro_clacoformbundle_entry` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `FK_23B30E0A76ED395` FOREIGN KEY (`user_id`) REFERENCES `claro_user` (`id`) ON DELETE SET NULL
+  CONSTRAINT `FK_23B30E0A76ED395` FOREIGN KEY (`user_id`) REFERENCES `claro_user` (`id`) ON DELETE SET NULL,
+  CONSTRAINT `FK_23B30E0BA364942` FOREIGN KEY (`entry_id`) REFERENCES `claro_clacoformbundle_entry` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -1551,9 +1551,9 @@ CREATE TABLE `claro_clacoformbundle_field_choice_category` (
   KEY `IDX_1F7C5EF7443707B0` (`field_id`),
   KEY `IDX_1F7C5EF712469DE2` (`category_id`),
   KEY `IDX_1F7C5EF7E07710C3` (`field_facet_choice_id`),
-  CONSTRAINT `FK_1F7C5EF7E07710C3` FOREIGN KEY (`field_facet_choice_id`) REFERENCES `claro_field_facet_choice` (`id`) ON DELETE CASCADE,
   CONSTRAINT `FK_1F7C5EF712469DE2` FOREIGN KEY (`category_id`) REFERENCES `claro_clacoformbundle_category` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `FK_1F7C5EF7443707B0` FOREIGN KEY (`field_id`) REFERENCES `claro_clacoformbundle_field` (`id`) ON DELETE CASCADE
+  CONSTRAINT `FK_1F7C5EF7443707B0` FOREIGN KEY (`field_id`) REFERENCES `claro_clacoformbundle_field` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `FK_1F7C5EF7E07710C3` FOREIGN KEY (`field_facet_choice_id`) REFERENCES `claro_field_facet_choice` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -1583,9 +1583,9 @@ CREATE TABLE `claro_clacoformbundle_field_value` (
   UNIQUE KEY `field_unique_name` (`entry_id`,`field_id`),
   KEY `IDX_B481BDB9BA364942` (`entry_id`),
   KEY `IDX_B481BDB9443707B0` (`field_id`),
-  CONSTRAINT `FK_B481BDB9D4EE0DAB` FOREIGN KEY (`field_facet_value_id`) REFERENCES `claro_field_facet_value` (`id`) ON DELETE CASCADE,
   CONSTRAINT `FK_B481BDB9443707B0` FOREIGN KEY (`field_id`) REFERENCES `claro_clacoformbundle_field` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `FK_B481BDB9BA364942` FOREIGN KEY (`entry_id`) REFERENCES `claro_clacoformbundle_entry` (`id`) ON DELETE CASCADE
+  CONSTRAINT `FK_B481BDB9BA364942` FOREIGN KEY (`entry_id`) REFERENCES `claro_clacoformbundle_entry` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `FK_B481BDB9D4EE0DAB` FOREIGN KEY (`field_facet_value_id`) REFERENCES `claro_field_facet_value` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -1640,8 +1640,8 @@ CREATE TABLE `claro_contact` (
   UNIQUE KEY `contact_unique_user_contact` (`user_id`,`contact_id`),
   KEY `IDX_2C215B9FA76ED395` (`user_id`),
   KEY `IDX_2C215B9FE7A1254A` (`contact_id`),
-  CONSTRAINT `FK_2C215B9FE7A1254A` FOREIGN KEY (`contact_id`) REFERENCES `claro_user` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `FK_2C215B9FA76ED395` FOREIGN KEY (`user_id`) REFERENCES `claro_user` (`id`) ON DELETE CASCADE
+  CONSTRAINT `FK_2C215B9FA76ED395` FOREIGN KEY (`user_id`) REFERENCES `claro_user` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `FK_2C215B9FE7A1254A` FOREIGN KEY (`contact_id`) REFERENCES `claro_user` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -1783,10 +1783,10 @@ CREATE TABLE `claro_content2region` (
   KEY `IDX_8D18942E98260155` (`region_id`),
   KEY `IDX_8D18942EAA23F6C8` (`next_id`),
   KEY `IDX_8D18942EE9583FF0` (`back_id`),
-  CONSTRAINT `FK_8D18942EE9583FF0` FOREIGN KEY (`back_id`) REFERENCES `claro_content2region` (`id`) ON DELETE CASCADE,
   CONSTRAINT `FK_8D18942E84A0A3ED` FOREIGN KEY (`content_id`) REFERENCES `claro_content` (`id`) ON DELETE CASCADE,
   CONSTRAINT `FK_8D18942E98260155` FOREIGN KEY (`region_id`) REFERENCES `claro_region` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `FK_8D18942EAA23F6C8` FOREIGN KEY (`next_id`) REFERENCES `claro_content2region` (`id`) ON DELETE CASCADE
+  CONSTRAINT `FK_8D18942EAA23F6C8` FOREIGN KEY (`next_id`) REFERENCES `claro_content2region` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `FK_8D18942EE9583FF0` FOREIGN KEY (`back_id`) REFERENCES `claro_content2region` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -1819,10 +1819,10 @@ CREATE TABLE `claro_content2type` (
   KEY `IDX_1A2084EFC54C8C93` (`type_id`),
   KEY `IDX_1A2084EFAA23F6C8` (`next_id`),
   KEY `IDX_1A2084EFE9583FF0` (`back_id`),
-  CONSTRAINT `FK_1A2084EFE9583FF0` FOREIGN KEY (`back_id`) REFERENCES `claro_content2type` (`id`) ON DELETE CASCADE,
   CONSTRAINT `FK_1A2084EF84A0A3ED` FOREIGN KEY (`content_id`) REFERENCES `claro_content` (`id`) ON DELETE CASCADE,
   CONSTRAINT `FK_1A2084EFAA23F6C8` FOREIGN KEY (`next_id`) REFERENCES `claro_content2type` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `FK_1A2084EFC54C8C93` FOREIGN KEY (`type_id`) REFERENCES `claro_type` (`id`) ON DELETE CASCADE
+  CONSTRAINT `FK_1A2084EFC54C8C93` FOREIGN KEY (`type_id`) REFERENCES `claro_type` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `FK_1A2084EFE9583FF0` FOREIGN KEY (`back_id`) REFERENCES `claro_content2type` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -1987,8 +1987,8 @@ CREATE TABLE `claro_cursusbundle_course_registration_queue` (
   KEY `IDX_E068776E591CC992` (`course_id`),
   KEY `IDX_E068776EB0644AEC` (`validator_id`),
   KEY `IDX_E068776E8B3340B2` (`organization_admin_id`),
-  CONSTRAINT `FK_E068776E8B3340B2` FOREIGN KEY (`organization_admin_id`) REFERENCES `claro_user` (`id`) ON DELETE SET NULL,
   CONSTRAINT `FK_E068776E591CC992` FOREIGN KEY (`course_id`) REFERENCES `claro_cursusbundle_course` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `FK_E068776E8B3340B2` FOREIGN KEY (`organization_admin_id`) REFERENCES `claro_user` (`id`) ON DELETE SET NULL,
   CONSTRAINT `FK_E068776EA76ED395` FOREIGN KEY (`user_id`) REFERENCES `claro_user` (`id`) ON DELETE CASCADE,
   CONSTRAINT `FK_E068776EB0644AEC` FOREIGN KEY (`validator_id`) REFERENCES `claro_user` (`id`) ON DELETE SET NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -2110,8 +2110,8 @@ CREATE TABLE `claro_cursusbundle_course_session_registration_queue` (
   KEY `IDX_334FC296613FECDF` (`session_id`),
   KEY `IDX_334FC296B0644AEC` (`validator_id`),
   KEY `IDX_334FC2968B3340B2` (`organization_admin_id`),
-  CONSTRAINT `FK_334FC2968B3340B2` FOREIGN KEY (`organization_admin_id`) REFERENCES `claro_user` (`id`) ON DELETE SET NULL,
   CONSTRAINT `FK_334FC296613FECDF` FOREIGN KEY (`session_id`) REFERENCES `claro_cursusbundle_course_session` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `FK_334FC2968B3340B2` FOREIGN KEY (`organization_admin_id`) REFERENCES `claro_user` (`id`) ON DELETE SET NULL,
   CONSTRAINT `FK_334FC296A76ED395` FOREIGN KEY (`user_id`) REFERENCES `claro_user` (`id`) ON DELETE CASCADE,
   CONSTRAINT `FK_334FC296B0644AEC` FOREIGN KEY (`validator_id`) REFERENCES `claro_user` (`id`) ON DELETE SET NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -2197,8 +2197,8 @@ CREATE TABLE `claro_cursusbundle_course_validators` (
   PRIMARY KEY (`course_id`,`user_id`),
   KEY `IDX_219067F2591CC992` (`course_id`),
   KEY `IDX_219067F2A76ED395` (`user_id`),
-  CONSTRAINT `FK_219067F2A76ED395` FOREIGN KEY (`user_id`) REFERENCES `claro_user` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `FK_219067F2591CC992` FOREIGN KEY (`course_id`) REFERENCES `claro_cursusbundle_course` (`id`) ON DELETE CASCADE
+  CONSTRAINT `FK_219067F2591CC992` FOREIGN KEY (`course_id`) REFERENCES `claro_cursusbundle_course` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `FK_219067F2A76ED395` FOREIGN KEY (`user_id`) REFERENCES `claro_user` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -2270,9 +2270,9 @@ CREATE TABLE `claro_cursusbundle_cursus` (
   KEY `IDX_27921C33591CC992` (`course_id`),
   KEY `IDX_27921C33727ACA70` (`parent_id`),
   KEY `IDX_27921C3382D40A1F` (`workspace_id`),
-  CONSTRAINT `FK_27921C3382D40A1F` FOREIGN KEY (`workspace_id`) REFERENCES `claro_workspace` (`id`) ON DELETE SET NULL,
   CONSTRAINT `FK_27921C33591CC992` FOREIGN KEY (`course_id`) REFERENCES `claro_cursusbundle_course` (`id`) ON DELETE SET NULL,
-  CONSTRAINT `FK_27921C33727ACA70` FOREIGN KEY (`parent_id`) REFERENCES `claro_cursusbundle_cursus` (`id`) ON DELETE CASCADE
+  CONSTRAINT `FK_27921C33727ACA70` FOREIGN KEY (`parent_id`) REFERENCES `claro_cursusbundle_cursus` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `FK_27921C3382D40A1F` FOREIGN KEY (`workspace_id`) REFERENCES `claro_workspace` (`id`) ON DELETE SET NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -2506,8 +2506,8 @@ CREATE TABLE `claro_cursusbundle_session_event_comment` (
   PRIMARY KEY (`id`),
   KEY `IDX_21DFDBA8A76ED395` (`user_id`),
   KEY `IDX_21DFDBA8FA5B88E3` (`session_event_id`),
-  CONSTRAINT `FK_21DFDBA8FA5B88E3` FOREIGN KEY (`session_event_id`) REFERENCES `claro_cursusbundle_session_event` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `FK_21DFDBA8A76ED395` FOREIGN KEY (`user_id`) REFERENCES `claro_user` (`id`) ON DELETE CASCADE
+  CONSTRAINT `FK_21DFDBA8A76ED395` FOREIGN KEY (`user_id`) REFERENCES `claro_user` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `FK_21DFDBA8FA5B88E3` FOREIGN KEY (`session_event_id`) REFERENCES `claro_cursusbundle_session_event` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -2533,8 +2533,8 @@ CREATE TABLE `claro_cursusbundle_session_event_tutors` (
   PRIMARY KEY (`sessionevent_id`,`user_id`),
   KEY `IDX_18D6F45217678BAC` (`sessionevent_id`),
   KEY `IDX_18D6F452A76ED395` (`user_id`),
-  CONSTRAINT `FK_18D6F452A76ED395` FOREIGN KEY (`user_id`) REFERENCES `claro_user` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `FK_18D6F45217678BAC` FOREIGN KEY (`sessionevent_id`) REFERENCES `claro_cursusbundle_session_event` (`id`) ON DELETE CASCADE
+  CONSTRAINT `FK_18D6F45217678BAC` FOREIGN KEY (`sessionevent_id`) REFERENCES `claro_cursusbundle_session_event` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `FK_18D6F452A76ED395` FOREIGN KEY (`user_id`) REFERENCES `claro_user` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -2566,8 +2566,8 @@ CREATE TABLE `claro_cursusbundle_session_event_user` (
   KEY `IDX_31D741DDA76ED395` (`user_id`),
   KEY `IDX_31D741DDFA5B88E3` (`session_event_id`),
   KEY `IDX_31D741DDD079F0B` (`presence_status_id`),
-  CONSTRAINT `FK_31D741DDD079F0B` FOREIGN KEY (`presence_status_id`) REFERENCES `claro_cursusbundle_presence_status` (`id`) ON DELETE SET NULL,
   CONSTRAINT `FK_31D741DDA76ED395` FOREIGN KEY (`user_id`) REFERENCES `claro_user` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `FK_31D741DDD079F0B` FOREIGN KEY (`presence_status_id`) REFERENCES `claro_cursusbundle_presence_status` (`id`) ON DELETE SET NULL,
   CONSTRAINT `FK_31D741DDFA5B88E3` FOREIGN KEY (`session_event_id`) REFERENCES `claro_cursusbundle_session_event` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -2598,8 +2598,8 @@ CREATE TABLE `claro_dashboard` (
   PRIMARY KEY (`id`),
   KEY `IDX_8027AA461220EA6` (`creator_id`),
   KEY `IDX_8027AA482D40A1F` (`workspace_id`),
-  CONSTRAINT `FK_8027AA482D40A1F` FOREIGN KEY (`workspace_id`) REFERENCES `claro_workspace` (`id`),
-  CONSTRAINT `FK_8027AA461220EA6` FOREIGN KEY (`creator_id`) REFERENCES `claro_user` (`id`)
+  CONSTRAINT `FK_8027AA461220EA6` FOREIGN KEY (`creator_id`) REFERENCES `claro_user` (`id`),
+  CONSTRAINT `FK_8027AA482D40A1F` FOREIGN KEY (`workspace_id`) REFERENCES `claro_workspace` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -2744,8 +2744,8 @@ CREATE TABLE `claro_event_invitation` (
   PRIMARY KEY (`id`),
   KEY `IDX_19D2F4603BAE0AA7` (`event`),
   KEY `IDX_19D2F460A76ED395` (`user_id`),
-  CONSTRAINT `FK_19D2F460A76ED395` FOREIGN KEY (`user_id`) REFERENCES `claro_user` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `FK_19D2F4603BAE0AA7` FOREIGN KEY (`event`) REFERENCES `claro_event` (`id`) ON DELETE CASCADE
+  CONSTRAINT `FK_19D2F4603BAE0AA7` FOREIGN KEY (`event`) REFERENCES `claro_event` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `FK_19D2F460A76ED395` FOREIGN KEY (`user_id`) REFERENCES `claro_user` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -3269,7 +3269,7 @@ CREATE TABLE `claro_file` (
   UNIQUE KEY `UNIQ_EA81C80BE1F029B6` (`hash_name`),
   UNIQUE KEY `UNIQ_EA81C80BB87FAB32` (`resourceNode_id`),
   CONSTRAINT `FK_EA81C80BB87FAB32` FOREIGN KEY (`resourceNode_id`) REFERENCES `claro_resource_node` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3278,7 +3278,7 @@ CREATE TABLE `claro_file` (
 
 LOCK TABLES `claro_file` WRITE;
 /*!40000 ALTER TABLE `claro_file` DISABLE KEYS */;
-INSERT INTO `claro_file` VALUES (1,21542,'admin/C41110A9-2FAC-4CB8-B0EB-FB79BF1A9C42.ggb',7),(2,21542,'admin/F9B528C9-7566-4A55-8532-EB255CF4BBB8.ggb',9);
+INSERT INTO `claro_file` VALUES (1,21542,'admin/C41110A9-2FAC-4CB8-B0EB-FB79BF1A9C42.ggb',7),(2,21542,'admin/F9B528C9-7566-4A55-8532-EB255CF4BBB8.ggb',9),(3,61728,'aurelie.favier/B9F63E52-23C4-4C5A-BB70-CB8CDC917669.pdf',10);
 /*!40000 ALTER TABLE `claro_file` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -3579,8 +3579,8 @@ CREATE TABLE `claro_group_organization` (
   PRIMARY KEY (`organization_id`,`group_id`),
   KEY `IDX_B912197E32C8A3DE` (`organization_id`),
   KEY `IDX_B912197EFE54D947` (`group_id`),
-  CONSTRAINT `FK_B912197EFE54D947` FOREIGN KEY (`group_id`) REFERENCES `claro_group` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `FK_B912197E32C8A3DE` FOREIGN KEY (`organization_id`) REFERENCES `claro__organization` (`id`) ON DELETE CASCADE
+  CONSTRAINT `FK_B912197E32C8A3DE` FOREIGN KEY (`organization_id`) REFERENCES `claro__organization` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `FK_B912197EFE54D947` FOREIGN KEY (`group_id`) REFERENCES `claro_group` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -3639,7 +3639,7 @@ CREATE TABLE `claro_home_tab` (
   KEY `IDX_A9744CCE82D40A1F` (`workspace_id`),
   CONSTRAINT `FK_A9744CCE82D40A1F` FOREIGN KEY (`workspace_id`) REFERENCES `claro_workspace` (`id`) ON DELETE CASCADE,
   CONSTRAINT `FK_A9744CCEA76ED395` FOREIGN KEY (`user_id`) REFERENCES `claro_user` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3677,7 +3677,7 @@ CREATE TABLE `claro_home_tab_config` (
   CONSTRAINT `FK_F530F6BE7D08FA9E` FOREIGN KEY (`home_tab_id`) REFERENCES `claro_home_tab` (`id`) ON DELETE CASCADE,
   CONSTRAINT `FK_F530F6BE82D40A1F` FOREIGN KEY (`workspace_id`) REFERENCES `claro_workspace` (`id`) ON DELETE CASCADE,
   CONSTRAINT `FK_F530F6BEA76ED395` FOREIGN KEY (`user_id`) REFERENCES `claro_user` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3703,8 +3703,8 @@ CREATE TABLE `claro_home_tab_roles` (
   PRIMARY KEY (`hometab_id`,`role_id`),
   KEY `IDX_B81359F3CCE862F` (`hometab_id`),
   KEY `IDX_B81359F3D60322AC` (`role_id`),
-  CONSTRAINT `FK_B81359F3D60322AC` FOREIGN KEY (`role_id`) REFERENCES `claro_role` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `FK_B81359F3CCE862F` FOREIGN KEY (`hometab_id`) REFERENCES `claro_home_tab` (`id`) ON DELETE CASCADE
+  CONSTRAINT `FK_B81359F3CCE862F` FOREIGN KEY (`hometab_id`) REFERENCES `claro_home_tab` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `FK_B81359F3D60322AC` FOREIGN KEY (`role_id`) REFERENCES `claro_role` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -3730,8 +3730,8 @@ CREATE TABLE `claro_list_type_creation` (
   PRIMARY KEY (`resource_rights_id`,`resource_type_id`),
   KEY `IDX_84B4BEBA195FBDF1` (`resource_rights_id`),
   KEY `IDX_84B4BEBA98EC6B7B` (`resource_type_id`),
-  CONSTRAINT `FK_84B4BEBA98EC6B7B` FOREIGN KEY (`resource_type_id`) REFERENCES `claro_resource_type` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `FK_84B4BEBA195FBDF1` FOREIGN KEY (`resource_rights_id`) REFERENCES `claro_resource_rights` (`id`) ON DELETE CASCADE
+  CONSTRAINT `FK_84B4BEBA195FBDF1` FOREIGN KEY (`resource_rights_id`) REFERENCES `claro_resource_rights` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `FK_84B4BEBA98EC6B7B` FOREIGN KEY (`resource_type_id`) REFERENCES `claro_resource_type` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -3792,7 +3792,7 @@ CREATE TABLE `claro_log` (
   CONSTRAINT `FK_97FAB91FC6F122B2` FOREIGN KEY (`receiver_group_id`) REFERENCES `claro_group` (`id`) ON DELETE SET NULL,
   CONSTRAINT `FK_97FAB91FCD53EDB6` FOREIGN KEY (`receiver_id`) REFERENCES `claro_user` (`id`) ON DELETE SET NULL,
   CONSTRAINT `FK_97FAB91FD60322AC` FOREIGN KEY (`role_id`) REFERENCES `claro_role` (`id`) ON DELETE SET NULL
-) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=69 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3801,7 +3801,7 @@ CREATE TABLE `claro_log` (
 
 LOCK TABLES `claro_log` WRITE;
 /*!40000 ALTER TABLE `claro_log` DISABLE KEYS */;
-INSERT INTO `claro_log` VALUES (1,NULL,1,NULL,NULL,NULL,NULL,3,'role-subscribe_user','2017-05-18 23:47:04','2017-05-18','{\"role\":{\"name\":\"admin\"},\"receiverUser\":{\"firstName\":\"Xavier\",\"lastName\":\"Gonzalez\",\"username\":\"admin\"}}','platform',NULL,NULL,NULL,1,1,NULL,NULL),(2,NULL,NULL,NULL,1,1,2,NULL,'resource-create','2017-05-18 23:47:06','2017-05-18','{\"resource\":{\"name\":\"Espace personnel - admin\",\"path\":\"Espace personnel - admin\",\"guid\":\"CDC2A502-1F6B-4A05-8386-4D72267827FB\",\"resourceType\":\"directory\"},\"workspace\":{\"name\":\"Espace personnel - admin\"},\"owner\":{\"lastName\":\"Gonzalez\",\"firstName\":\"Xavier\"}}','platform',NULL,NULL,NULL,1,1,1,NULL),(3,NULL,NULL,NULL,1,1,2,NULL,'resource-create','2017-05-18 23:47:06','2017-05-18','{\"resource\":{\"name\":\"Mes documents publics\",\"path\":\" \\/ Mes documents publics\",\"guid\":\"57E4B943-21EE-4D07-A04F-699A233F3C56\",\"resourceType\":\"directory\"},\"workspace\":{\"name\":\"Espace personnel - admin\"},\"owner\":{\"lastName\":\"Gonzalez\",\"firstName\":\"Xavier\"}}','platform',NULL,NULL,NULL,1,1,2,NULL),(4,NULL,1,NULL,NULL,NULL,NULL,NULL,'user-create','2017-05-18 23:47:06','2017-05-18','{\"receiverUser\":{\"lastName\":\"Gonzalez\",\"firstName\":\"Xavier\"}}','platform',NULL,NULL,NULL,1,0,NULL,NULL),(5,1,NULL,NULL,NULL,NULL,NULL,NULL,'user-login','2017-05-18 23:49:52','2017-05-18','{\"doer\":{\"firstName\":\"Xavier\",\"lastName\":\"Gonzalez\",\"publicUrl\":\"xavier.gonzalez\",\"platformRoles\":[\"user\",\"admin\"]}}','user','89.86.44.252','1l9nbg6qdv3hrgt2u61gsmtc55',NULL,1,0,NULL,NULL),(6,1,NULL,NULL,1,1,2,NULL,'resource-read','2017-05-18 23:50:30','2017-05-18','{\"resource\":{\"name\":\"Espace personnel - admin\",\"path\":\"Espace personnel - admin\"},\"workspace\":{\"name\":\"Espace personnel - admin\"},\"owner\":{\"lastName\":\"Gonzalez\",\"firstName\":\"Xavier\"},\"doer\":{\"firstName\":\"Xavier\",\"lastName\":\"Gonzalez\",\"publicUrl\":\"xavier.gonzalez\",\"platformRoles\":[\"user\",\"admin\"],\"workspaceRoles\":[\"manager\"]}}','user','89.86.44.252','1l9nbg6qdv3hrgt2u61gsmtc55',NULL,1,1,1,NULL),(7,1,NULL,NULL,1,1,2,NULL,'resource-read','2017-05-18 23:50:33','2017-05-18','{\"resource\":{\"name\":\"Mes documents publics\",\"path\":\"Espace personnel - admin \\/ Mes documents publics\"},\"workspace\":{\"name\":\"Espace personnel - admin\"},\"owner\":{\"lastName\":\"Gonzalez\",\"firstName\":\"Xavier\"},\"doer\":{\"firstName\":\"Xavier\",\"lastName\":\"Gonzalez\",\"publicUrl\":\"xavier.gonzalez\",\"platformRoles\":[\"user\",\"admin\"],\"workspaceRoles\":[\"manager\"]}}','user','89.86.44.252','1l9nbg6qdv3hrgt2u61gsmtc55',NULL,1,1,2,NULL),(8,1,NULL,NULL,NULL,NULL,NULL,NULL,'user-login','2017-05-19 00:05:59','2017-05-19','{\"doer\":{\"firstName\":\"Xavier\",\"lastName\":\"Gonzalez\",\"publicUrl\":\"xavier.gonzalez\",\"platformRoles\":[\"user\",\"admin\"]}}','user','89.86.44.252','81vuf24ctvk8t74svo5ctlv4c7',NULL,1,0,NULL,NULL),(9,1,NULL,NULL,NULL,NULL,NULL,NULL,'user-login','2017-05-19 00:25:33','2017-05-19','{\"doer\":{\"firstName\":\"Xavier\",\"lastName\":\"Gonzalez\",\"publicUrl\":\"xavier.gonzalez\",\"platformRoles\":[\"user\",\"admin\"]}}','user','89.86.44.252','ed406lnf2cmk89t1e5fqqb2k41',NULL,1,0,NULL,NULL),(10,1,NULL,NULL,NULL,NULL,NULL,NULL,'user-login','2017-05-19 11:27:20','2017-05-19','{\"doer\":{\"firstName\":\"Xavier\",\"lastName\":\"Gonzalez\",\"publicUrl\":\"xavier.gonzalez\",\"platformRoles\":[\"user\",\"admin\"]}}','user','159.180.228.163','jp8djrjl3ggrltji0hqt6ap864',NULL,1,0,NULL,NULL),(11,1,NULL,NULL,NULL,NULL,NULL,NULL,'user-login','2017-05-19 14:03:01','2017-05-19','{\"doer\":{\"firstName\":\"Xavier\",\"lastName\":\"Gonzalez\",\"publicUrl\":\"xavier.gonzalez\",\"platformRoles\":[\"user\",\"admin\"]}}','user','109.1.158.229','5e6buaot96lvalcdtoovchbpf5',NULL,1,0,NULL,NULL),(12,1,NULL,NULL,NULL,NULL,NULL,NULL,'user-login','2017-05-20 14:07:38','2017-05-20','{\"doer\":{\"firstName\":\"Xavier\",\"lastName\":\"Gonzalez\",\"publicUrl\":\"xavier.gonzalez\",\"platformRoles\":[\"user\",\"admin\"]}}','user','88.182.21.3','ft1eeqcd08kovfp5qm4gvgmam2',NULL,1,0,NULL,NULL),(13,1,NULL,NULL,NULL,NULL,NULL,NULL,'user-login','2017-05-20 16:32:58','2017-05-20','{\"doer\":{\"firstName\":\"Xavier\",\"lastName\":\"Gonzalez\",\"publicUrl\":\"xavier.gonzalez\",\"platformRoles\":[\"user\",\"admin\"]}}','user','88.182.21.3','qijil6g4ngienh1bh434imnto3',NULL,1,0,NULL,NULL),(14,1,NULL,NULL,NULL,NULL,NULL,NULL,'user-login','2017-05-24 09:05:25','2017-05-24','{\"doer\":{\"firstName\":\"Xavier\",\"lastName\":\"Gonzalez\",\"publicUrl\":\"xavier.gonzalez\",\"platformRoles\":[\"user\",\"admin\"]}}','user','109.1.158.229','4ceroaj4r2h30egclu9j35okb4',NULL,1,0,NULL,NULL),(15,1,NULL,NULL,NULL,NULL,NULL,NULL,'user-login','2017-06-01 12:25:25','2017-06-01','{\"doer\":{\"firstName\":\"Xavier\",\"lastName\":\"Gonzalez\",\"publicUrl\":\"xavier.gonzalez\",\"platformRoles\":[\"user\",\"admin\"]}}','user','88.182.21.3','neu8a9k0vvi6bgjhp2tl9s4nt7',NULL,1,0,NULL,NULL),(16,1,NULL,NULL,NULL,NULL,NULL,NULL,'user-login','2017-06-15 14:18:33','2017-06-15','{\"doer\":{\"firstName\":\"Xavier\",\"lastName\":\"Gonzalez\",\"publicUrl\":\"xavier.gonzalez\",\"platformRoles\":[\"user\",\"admin\"]}}','user','109.70.17.57','30mnea8jetrdj2dsuu7ht7g4a6',NULL,1,0,NULL,NULL),(17,NULL,NULL,NULL,2,2,2,NULL,'resource-create','2017-06-15 14:22:35','2017-06-15','{\"resource\":{\"name\":\"Espace personnel - Crazyboy\",\"path\":\"Espace personnel - Crazyboy\",\"guid\":\"0C4E1EB3-667F-4D4A-A317-D67601C57348\",\"resourceType\":\"directory\"},\"workspace\":{\"name\":\"Espace personnel - Crazyboy\"},\"owner\":{\"lastName\":\"Galle\",\"firstName\":\"Samuel\"}}','anonymous','109.70.17.57','1j6i4te03dup9m230ki9orthe7',NULL,1,1,3,NULL),(18,NULL,NULL,NULL,2,2,2,NULL,'resource-create','2017-06-15 14:22:35','2017-06-15','{\"resource\":{\"name\":\"Mes documents publics\",\"path\":\" \\/ Mes documents publics\",\"guid\":\"16DEFC30-C062-43C4-9E17-7E1862EF5806\",\"resourceType\":\"directory\"},\"workspace\":{\"name\":\"Espace personnel - Crazyboy\"},\"owner\":{\"lastName\":\"Galle\",\"firstName\":\"Samuel\"}}','anonymous','109.70.17.57','1j6i4te03dup9m230ki9orthe7',NULL,1,1,4,NULL),(19,NULL,2,NULL,NULL,NULL,NULL,NULL,'user-create','2017-06-15 14:22:36','2017-06-15','{\"receiverUser\":{\"lastName\":\"Galle\",\"firstName\":\"Samuel\"}}','anonymous','109.70.17.57','1j6i4te03dup9m230ki9orthe7',NULL,1,0,NULL,NULL),(20,2,NULL,NULL,NULL,NULL,NULL,NULL,'user-login','2017-06-15 14:24:51','2017-06-15','{\"doer\":{\"firstName\":\"Samuel\",\"lastName\":\"Galle\",\"publicUrl\":\"samuel.galle\",\"platformRoles\":[\"user\"]}}','user','109.70.17.57','k1obn00gnumeefk0ih2pp6sq31',NULL,1,0,NULL,NULL),(21,1,NULL,NULL,NULL,NULL,NULL,NULL,'user-login','2017-06-15 14:25:37','2017-06-15','{\"doer\":{\"firstName\":\"Xavier\",\"lastName\":\"Gonzalez\",\"publicUrl\":\"xavier.gonzalez\",\"platformRoles\":[\"user\",\"admin\"]}}','user','109.70.17.57','hib1n5pciplbbfeuq7m6qq8n42',NULL,1,0,NULL,NULL),(22,1,NULL,NULL,NULL,NULL,NULL,NULL,'user-login','2017-06-15 14:26:22','2017-06-15','{\"doer\":{\"firstName\":\"Xavier\",\"lastName\":\"Gonzalez\",\"publicUrl\":\"xavier.gonzalez\",\"platformRoles\":[\"user\",\"admin\"]}}','user','109.70.17.57','g0v5q1odt6chikm78o6936ucm7',NULL,1,0,NULL,NULL),(23,1,NULL,NULL,NULL,NULL,NULL,NULL,'user-login','2017-06-15 14:26:58','2017-06-15','{\"doer\":{\"firstName\":\"Xavier\",\"lastName\":\"Gonzalez\",\"publicUrl\":\"xavier.gonzalez\",\"platformRoles\":[\"user\",\"admin\"]}}','user','109.70.17.57','9r7fej7se9geilvsjojjehper1',NULL,1,0,NULL,NULL),(24,NULL,NULL,NULL,3,3,2,NULL,'resource-create','2017-06-15 14:30:14','2017-06-15','{\"resource\":{\"name\":\"Espace personnel - aurelie.favier\",\"path\":\"Espace personnel - aurelie.favier\",\"guid\":\"04687CB7-D756-4CC8-8D47-9D30400D9294\",\"resourceType\":\"directory\"},\"workspace\":{\"name\":\"Espace personnel - aurelie.favier\"},\"owner\":{\"lastName\":\"Favier\",\"firstName\":\"Aur\\u00e9lie\"}}','anonymous','109.70.17.57','id82t1ecnbp0906orb92s4tl15',NULL,1,1,5,NULL),(25,NULL,NULL,NULL,3,3,2,NULL,'resource-create','2017-06-15 14:30:14','2017-06-15','{\"resource\":{\"name\":\"Mes documents publics\",\"path\":\" \\/ Mes documents publics\",\"guid\":\"6E38516E-47B3-4200-B18B-BCD7B9701783\",\"resourceType\":\"directory\"},\"workspace\":{\"name\":\"Espace personnel - aurelie.favier\"},\"owner\":{\"lastName\":\"Favier\",\"firstName\":\"Aur\\u00e9lie\"}}','anonymous','109.70.17.57','id82t1ecnbp0906orb92s4tl15',NULL,1,1,6,NULL),(26,NULL,3,NULL,NULL,NULL,NULL,NULL,'user-create','2017-06-15 14:30:14','2017-06-15','{\"receiverUser\":{\"lastName\":\"Favier\",\"firstName\":\"Aur\\u00e9lie\"}}','anonymous','109.70.17.57','id82t1ecnbp0906orb92s4tl15',NULL,1,0,NULL,NULL),(27,3,NULL,NULL,NULL,NULL,NULL,NULL,'user-login','2017-06-15 14:31:20','2017-06-15','{\"doer\":{\"firstName\":\"Aur\\u00e9lie\",\"lastName\":\"Favier\",\"publicUrl\":\"aur\\u00e9lie.favier\",\"platformRoles\":[\"user\"]}}','user','109.70.17.57','kd7kdi95nhagdpv1qhe7ka1kv6',NULL,1,0,NULL,NULL),(28,3,NULL,NULL,3,3,2,NULL,'resource-read','2017-06-15 14:32:46','2017-06-15','{\"resource\":{\"name\":\"Espace personnel - aurelie.favier\",\"path\":\"Espace personnel - aurelie.favier\"},\"workspace\":{\"name\":\"Espace personnel - aurelie.favier\"},\"owner\":{\"lastName\":\"Favier\",\"firstName\":\"Aur\\u00e9lie\"},\"doer\":{\"firstName\":\"Aur\\u00e9lie\",\"lastName\":\"Favier\",\"publicUrl\":\"aur\\u00e9lie.favier\",\"platformRoles\":[\"user\"],\"workspaceRoles\":[\"manager\"]}}','user','109.70.17.57','kd7kdi95nhagdpv1qhe7ka1kv6',NULL,1,1,5,NULL),(29,1,NULL,NULL,NULL,NULL,NULL,NULL,'user-login','2017-06-15 14:33:43','2017-06-15','{\"doer\":{\"firstName\":\"Xavier\",\"lastName\":\"Gonzalez\",\"publicUrl\":\"xavier.gonzalez\",\"platformRoles\":[\"user\",\"admin\"]}}','user','109.70.17.57','p0uae2nstoj80ffcbinhg7jj90',NULL,1,0,NULL,NULL),(30,1,2,NULL,NULL,NULL,NULL,3,'role-subscribe_user','2017-06-15 14:35:47','2017-06-15','{\"role\":{\"name\":\"admin\"},\"receiverUser\":{\"firstName\":\"Samuel\",\"lastName\":\"Galle\",\"username\":\"Crazyboy\"},\"doer\":{\"firstName\":\"Xavier\",\"lastName\":\"Gonzalez\",\"publicUrl\":\"xavier.gonzalez\",\"platformRoles\":[\"user\",\"admin\"]}}','user','109.70.17.57','p0uae2nstoj80ffcbinhg7jj90',NULL,1,1,NULL,NULL),(31,1,2,NULL,NULL,NULL,NULL,NULL,'user-update','2017-06-15 14:35:47','2017-06-15','{\"receiverUser\":{\"firstName\":\"Samuel\",\"lastName\":\"Galle\",\"changeSet\":[]},\"doer\":{\"firstName\":\"Xavier\",\"lastName\":\"Gonzalez\",\"publicUrl\":\"xavier.gonzalez\",\"platformRoles\":[\"user\",\"admin\"]}}','user','109.70.17.57','p0uae2nstoj80ffcbinhg7jj90',NULL,1,0,NULL,NULL),(32,2,NULL,NULL,NULL,NULL,NULL,NULL,'user-login','2017-06-15 14:36:42','2017-06-15','{\"doer\":{\"firstName\":\"Samuel\",\"lastName\":\"Galle\",\"publicUrl\":\"samuel.galle\",\"platformRoles\":[\"user\",\"admin\"]}}','user','109.70.17.57','r0mpe3h1nps70j1onemcod7hu7',NULL,1,0,NULL,NULL),(33,1,NULL,NULL,NULL,NULL,NULL,NULL,'user-home-tab-create','2017-06-15 14:37:27','2017-06-15','{\"tabId\":3,\"tabName\":\"Premier essai\",\"tabType\":\"desktop\",\"tabIcon\":null,\"configId\":6,\"type\":\"desktop\",\"locked\":false,\"visible\":true,\"tabOrder\":1,\"details\":{\"color\":\"#00fc0a\"},\"doer\":{\"firstName\":\"Xavier\",\"lastName\":\"Gonzalez\",\"publicUrl\":\"xavier.gonzalez\",\"platformRoles\":[\"user\",\"admin\"]}}','user','109.70.17.57','hib1n5pciplbbfeuq7m6qq8n42',NULL,1,1,NULL,NULL),(34,1,NULL,NULL,NULL,NULL,NULL,NULL,'user-widget-create','2017-06-15 14:37:57','2017-06-15','{\"tabId\":3,\"tabName\":\"Premier essai\",\"tabType\":\"desktop\",\"tabIcon\":null,\"widgetId\":2,\"widgetName\":\"simple_text\",\"widgetIsConfigurable\":true,\"widgetIsExportable\":false,\"widgetIsDisplayableInWorkspace\":true,\"widgetIsDisplayableInDesktop\":true,\"id\":1,\"name\":\"Test\",\"icon\":null,\"isAdmin\":false,\"isDesktop\":true,\"widgetHomeTabConfigId\":1,\"order\":1,\"type\":\"desktop\",\"visible\":true,\"locked\":false,\"widgetDisplayConfigId\":1,\"row\":-1,\"column\":-1,\"width\":4,\"height\":3,\"color\":null,\"doer\":{\"firstName\":\"Xavier\",\"lastName\":\"Gonzalez\",\"publicUrl\":\"xavier.gonzalez\",\"platformRoles\":[\"user\",\"admin\"]}}','user','109.70.17.57','hib1n5pciplbbfeuq7m6qq8n42',NULL,1,1,NULL,NULL),(35,1,NULL,NULL,NULL,NULL,NULL,NULL,'user-widget-edit','2017-06-15 14:38:06','2017-06-15','{\"widgetId\":2,\"widgetName\":\"simple_text\",\"widgetIsConfigurable\":true,\"widgetIsExportable\":false,\"widgetIsDisplayableInWorkspace\":true,\"widgetIsDisplayableInDesktop\":true,\"id\":1,\"name\":\"Test\",\"icon\":null,\"isAdmin\":false,\"isDesktop\":true,\"widgetDisplayConfigId\":1,\"row\":-1,\"column\":-1,\"width\":4,\"height\":3,\"color\":null,\"doer\":{\"firstName\":\"Xavier\",\"lastName\":\"Gonzalez\",\"publicUrl\":\"xavier.gonzalez\",\"platformRoles\":[\"user\",\"admin\"]}}','user','109.70.17.57','hib1n5pciplbbfeuq7m6qq8n42',NULL,1,1,NULL,NULL),(36,1,NULL,NULL,NULL,NULL,NULL,NULL,'user-widget-delete','2017-06-15 14:40:00','2017-06-15','{\"id\":1,\"widget\":{\"id\":2,\"name\":\"simple_text\",\"isConfigurable\":true,\"isExportable\":false,\"isDisplayableInWorkspace\":true,\"isDisplayableInDesktop\":true,\"defaultWidth\":4,\"defaultHeight\":3},\"isAdmin\":false,\"isDesktop\":true,\"name\":\"Test\",\"doer\":{\"firstName\":\"Xavier\",\"lastName\":\"Gonzalez\",\"publicUrl\":\"xavier.gonzalez\",\"platformRoles\":[\"user\",\"admin\"]}}','user','109.70.17.57','hib1n5pciplbbfeuq7m6qq8n42',NULL,1,1,NULL,NULL),(37,1,NULL,NULL,NULL,NULL,NULL,NULL,'user-home-tab-edit','2017-06-15 14:40:37','2017-06-15','{\"tabId\":3,\"tabName\":\"Brainstorming 15\\/06\\/17\",\"tabType\":\"desktop\",\"tabIcon\":null,\"configId\":6,\"type\":\"desktop\",\"locked\":false,\"visible\":true,\"tabOrder\":1,\"details\":{\"color\":\"#00fc0a\"},\"doer\":{\"firstName\":\"Xavier\",\"lastName\":\"Gonzalez\",\"publicUrl\":\"xavier.gonzalez\",\"platformRoles\":[\"user\",\"admin\"]}}','user','109.70.17.57','hib1n5pciplbbfeuq7m6qq8n42',NULL,1,1,NULL,NULL),(38,1,NULL,NULL,NULL,NULL,NULL,NULL,'user-widget-create','2017-06-15 14:49:54','2017-06-15','{\"tabId\":3,\"tabName\":\"Brainstorming 15\\/06\\/17\",\"tabType\":\"desktop\",\"tabIcon\":null,\"widgetId\":2,\"widgetName\":\"simple_text\",\"widgetIsConfigurable\":true,\"widgetIsExportable\":false,\"widgetIsDisplayableInWorkspace\":true,\"widgetIsDisplayableInDesktop\":true,\"id\":2,\"name\":\"Ressources\",\"icon\":null,\"isAdmin\":false,\"isDesktop\":true,\"widgetHomeTabConfigId\":2,\"order\":1,\"type\":\"desktop\",\"visible\":true,\"locked\":false,\"widgetDisplayConfigId\":2,\"row\":-1,\"column\":-1,\"width\":4,\"height\":3,\"color\":null,\"doer\":{\"firstName\":\"Xavier\",\"lastName\":\"Gonzalez\",\"publicUrl\":\"xavier.gonzalez\",\"platformRoles\":[\"user\",\"admin\"]}}','user','109.70.17.57','hib1n5pciplbbfeuq7m6qq8n42',NULL,1,1,NULL,NULL),(39,1,NULL,NULL,NULL,NULL,NULL,NULL,'user-widget-delete','2017-06-15 14:50:17','2017-06-15','{\"id\":2,\"widget\":{\"id\":2,\"name\":\"simple_text\",\"isConfigurable\":true,\"isExportable\":false,\"isDisplayableInWorkspace\":true,\"isDisplayableInDesktop\":true,\"defaultWidth\":4,\"defaultHeight\":3},\"isAdmin\":false,\"isDesktop\":true,\"name\":\"Ressources\",\"doer\":{\"firstName\":\"Xavier\",\"lastName\":\"Gonzalez\",\"publicUrl\":\"xavier.gonzalez\",\"platformRoles\":[\"user\",\"admin\"]}}','user','109.70.17.57','hib1n5pciplbbfeuq7m6qq8n42',NULL,1,1,NULL,NULL),(40,1,NULL,NULL,1,1,2,NULL,'resource-read','2017-06-15 14:53:12','2017-06-15','{\"resource\":{\"name\":\"Espace personnel - admin\",\"path\":\"Espace personnel - admin\"},\"workspace\":{\"name\":\"Espace personnel - admin\"},\"owner\":{\"lastName\":\"Gonzalez\",\"firstName\":\"Xavier\"},\"doer\":{\"firstName\":\"Xavier\",\"lastName\":\"Gonzalez\",\"publicUrl\":\"xavier.gonzalez\",\"platformRoles\":[\"user\",\"admin\"],\"workspaceRoles\":[\"manager\"]}}','user','109.70.17.57','hib1n5pciplbbfeuq7m6qq8n42',NULL,1,1,1,NULL),(41,1,NULL,NULL,1,1,2,NULL,'resource-read','2017-06-15 14:53:33','2017-06-15','{\"resource\":{\"name\":\"Mes documents publics\",\"path\":\"Espace personnel - admin \\/ Mes documents publics\"},\"workspace\":{\"name\":\"Espace personnel - admin\"},\"owner\":{\"lastName\":\"Gonzalez\",\"firstName\":\"Xavier\"},\"doer\":{\"firstName\":\"Xavier\",\"lastName\":\"Gonzalez\",\"publicUrl\":\"xavier.gonzalez\",\"platformRoles\":[\"user\",\"admin\"],\"workspaceRoles\":[\"manager\"]}}','user','109.70.17.57','hib1n5pciplbbfeuq7m6qq8n42',NULL,1,1,2,NULL),(42,3,NULL,NULL,NULL,NULL,NULL,NULL,'user-login','2017-06-15 15:03:52','2017-06-15','{\"doer\":{\"firstName\":\"Aur\\u00e9lie\",\"lastName\":\"Favier\",\"publicUrl\":\"aur\\u00e9lie.favier\",\"platformRoles\":[\"user\"]}}','user','109.70.17.57','3m00saiat5ct6282p1oe1ei5j0',NULL,1,0,NULL,NULL),(43,3,NULL,NULL,NULL,NULL,NULL,NULL,'user-home-tab-create','2017-06-15 15:04:43','2017-06-15','{\"tabId\":4,\"tabName\":\"Seconde\",\"tabType\":\"desktop\",\"tabIcon\":null,\"configId\":7,\"type\":\"desktop\",\"locked\":false,\"visible\":true,\"tabOrder\":1,\"details\":{\"color\":\"#000aff\"},\"doer\":{\"firstName\":\"Aur\\u00e9lie\",\"lastName\":\"Favier\",\"publicUrl\":\"aur\\u00e9lie.favier\",\"platformRoles\":[\"user\"]}}','user','109.70.17.57','3m00saiat5ct6282p1oe1ei5j0',NULL,1,1,NULL,NULL),(44,1,NULL,NULL,NULL,NULL,NULL,NULL,'user-home-tab-create','2017-06-15 15:05:02','2017-06-15','{\"tabId\":5,\"tabName\":\"Test\",\"tabType\":\"desktop\",\"tabIcon\":null,\"configId\":8,\"type\":\"desktop\",\"locked\":false,\"visible\":true,\"tabOrder\":2,\"details\":{\"color\":null},\"doer\":{\"firstName\":\"Xavier\",\"lastName\":\"Gonzalez\",\"publicUrl\":\"xavier.gonzalez\",\"platformRoles\":[\"user\",\"admin\"]}}','user','109.70.17.57','hib1n5pciplbbfeuq7m6qq8n42',NULL,1,1,NULL,NULL),(45,1,NULL,NULL,NULL,NULL,NULL,NULL,'user-home-tab-delete','2017-06-15 15:05:44','2017-06-15','{\"configId\":8,\"hometab\":{\"id\":5,\"name\":\"Test\",\"type\":\"desktop\"},\"type\":\"desktop\",\"visible\":true,\"locked\":false,\"tabOrder\":2,\"details\":[],\"doer\":{\"firstName\":\"Xavier\",\"lastName\":\"Gonzalez\",\"publicUrl\":\"xavier.gonzalez\",\"platformRoles\":[\"user\",\"admin\"]}}','user','109.70.17.57','hib1n5pciplbbfeuq7m6qq8n42',NULL,1,1,NULL,NULL),(46,1,NULL,NULL,NULL,NULL,NULL,NULL,'user-home-tab-delete','2017-06-15 15:17:15','2017-06-15','{\"configId\":6,\"hometab\":{\"id\":3,\"name\":\"Brainstorming 15\\/06\\/17\",\"type\":\"desktop\"},\"type\":\"desktop\",\"visible\":true,\"locked\":false,\"tabOrder\":1,\"details\":{\"color\":\"#00fc0a\"},\"doer\":{\"firstName\":\"Xavier\",\"lastName\":\"Gonzalez\",\"publicUrl\":\"xavier.gonzalez\",\"platformRoles\":[\"user\",\"admin\"]}}','user','109.70.17.57','hib1n5pciplbbfeuq7m6qq8n42',NULL,1,1,NULL,NULL),(47,1,NULL,NULL,NULL,NULL,NULL,NULL,'user-login','2017-06-16 17:05:34','2017-06-16','{\"doer\":{\"firstName\":\"Xavier\",\"lastName\":\"Gonzalez\",\"publicUrl\":\"xavier.gonzalez\",\"platformRoles\":[\"user\",\"admin\"]}}','user','86.213.158.246','65bh6nk6e1e4145sdbjgsthgh1',NULL,1,0,NULL,NULL),(48,1,NULL,NULL,NULL,NULL,NULL,NULL,'user-login','2017-06-28 09:35:48','2017-06-28','{\"doer\":{\"firstName\":\"Xavier\",\"lastName\":\"Gonzalez\",\"publicUrl\":\"xavier.gonzalez\",\"platformRoles\":[\"user\",\"admin\"]}}','user','88.163.60.248','khvcigm0sm34k8pg6pcrssea92',NULL,1,0,NULL,NULL),(49,1,NULL,NULL,1,1,2,NULL,'resource-read','2017-06-28 09:37:42','2017-06-28','{\"resource\":{\"name\":\"Espace personnel - admin\",\"path\":\"Espace personnel - admin\"},\"workspace\":{\"name\":\"Espace personnel - admin\"},\"owner\":{\"lastName\":\"Gonzalez\",\"firstName\":\"Xavier\"},\"doer\":{\"firstName\":\"Xavier\",\"lastName\":\"Gonzalez\",\"publicUrl\":\"xavier.gonzalez\",\"platformRoles\":[\"user\",\"admin\"],\"workspaceRoles\":[\"manager\"]}}','user','88.163.60.248','khvcigm0sm34k8pg6pcrssea92',NULL,1,1,1,NULL),(50,1,NULL,NULL,1,1,2,NULL,'resource-read','2017-06-28 09:37:47','2017-06-28','{\"resource\":{\"name\":\"Mes documents publics\",\"path\":\"Espace personnel - admin \\/ Mes documents publics\"},\"workspace\":{\"name\":\"Espace personnel - admin\"},\"owner\":{\"lastName\":\"Gonzalez\",\"firstName\":\"Xavier\"},\"doer\":{\"firstName\":\"Xavier\",\"lastName\":\"Gonzalez\",\"publicUrl\":\"xavier.gonzalez\",\"platformRoles\":[\"user\",\"admin\"],\"workspaceRoles\":[\"manager\"]}}','user','88.163.60.248','khvcigm0sm34k8pg6pcrssea92',NULL,1,1,2,NULL),(51,1,NULL,NULL,1,NULL,1,NULL,'resource-create','2017-06-28 09:40:35','2017-06-28','{\"resource\":{\"name\":\"SuitesArithmetiques_Graphique.ggb\",\"path\":\"SuitesArithmetiques_Graphique.ggb\",\"guid\":\"5899CC58-92C3-43C5-9C50-72A1FB199F07\",\"resourceType\":\"file\"},\"workspace\":{\"name\":\" - \"},\"owner\":{\"lastName\":\"Gonzalez\",\"firstName\":\"Xavier\"},\"doer\":{\"firstName\":\"Xavier\",\"lastName\":\"Gonzalez\",\"publicUrl\":\"xavier.gonzalez\",\"platformRoles\":[\"user\",\"admin\"]}}','user','88.163.60.248','khvcigm0sm34k8pg6pcrssea92',NULL,1,1,7,NULL),(52,1,NULL,NULL,1,1,5,NULL,'resource-create','2017-06-28 09:40:40','2017-06-28','{\"resource\":{\"name\":\"Suites arithm\\u00e9tiques avec Geogebra\",\"path\":\"Espace personnel - admin \\/ Mes documents publics \\/ Suites arithm\\u00e9tiques avec Geogebra\",\"guid\":\"269A3013-8DE3-4133-B364-06D982125D47\",\"resourceType\":\"activity\"},\"workspace\":{\"name\":\"Espace personnel - admin\"},\"owner\":{\"lastName\":\"Gonzalez\",\"firstName\":\"Xavier\"},\"doer\":{\"firstName\":\"Xavier\",\"lastName\":\"Gonzalez\",\"publicUrl\":\"xavier.gonzalez\",\"platformRoles\":[\"user\",\"admin\"],\"workspaceRoles\":[\"manager\"]}}','user','88.163.60.248','khvcigm0sm34k8pg6pcrssea92',NULL,1,1,8,NULL),(53,1,NULL,NULL,1,1,5,NULL,'resource-read','2017-06-28 09:57:38','2017-06-28','{\"resource\":{\"name\":\"Suites arithm\\u00e9tiques avec Geogebra\",\"path\":\"Espace personnel - admin \\/ Mes documents publics \\/ Suites arithm\\u00e9tiques avec Geogebra\"},\"workspace\":{\"name\":\"Espace personnel - admin\"},\"owner\":{\"lastName\":\"Gonzalez\",\"firstName\":\"Xavier\"},\"doer\":{\"firstName\":\"Xavier\",\"lastName\":\"Gonzalez\",\"publicUrl\":\"xavier.gonzalez\",\"platformRoles\":[\"user\",\"admin\"],\"workspaceRoles\":[\"manager\"]}}','user','88.163.60.248','khvcigm0sm34k8pg6pcrssea92',NULL,1,1,8,NULL),(54,1,NULL,NULL,1,1,2,NULL,'resource-read','2017-06-28 09:57:50','2017-06-28','{\"resource\":{\"name\":\"Espace personnel - admin\",\"path\":\"Espace personnel - admin\"},\"workspace\":{\"name\":\"Espace personnel - admin\"},\"owner\":{\"lastName\":\"Gonzalez\",\"firstName\":\"Xavier\"},\"doer\":{\"firstName\":\"Xavier\",\"lastName\":\"Gonzalez\",\"publicUrl\":\"xavier.gonzalez\",\"platformRoles\":[\"user\",\"admin\"],\"workspaceRoles\":[\"manager\"]}}','user','88.163.60.248','khvcigm0sm34k8pg6pcrssea92',NULL,1,1,1,NULL),(55,1,NULL,NULL,1,NULL,1,NULL,'resource-create','2017-06-28 09:58:29','2017-06-28','{\"resource\":{\"name\":\"SuitesArithmetiques_Graphique.ggb\",\"path\":\"SuitesArithmetiques_Graphique.ggb\",\"guid\":\"0E844D31-D39E-4C81-90E1-8838F9F12711\",\"resourceType\":\"file\"},\"workspace\":{\"name\":\" - \"},\"owner\":{\"lastName\":\"Gonzalez\",\"firstName\":\"Xavier\"},\"doer\":{\"firstName\":\"Xavier\",\"lastName\":\"Gonzalez\",\"publicUrl\":\"xavier.gonzalez\",\"platformRoles\":[\"user\",\"admin\"]}}','user','88.163.60.248','khvcigm0sm34k8pg6pcrssea92',NULL,1,1,9,NULL),(56,1,NULL,NULL,NULL,NULL,NULL,NULL,'user-login','2017-06-28 10:54:17','2017-06-28','{\"doer\":{\"firstName\":\"Xavier\",\"lastName\":\"Gonzalez\",\"publicUrl\":\"xavier.gonzalez\",\"platformRoles\":[\"user\",\"admin\"]}}','user','31.36.70.129','6sbhn2cv8qvtgvbtq62ht7j144',NULL,1,0,NULL,NULL);
+INSERT INTO `claro_log` VALUES (1,NULL,1,NULL,NULL,NULL,NULL,3,'role-subscribe_user','2017-05-18 23:47:04','2017-05-18','{\"role\":{\"name\":\"admin\"},\"receiverUser\":{\"firstName\":\"Xavier\",\"lastName\":\"Gonzalez\",\"username\":\"admin\"}}','platform',NULL,NULL,NULL,1,1,NULL,NULL),(2,NULL,NULL,NULL,1,1,2,NULL,'resource-create','2017-05-18 23:47:06','2017-05-18','{\"resource\":{\"name\":\"Espace personnel - admin\",\"path\":\"Espace personnel - admin\",\"guid\":\"CDC2A502-1F6B-4A05-8386-4D72267827FB\",\"resourceType\":\"directory\"},\"workspace\":{\"name\":\"Espace personnel - admin\"},\"owner\":{\"lastName\":\"Gonzalez\",\"firstName\":\"Xavier\"}}','platform',NULL,NULL,NULL,1,1,1,NULL),(3,NULL,NULL,NULL,1,1,2,NULL,'resource-create','2017-05-18 23:47:06','2017-05-18','{\"resource\":{\"name\":\"Mes documents publics\",\"path\":\" \\/ Mes documents publics\",\"guid\":\"57E4B943-21EE-4D07-A04F-699A233F3C56\",\"resourceType\":\"directory\"},\"workspace\":{\"name\":\"Espace personnel - admin\"},\"owner\":{\"lastName\":\"Gonzalez\",\"firstName\":\"Xavier\"}}','platform',NULL,NULL,NULL,1,1,2,NULL),(4,NULL,1,NULL,NULL,NULL,NULL,NULL,'user-create','2017-05-18 23:47:06','2017-05-18','{\"receiverUser\":{\"lastName\":\"Gonzalez\",\"firstName\":\"Xavier\"}}','platform',NULL,NULL,NULL,1,0,NULL,NULL),(5,1,NULL,NULL,NULL,NULL,NULL,NULL,'user-login','2017-05-18 23:49:52','2017-05-18','{\"doer\":{\"firstName\":\"Xavier\",\"lastName\":\"Gonzalez\",\"publicUrl\":\"xavier.gonzalez\",\"platformRoles\":[\"user\",\"admin\"]}}','user','89.86.44.252','1l9nbg6qdv3hrgt2u61gsmtc55',NULL,1,0,NULL,NULL),(6,1,NULL,NULL,1,1,2,NULL,'resource-read','2017-05-18 23:50:30','2017-05-18','{\"resource\":{\"name\":\"Espace personnel - admin\",\"path\":\"Espace personnel - admin\"},\"workspace\":{\"name\":\"Espace personnel - admin\"},\"owner\":{\"lastName\":\"Gonzalez\",\"firstName\":\"Xavier\"},\"doer\":{\"firstName\":\"Xavier\",\"lastName\":\"Gonzalez\",\"publicUrl\":\"xavier.gonzalez\",\"platformRoles\":[\"user\",\"admin\"],\"workspaceRoles\":[\"manager\"]}}','user','89.86.44.252','1l9nbg6qdv3hrgt2u61gsmtc55',NULL,1,1,1,NULL),(7,1,NULL,NULL,1,1,2,NULL,'resource-read','2017-05-18 23:50:33','2017-05-18','{\"resource\":{\"name\":\"Mes documents publics\",\"path\":\"Espace personnel - admin \\/ Mes documents publics\"},\"workspace\":{\"name\":\"Espace personnel - admin\"},\"owner\":{\"lastName\":\"Gonzalez\",\"firstName\":\"Xavier\"},\"doer\":{\"firstName\":\"Xavier\",\"lastName\":\"Gonzalez\",\"publicUrl\":\"xavier.gonzalez\",\"platformRoles\":[\"user\",\"admin\"],\"workspaceRoles\":[\"manager\"]}}','user','89.86.44.252','1l9nbg6qdv3hrgt2u61gsmtc55',NULL,1,1,2,NULL),(8,1,NULL,NULL,NULL,NULL,NULL,NULL,'user-login','2017-05-19 00:05:59','2017-05-19','{\"doer\":{\"firstName\":\"Xavier\",\"lastName\":\"Gonzalez\",\"publicUrl\":\"xavier.gonzalez\",\"platformRoles\":[\"user\",\"admin\"]}}','user','89.86.44.252','81vuf24ctvk8t74svo5ctlv4c7',NULL,1,0,NULL,NULL),(9,1,NULL,NULL,NULL,NULL,NULL,NULL,'user-login','2017-05-19 00:25:33','2017-05-19','{\"doer\":{\"firstName\":\"Xavier\",\"lastName\":\"Gonzalez\",\"publicUrl\":\"xavier.gonzalez\",\"platformRoles\":[\"user\",\"admin\"]}}','user','89.86.44.252','ed406lnf2cmk89t1e5fqqb2k41',NULL,1,0,NULL,NULL),(10,1,NULL,NULL,NULL,NULL,NULL,NULL,'user-login','2017-05-19 11:27:20','2017-05-19','{\"doer\":{\"firstName\":\"Xavier\",\"lastName\":\"Gonzalez\",\"publicUrl\":\"xavier.gonzalez\",\"platformRoles\":[\"user\",\"admin\"]}}','user','159.180.228.163','jp8djrjl3ggrltji0hqt6ap864',NULL,1,0,NULL,NULL),(11,1,NULL,NULL,NULL,NULL,NULL,NULL,'user-login','2017-05-19 14:03:01','2017-05-19','{\"doer\":{\"firstName\":\"Xavier\",\"lastName\":\"Gonzalez\",\"publicUrl\":\"xavier.gonzalez\",\"platformRoles\":[\"user\",\"admin\"]}}','user','109.1.158.229','5e6buaot96lvalcdtoovchbpf5',NULL,1,0,NULL,NULL),(12,1,NULL,NULL,NULL,NULL,NULL,NULL,'user-login','2017-05-20 14:07:38','2017-05-20','{\"doer\":{\"firstName\":\"Xavier\",\"lastName\":\"Gonzalez\",\"publicUrl\":\"xavier.gonzalez\",\"platformRoles\":[\"user\",\"admin\"]}}','user','88.182.21.3','ft1eeqcd08kovfp5qm4gvgmam2',NULL,1,0,NULL,NULL),(13,1,NULL,NULL,NULL,NULL,NULL,NULL,'user-login','2017-05-20 16:32:58','2017-05-20','{\"doer\":{\"firstName\":\"Xavier\",\"lastName\":\"Gonzalez\",\"publicUrl\":\"xavier.gonzalez\",\"platformRoles\":[\"user\",\"admin\"]}}','user','88.182.21.3','qijil6g4ngienh1bh434imnto3',NULL,1,0,NULL,NULL),(14,1,NULL,NULL,NULL,NULL,NULL,NULL,'user-login','2017-05-24 09:05:25','2017-05-24','{\"doer\":{\"firstName\":\"Xavier\",\"lastName\":\"Gonzalez\",\"publicUrl\":\"xavier.gonzalez\",\"platformRoles\":[\"user\",\"admin\"]}}','user','109.1.158.229','4ceroaj4r2h30egclu9j35okb4',NULL,1,0,NULL,NULL),(15,1,NULL,NULL,NULL,NULL,NULL,NULL,'user-login','2017-06-01 12:25:25','2017-06-01','{\"doer\":{\"firstName\":\"Xavier\",\"lastName\":\"Gonzalez\",\"publicUrl\":\"xavier.gonzalez\",\"platformRoles\":[\"user\",\"admin\"]}}','user','88.182.21.3','neu8a9k0vvi6bgjhp2tl9s4nt7',NULL,1,0,NULL,NULL),(16,1,NULL,NULL,NULL,NULL,NULL,NULL,'user-login','2017-06-15 14:18:33','2017-06-15','{\"doer\":{\"firstName\":\"Xavier\",\"lastName\":\"Gonzalez\",\"publicUrl\":\"xavier.gonzalez\",\"platformRoles\":[\"user\",\"admin\"]}}','user','109.70.17.57','30mnea8jetrdj2dsuu7ht7g4a6',NULL,1,0,NULL,NULL),(17,NULL,NULL,NULL,2,2,2,NULL,'resource-create','2017-06-15 14:22:35','2017-06-15','{\"resource\":{\"name\":\"Espace personnel - Crazyboy\",\"path\":\"Espace personnel - Crazyboy\",\"guid\":\"0C4E1EB3-667F-4D4A-A317-D67601C57348\",\"resourceType\":\"directory\"},\"workspace\":{\"name\":\"Espace personnel - Crazyboy\"},\"owner\":{\"lastName\":\"Galle\",\"firstName\":\"Samuel\"}}','anonymous','109.70.17.57','1j6i4te03dup9m230ki9orthe7',NULL,1,1,3,NULL),(18,NULL,NULL,NULL,2,2,2,NULL,'resource-create','2017-06-15 14:22:35','2017-06-15','{\"resource\":{\"name\":\"Mes documents publics\",\"path\":\" \\/ Mes documents publics\",\"guid\":\"16DEFC30-C062-43C4-9E17-7E1862EF5806\",\"resourceType\":\"directory\"},\"workspace\":{\"name\":\"Espace personnel - Crazyboy\"},\"owner\":{\"lastName\":\"Galle\",\"firstName\":\"Samuel\"}}','anonymous','109.70.17.57','1j6i4te03dup9m230ki9orthe7',NULL,1,1,4,NULL),(19,NULL,2,NULL,NULL,NULL,NULL,NULL,'user-create','2017-06-15 14:22:36','2017-06-15','{\"receiverUser\":{\"lastName\":\"Galle\",\"firstName\":\"Samuel\"}}','anonymous','109.70.17.57','1j6i4te03dup9m230ki9orthe7',NULL,1,0,NULL,NULL),(20,2,NULL,NULL,NULL,NULL,NULL,NULL,'user-login','2017-06-15 14:24:51','2017-06-15','{\"doer\":{\"firstName\":\"Samuel\",\"lastName\":\"Galle\",\"publicUrl\":\"samuel.galle\",\"platformRoles\":[\"user\"]}}','user','109.70.17.57','k1obn00gnumeefk0ih2pp6sq31',NULL,1,0,NULL,NULL),(21,1,NULL,NULL,NULL,NULL,NULL,NULL,'user-login','2017-06-15 14:25:37','2017-06-15','{\"doer\":{\"firstName\":\"Xavier\",\"lastName\":\"Gonzalez\",\"publicUrl\":\"xavier.gonzalez\",\"platformRoles\":[\"user\",\"admin\"]}}','user','109.70.17.57','hib1n5pciplbbfeuq7m6qq8n42',NULL,1,0,NULL,NULL),(22,1,NULL,NULL,NULL,NULL,NULL,NULL,'user-login','2017-06-15 14:26:22','2017-06-15','{\"doer\":{\"firstName\":\"Xavier\",\"lastName\":\"Gonzalez\",\"publicUrl\":\"xavier.gonzalez\",\"platformRoles\":[\"user\",\"admin\"]}}','user','109.70.17.57','g0v5q1odt6chikm78o6936ucm7',NULL,1,0,NULL,NULL),(23,1,NULL,NULL,NULL,NULL,NULL,NULL,'user-login','2017-06-15 14:26:58','2017-06-15','{\"doer\":{\"firstName\":\"Xavier\",\"lastName\":\"Gonzalez\",\"publicUrl\":\"xavier.gonzalez\",\"platformRoles\":[\"user\",\"admin\"]}}','user','109.70.17.57','9r7fej7se9geilvsjojjehper1',NULL,1,0,NULL,NULL),(24,NULL,NULL,NULL,3,3,2,NULL,'resource-create','2017-06-15 14:30:14','2017-06-15','{\"resource\":{\"name\":\"Espace personnel - aurelie.favier\",\"path\":\"Espace personnel - aurelie.favier\",\"guid\":\"04687CB7-D756-4CC8-8D47-9D30400D9294\",\"resourceType\":\"directory\"},\"workspace\":{\"name\":\"Espace personnel - aurelie.favier\"},\"owner\":{\"lastName\":\"Favier\",\"firstName\":\"Aur\\u00e9lie\"}}','anonymous','109.70.17.57','id82t1ecnbp0906orb92s4tl15',NULL,1,1,5,NULL),(25,NULL,NULL,NULL,3,3,2,NULL,'resource-create','2017-06-15 14:30:14','2017-06-15','{\"resource\":{\"name\":\"Mes documents publics\",\"path\":\" \\/ Mes documents publics\",\"guid\":\"6E38516E-47B3-4200-B18B-BCD7B9701783\",\"resourceType\":\"directory\"},\"workspace\":{\"name\":\"Espace personnel - aurelie.favier\"},\"owner\":{\"lastName\":\"Favier\",\"firstName\":\"Aur\\u00e9lie\"}}','anonymous','109.70.17.57','id82t1ecnbp0906orb92s4tl15',NULL,1,1,6,NULL),(26,NULL,3,NULL,NULL,NULL,NULL,NULL,'user-create','2017-06-15 14:30:14','2017-06-15','{\"receiverUser\":{\"lastName\":\"Favier\",\"firstName\":\"Aur\\u00e9lie\"}}','anonymous','109.70.17.57','id82t1ecnbp0906orb92s4tl15',NULL,1,0,NULL,NULL),(27,3,NULL,NULL,NULL,NULL,NULL,NULL,'user-login','2017-06-15 14:31:20','2017-06-15','{\"doer\":{\"firstName\":\"Aur\\u00e9lie\",\"lastName\":\"Favier\",\"publicUrl\":\"aur\\u00e9lie.favier\",\"platformRoles\":[\"user\"]}}','user','109.70.17.57','kd7kdi95nhagdpv1qhe7ka1kv6',NULL,1,0,NULL,NULL),(28,3,NULL,NULL,3,3,2,NULL,'resource-read','2017-06-15 14:32:46','2017-06-15','{\"resource\":{\"name\":\"Espace personnel - aurelie.favier\",\"path\":\"Espace personnel - aurelie.favier\"},\"workspace\":{\"name\":\"Espace personnel - aurelie.favier\"},\"owner\":{\"lastName\":\"Favier\",\"firstName\":\"Aur\\u00e9lie\"},\"doer\":{\"firstName\":\"Aur\\u00e9lie\",\"lastName\":\"Favier\",\"publicUrl\":\"aur\\u00e9lie.favier\",\"platformRoles\":[\"user\"],\"workspaceRoles\":[\"manager\"]}}','user','109.70.17.57','kd7kdi95nhagdpv1qhe7ka1kv6',NULL,1,1,5,NULL),(29,1,NULL,NULL,NULL,NULL,NULL,NULL,'user-login','2017-06-15 14:33:43','2017-06-15','{\"doer\":{\"firstName\":\"Xavier\",\"lastName\":\"Gonzalez\",\"publicUrl\":\"xavier.gonzalez\",\"platformRoles\":[\"user\",\"admin\"]}}','user','109.70.17.57','p0uae2nstoj80ffcbinhg7jj90',NULL,1,0,NULL,NULL),(30,1,2,NULL,NULL,NULL,NULL,3,'role-subscribe_user','2017-06-15 14:35:47','2017-06-15','{\"role\":{\"name\":\"admin\"},\"receiverUser\":{\"firstName\":\"Samuel\",\"lastName\":\"Galle\",\"username\":\"Crazyboy\"},\"doer\":{\"firstName\":\"Xavier\",\"lastName\":\"Gonzalez\",\"publicUrl\":\"xavier.gonzalez\",\"platformRoles\":[\"user\",\"admin\"]}}','user','109.70.17.57','p0uae2nstoj80ffcbinhg7jj90',NULL,1,1,NULL,NULL),(31,1,2,NULL,NULL,NULL,NULL,NULL,'user-update','2017-06-15 14:35:47','2017-06-15','{\"receiverUser\":{\"firstName\":\"Samuel\",\"lastName\":\"Galle\",\"changeSet\":[]},\"doer\":{\"firstName\":\"Xavier\",\"lastName\":\"Gonzalez\",\"publicUrl\":\"xavier.gonzalez\",\"platformRoles\":[\"user\",\"admin\"]}}','user','109.70.17.57','p0uae2nstoj80ffcbinhg7jj90',NULL,1,0,NULL,NULL),(32,2,NULL,NULL,NULL,NULL,NULL,NULL,'user-login','2017-06-15 14:36:42','2017-06-15','{\"doer\":{\"firstName\":\"Samuel\",\"lastName\":\"Galle\",\"publicUrl\":\"samuel.galle\",\"platformRoles\":[\"user\",\"admin\"]}}','user','109.70.17.57','r0mpe3h1nps70j1onemcod7hu7',NULL,1,0,NULL,NULL),(33,1,NULL,NULL,NULL,NULL,NULL,NULL,'user-home-tab-create','2017-06-15 14:37:27','2017-06-15','{\"tabId\":3,\"tabName\":\"Premier essai\",\"tabType\":\"desktop\",\"tabIcon\":null,\"configId\":6,\"type\":\"desktop\",\"locked\":false,\"visible\":true,\"tabOrder\":1,\"details\":{\"color\":\"#00fc0a\"},\"doer\":{\"firstName\":\"Xavier\",\"lastName\":\"Gonzalez\",\"publicUrl\":\"xavier.gonzalez\",\"platformRoles\":[\"user\",\"admin\"]}}','user','109.70.17.57','hib1n5pciplbbfeuq7m6qq8n42',NULL,1,1,NULL,NULL),(34,1,NULL,NULL,NULL,NULL,NULL,NULL,'user-widget-create','2017-06-15 14:37:57','2017-06-15','{\"tabId\":3,\"tabName\":\"Premier essai\",\"tabType\":\"desktop\",\"tabIcon\":null,\"widgetId\":2,\"widgetName\":\"simple_text\",\"widgetIsConfigurable\":true,\"widgetIsExportable\":false,\"widgetIsDisplayableInWorkspace\":true,\"widgetIsDisplayableInDesktop\":true,\"id\":1,\"name\":\"Test\",\"icon\":null,\"isAdmin\":false,\"isDesktop\":true,\"widgetHomeTabConfigId\":1,\"order\":1,\"type\":\"desktop\",\"visible\":true,\"locked\":false,\"widgetDisplayConfigId\":1,\"row\":-1,\"column\":-1,\"width\":4,\"height\":3,\"color\":null,\"doer\":{\"firstName\":\"Xavier\",\"lastName\":\"Gonzalez\",\"publicUrl\":\"xavier.gonzalez\",\"platformRoles\":[\"user\",\"admin\"]}}','user','109.70.17.57','hib1n5pciplbbfeuq7m6qq8n42',NULL,1,1,NULL,NULL),(35,1,NULL,NULL,NULL,NULL,NULL,NULL,'user-widget-edit','2017-06-15 14:38:06','2017-06-15','{\"widgetId\":2,\"widgetName\":\"simple_text\",\"widgetIsConfigurable\":true,\"widgetIsExportable\":false,\"widgetIsDisplayableInWorkspace\":true,\"widgetIsDisplayableInDesktop\":true,\"id\":1,\"name\":\"Test\",\"icon\":null,\"isAdmin\":false,\"isDesktop\":true,\"widgetDisplayConfigId\":1,\"row\":-1,\"column\":-1,\"width\":4,\"height\":3,\"color\":null,\"doer\":{\"firstName\":\"Xavier\",\"lastName\":\"Gonzalez\",\"publicUrl\":\"xavier.gonzalez\",\"platformRoles\":[\"user\",\"admin\"]}}','user','109.70.17.57','hib1n5pciplbbfeuq7m6qq8n42',NULL,1,1,NULL,NULL),(36,1,NULL,NULL,NULL,NULL,NULL,NULL,'user-widget-delete','2017-06-15 14:40:00','2017-06-15','{\"id\":1,\"widget\":{\"id\":2,\"name\":\"simple_text\",\"isConfigurable\":true,\"isExportable\":false,\"isDisplayableInWorkspace\":true,\"isDisplayableInDesktop\":true,\"defaultWidth\":4,\"defaultHeight\":3},\"isAdmin\":false,\"isDesktop\":true,\"name\":\"Test\",\"doer\":{\"firstName\":\"Xavier\",\"lastName\":\"Gonzalez\",\"publicUrl\":\"xavier.gonzalez\",\"platformRoles\":[\"user\",\"admin\"]}}','user','109.70.17.57','hib1n5pciplbbfeuq7m6qq8n42',NULL,1,1,NULL,NULL),(37,1,NULL,NULL,NULL,NULL,NULL,NULL,'user-home-tab-edit','2017-06-15 14:40:37','2017-06-15','{\"tabId\":3,\"tabName\":\"Brainstorming 15\\/06\\/17\",\"tabType\":\"desktop\",\"tabIcon\":null,\"configId\":6,\"type\":\"desktop\",\"locked\":false,\"visible\":true,\"tabOrder\":1,\"details\":{\"color\":\"#00fc0a\"},\"doer\":{\"firstName\":\"Xavier\",\"lastName\":\"Gonzalez\",\"publicUrl\":\"xavier.gonzalez\",\"platformRoles\":[\"user\",\"admin\"]}}','user','109.70.17.57','hib1n5pciplbbfeuq7m6qq8n42',NULL,1,1,NULL,NULL),(38,1,NULL,NULL,NULL,NULL,NULL,NULL,'user-widget-create','2017-06-15 14:49:54','2017-06-15','{\"tabId\":3,\"tabName\":\"Brainstorming 15\\/06\\/17\",\"tabType\":\"desktop\",\"tabIcon\":null,\"widgetId\":2,\"widgetName\":\"simple_text\",\"widgetIsConfigurable\":true,\"widgetIsExportable\":false,\"widgetIsDisplayableInWorkspace\":true,\"widgetIsDisplayableInDesktop\":true,\"id\":2,\"name\":\"Ressources\",\"icon\":null,\"isAdmin\":false,\"isDesktop\":true,\"widgetHomeTabConfigId\":2,\"order\":1,\"type\":\"desktop\",\"visible\":true,\"locked\":false,\"widgetDisplayConfigId\":2,\"row\":-1,\"column\":-1,\"width\":4,\"height\":3,\"color\":null,\"doer\":{\"firstName\":\"Xavier\",\"lastName\":\"Gonzalez\",\"publicUrl\":\"xavier.gonzalez\",\"platformRoles\":[\"user\",\"admin\"]}}','user','109.70.17.57','hib1n5pciplbbfeuq7m6qq8n42',NULL,1,1,NULL,NULL),(39,1,NULL,NULL,NULL,NULL,NULL,NULL,'user-widget-delete','2017-06-15 14:50:17','2017-06-15','{\"id\":2,\"widget\":{\"id\":2,\"name\":\"simple_text\",\"isConfigurable\":true,\"isExportable\":false,\"isDisplayableInWorkspace\":true,\"isDisplayableInDesktop\":true,\"defaultWidth\":4,\"defaultHeight\":3},\"isAdmin\":false,\"isDesktop\":true,\"name\":\"Ressources\",\"doer\":{\"firstName\":\"Xavier\",\"lastName\":\"Gonzalez\",\"publicUrl\":\"xavier.gonzalez\",\"platformRoles\":[\"user\",\"admin\"]}}','user','109.70.17.57','hib1n5pciplbbfeuq7m6qq8n42',NULL,1,1,NULL,NULL),(40,1,NULL,NULL,1,1,2,NULL,'resource-read','2017-06-15 14:53:12','2017-06-15','{\"resource\":{\"name\":\"Espace personnel - admin\",\"path\":\"Espace personnel - admin\"},\"workspace\":{\"name\":\"Espace personnel - admin\"},\"owner\":{\"lastName\":\"Gonzalez\",\"firstName\":\"Xavier\"},\"doer\":{\"firstName\":\"Xavier\",\"lastName\":\"Gonzalez\",\"publicUrl\":\"xavier.gonzalez\",\"platformRoles\":[\"user\",\"admin\"],\"workspaceRoles\":[\"manager\"]}}','user','109.70.17.57','hib1n5pciplbbfeuq7m6qq8n42',NULL,1,1,1,NULL),(41,1,NULL,NULL,1,1,2,NULL,'resource-read','2017-06-15 14:53:33','2017-06-15','{\"resource\":{\"name\":\"Mes documents publics\",\"path\":\"Espace personnel - admin \\/ Mes documents publics\"},\"workspace\":{\"name\":\"Espace personnel - admin\"},\"owner\":{\"lastName\":\"Gonzalez\",\"firstName\":\"Xavier\"},\"doer\":{\"firstName\":\"Xavier\",\"lastName\":\"Gonzalez\",\"publicUrl\":\"xavier.gonzalez\",\"platformRoles\":[\"user\",\"admin\"],\"workspaceRoles\":[\"manager\"]}}','user','109.70.17.57','hib1n5pciplbbfeuq7m6qq8n42',NULL,1,1,2,NULL),(42,3,NULL,NULL,NULL,NULL,NULL,NULL,'user-login','2017-06-15 15:03:52','2017-06-15','{\"doer\":{\"firstName\":\"Aur\\u00e9lie\",\"lastName\":\"Favier\",\"publicUrl\":\"aur\\u00e9lie.favier\",\"platformRoles\":[\"user\"]}}','user','109.70.17.57','3m00saiat5ct6282p1oe1ei5j0',NULL,1,0,NULL,NULL),(43,3,NULL,NULL,NULL,NULL,NULL,NULL,'user-home-tab-create','2017-06-15 15:04:43','2017-06-15','{\"tabId\":4,\"tabName\":\"Seconde\",\"tabType\":\"desktop\",\"tabIcon\":null,\"configId\":7,\"type\":\"desktop\",\"locked\":false,\"visible\":true,\"tabOrder\":1,\"details\":{\"color\":\"#000aff\"},\"doer\":{\"firstName\":\"Aur\\u00e9lie\",\"lastName\":\"Favier\",\"publicUrl\":\"aur\\u00e9lie.favier\",\"platformRoles\":[\"user\"]}}','user','109.70.17.57','3m00saiat5ct6282p1oe1ei5j0',NULL,1,1,NULL,NULL),(44,1,NULL,NULL,NULL,NULL,NULL,NULL,'user-home-tab-create','2017-06-15 15:05:02','2017-06-15','{\"tabId\":5,\"tabName\":\"Test\",\"tabType\":\"desktop\",\"tabIcon\":null,\"configId\":8,\"type\":\"desktop\",\"locked\":false,\"visible\":true,\"tabOrder\":2,\"details\":{\"color\":null},\"doer\":{\"firstName\":\"Xavier\",\"lastName\":\"Gonzalez\",\"publicUrl\":\"xavier.gonzalez\",\"platformRoles\":[\"user\",\"admin\"]}}','user','109.70.17.57','hib1n5pciplbbfeuq7m6qq8n42',NULL,1,1,NULL,NULL),(45,1,NULL,NULL,NULL,NULL,NULL,NULL,'user-home-tab-delete','2017-06-15 15:05:44','2017-06-15','{\"configId\":8,\"hometab\":{\"id\":5,\"name\":\"Test\",\"type\":\"desktop\"},\"type\":\"desktop\",\"visible\":true,\"locked\":false,\"tabOrder\":2,\"details\":[],\"doer\":{\"firstName\":\"Xavier\",\"lastName\":\"Gonzalez\",\"publicUrl\":\"xavier.gonzalez\",\"platformRoles\":[\"user\",\"admin\"]}}','user','109.70.17.57','hib1n5pciplbbfeuq7m6qq8n42',NULL,1,1,NULL,NULL),(46,1,NULL,NULL,NULL,NULL,NULL,NULL,'user-home-tab-delete','2017-06-15 15:17:15','2017-06-15','{\"configId\":6,\"hometab\":{\"id\":3,\"name\":\"Brainstorming 15\\/06\\/17\",\"type\":\"desktop\"},\"type\":\"desktop\",\"visible\":true,\"locked\":false,\"tabOrder\":1,\"details\":{\"color\":\"#00fc0a\"},\"doer\":{\"firstName\":\"Xavier\",\"lastName\":\"Gonzalez\",\"publicUrl\":\"xavier.gonzalez\",\"platformRoles\":[\"user\",\"admin\"]}}','user','109.70.17.57','hib1n5pciplbbfeuq7m6qq8n42',NULL,1,1,NULL,NULL),(47,1,NULL,NULL,NULL,NULL,NULL,NULL,'user-login','2017-06-16 17:05:34','2017-06-16','{\"doer\":{\"firstName\":\"Xavier\",\"lastName\":\"Gonzalez\",\"publicUrl\":\"xavier.gonzalez\",\"platformRoles\":[\"user\",\"admin\"]}}','user','86.213.158.246','65bh6nk6e1e4145sdbjgsthgh1',NULL,1,0,NULL,NULL),(48,1,NULL,NULL,NULL,NULL,NULL,NULL,'user-login','2017-06-28 09:35:48','2017-06-28','{\"doer\":{\"firstName\":\"Xavier\",\"lastName\":\"Gonzalez\",\"publicUrl\":\"xavier.gonzalez\",\"platformRoles\":[\"user\",\"admin\"]}}','user','88.163.60.248','khvcigm0sm34k8pg6pcrssea92',NULL,1,0,NULL,NULL),(49,1,NULL,NULL,1,1,2,NULL,'resource-read','2017-06-28 09:37:42','2017-06-28','{\"resource\":{\"name\":\"Espace personnel - admin\",\"path\":\"Espace personnel - admin\"},\"workspace\":{\"name\":\"Espace personnel - admin\"},\"owner\":{\"lastName\":\"Gonzalez\",\"firstName\":\"Xavier\"},\"doer\":{\"firstName\":\"Xavier\",\"lastName\":\"Gonzalez\",\"publicUrl\":\"xavier.gonzalez\",\"platformRoles\":[\"user\",\"admin\"],\"workspaceRoles\":[\"manager\"]}}','user','88.163.60.248','khvcigm0sm34k8pg6pcrssea92',NULL,1,1,1,NULL),(50,1,NULL,NULL,1,1,2,NULL,'resource-read','2017-06-28 09:37:47','2017-06-28','{\"resource\":{\"name\":\"Mes documents publics\",\"path\":\"Espace personnel - admin \\/ Mes documents publics\"},\"workspace\":{\"name\":\"Espace personnel - admin\"},\"owner\":{\"lastName\":\"Gonzalez\",\"firstName\":\"Xavier\"},\"doer\":{\"firstName\":\"Xavier\",\"lastName\":\"Gonzalez\",\"publicUrl\":\"xavier.gonzalez\",\"platformRoles\":[\"user\",\"admin\"],\"workspaceRoles\":[\"manager\"]}}','user','88.163.60.248','khvcigm0sm34k8pg6pcrssea92',NULL,1,1,2,NULL),(51,1,NULL,NULL,1,NULL,1,NULL,'resource-create','2017-06-28 09:40:35','2017-06-28','{\"resource\":{\"name\":\"SuitesArithmetiques_Graphique.ggb\",\"path\":\"SuitesArithmetiques_Graphique.ggb\",\"guid\":\"5899CC58-92C3-43C5-9C50-72A1FB199F07\",\"resourceType\":\"file\"},\"workspace\":{\"name\":\" - \"},\"owner\":{\"lastName\":\"Gonzalez\",\"firstName\":\"Xavier\"},\"doer\":{\"firstName\":\"Xavier\",\"lastName\":\"Gonzalez\",\"publicUrl\":\"xavier.gonzalez\",\"platformRoles\":[\"user\",\"admin\"]}}','user','88.163.60.248','khvcigm0sm34k8pg6pcrssea92',NULL,1,1,7,NULL),(52,1,NULL,NULL,1,1,5,NULL,'resource-create','2017-06-28 09:40:40','2017-06-28','{\"resource\":{\"name\":\"Suites arithm\\u00e9tiques avec Geogebra\",\"path\":\"Espace personnel - admin \\/ Mes documents publics \\/ Suites arithm\\u00e9tiques avec Geogebra\",\"guid\":\"269A3013-8DE3-4133-B364-06D982125D47\",\"resourceType\":\"activity\"},\"workspace\":{\"name\":\"Espace personnel - admin\"},\"owner\":{\"lastName\":\"Gonzalez\",\"firstName\":\"Xavier\"},\"doer\":{\"firstName\":\"Xavier\",\"lastName\":\"Gonzalez\",\"publicUrl\":\"xavier.gonzalez\",\"platformRoles\":[\"user\",\"admin\"],\"workspaceRoles\":[\"manager\"]}}','user','88.163.60.248','khvcigm0sm34k8pg6pcrssea92',NULL,1,1,8,NULL),(53,1,NULL,NULL,1,1,5,NULL,'resource-read','2017-06-28 09:57:38','2017-06-28','{\"resource\":{\"name\":\"Suites arithm\\u00e9tiques avec Geogebra\",\"path\":\"Espace personnel - admin \\/ Mes documents publics \\/ Suites arithm\\u00e9tiques avec Geogebra\"},\"workspace\":{\"name\":\"Espace personnel - admin\"},\"owner\":{\"lastName\":\"Gonzalez\",\"firstName\":\"Xavier\"},\"doer\":{\"firstName\":\"Xavier\",\"lastName\":\"Gonzalez\",\"publicUrl\":\"xavier.gonzalez\",\"platformRoles\":[\"user\",\"admin\"],\"workspaceRoles\":[\"manager\"]}}','user','88.163.60.248','khvcigm0sm34k8pg6pcrssea92',NULL,1,1,8,NULL),(54,1,NULL,NULL,1,1,2,NULL,'resource-read','2017-06-28 09:57:50','2017-06-28','{\"resource\":{\"name\":\"Espace personnel - admin\",\"path\":\"Espace personnel - admin\"},\"workspace\":{\"name\":\"Espace personnel - admin\"},\"owner\":{\"lastName\":\"Gonzalez\",\"firstName\":\"Xavier\"},\"doer\":{\"firstName\":\"Xavier\",\"lastName\":\"Gonzalez\",\"publicUrl\":\"xavier.gonzalez\",\"platformRoles\":[\"user\",\"admin\"],\"workspaceRoles\":[\"manager\"]}}','user','88.163.60.248','khvcigm0sm34k8pg6pcrssea92',NULL,1,1,1,NULL),(55,1,NULL,NULL,1,NULL,1,NULL,'resource-create','2017-06-28 09:58:29','2017-06-28','{\"resource\":{\"name\":\"SuitesArithmetiques_Graphique.ggb\",\"path\":\"SuitesArithmetiques_Graphique.ggb\",\"guid\":\"0E844D31-D39E-4C81-90E1-8838F9F12711\",\"resourceType\":\"file\"},\"workspace\":{\"name\":\" - \"},\"owner\":{\"lastName\":\"Gonzalez\",\"firstName\":\"Xavier\"},\"doer\":{\"firstName\":\"Xavier\",\"lastName\":\"Gonzalez\",\"publicUrl\":\"xavier.gonzalez\",\"platformRoles\":[\"user\",\"admin\"]}}','user','88.163.60.248','khvcigm0sm34k8pg6pcrssea92',NULL,1,1,9,NULL),(56,1,NULL,NULL,NULL,NULL,NULL,NULL,'user-login','2017-06-28 10:54:17','2017-06-28','{\"doer\":{\"firstName\":\"Xavier\",\"lastName\":\"Gonzalez\",\"publicUrl\":\"xavier.gonzalez\",\"platformRoles\":[\"user\",\"admin\"]}}','user','31.36.70.129','6sbhn2cv8qvtgvbtq62ht7j144',NULL,1,0,NULL,NULL),(57,3,NULL,NULL,NULL,NULL,NULL,NULL,'user-login','2017-06-29 09:25:23','2017-06-29','{\"doer\":{\"firstName\":\"Aur\\u00e9lie\",\"lastName\":\"Favier\",\"publicUrl\":\"aur\\u00e9lie.favier\",\"platformRoles\":[\"user\"]}}','user','83.200.255.124','694dusq9i22pi900pbqn7bo9t0',NULL,1,0,NULL,NULL),(58,3,NULL,NULL,3,3,2,NULL,'resource-read','2017-06-29 09:26:49','2017-06-29','{\"resource\":{\"name\":\"Espace personnel - aurelie.favier\",\"path\":\"Espace personnel - aurelie.favier\"},\"workspace\":{\"name\":\"Espace personnel - aurelie.favier\"},\"owner\":{\"lastName\":\"Favier\",\"firstName\":\"Aur\\u00e9lie\"},\"doer\":{\"firstName\":\"Aur\\u00e9lie\",\"lastName\":\"Favier\",\"publicUrl\":\"aur\\u00e9lie.favier\",\"platformRoles\":[\"user\"],\"workspaceRoles\":[\"manager\"]}}','user','83.200.255.124','694dusq9i22pi900pbqn7bo9t0',NULL,1,1,5,NULL),(59,3,NULL,NULL,3,3,2,NULL,'resource-read','2017-06-29 09:26:59','2017-06-29','{\"resource\":{\"name\":\"Mes documents publics\",\"path\":\"Espace personnel - aurelie.favier \\/ Mes documents publics\"},\"workspace\":{\"name\":\"Espace personnel - aurelie.favier\"},\"owner\":{\"lastName\":\"Favier\",\"firstName\":\"Aur\\u00e9lie\"},\"doer\":{\"firstName\":\"Aur\\u00e9lie\",\"lastName\":\"Favier\",\"publicUrl\":\"aur\\u00e9lie.favier\",\"platformRoles\":[\"user\"],\"workspaceRoles\":[\"manager\"]}}','user','83.200.255.124','694dusq9i22pi900pbqn7bo9t0',NULL,1,1,6,NULL),(60,3,NULL,NULL,3,NULL,1,NULL,'resource-create','2017-06-29 09:29:41','2017-06-29','{\"resource\":{\"name\":\"2nde_G4_S3_PPI.pdf\",\"path\":\"2nde_G4_S3_PPI.pdf\",\"guid\":\"B7E3FE6F-0E62-4F5F-975B-4469C8045528\",\"resourceType\":\"file\"},\"workspace\":{\"name\":\" - \"},\"owner\":{\"lastName\":\"Favier\",\"firstName\":\"Aur\\u00e9lie\"},\"doer\":{\"firstName\":\"Aur\\u00e9lie\",\"lastName\":\"Favier\",\"publicUrl\":\"aur\\u00e9lie.favier\",\"platformRoles\":[\"user\"]}}','user','83.200.255.124','694dusq9i22pi900pbqn7bo9t0',NULL,1,1,10,NULL),(61,3,NULL,NULL,3,3,5,NULL,'resource-create','2017-06-29 09:30:32','2017-06-29','{\"resource\":{\"name\":\"PPI Vecteurs\",\"path\":\"Espace personnel - aurelie.favier \\/ Mes documents publics \\/ PPI Vecteurs\",\"guid\":\"B9763C84-6460-4FFC-8FF5-70A9AF5734A0\",\"resourceType\":\"activity\"},\"workspace\":{\"name\":\"Espace personnel - aurelie.favier\"},\"owner\":{\"lastName\":\"Favier\",\"firstName\":\"Aur\\u00e9lie\"},\"doer\":{\"firstName\":\"Aur\\u00e9lie\",\"lastName\":\"Favier\",\"publicUrl\":\"aur\\u00e9lie.favier\",\"platformRoles\":[\"user\"],\"workspaceRoles\":[\"manager\"]}}','user','83.200.255.124','694dusq9i22pi900pbqn7bo9t0',NULL,1,1,11,NULL),(62,3,NULL,NULL,3,3,5,NULL,'resource-read','2017-06-29 09:30:37','2017-06-29','{\"resource\":{\"name\":\"PPI Vecteurs\",\"path\":\"Espace personnel - aurelie.favier \\/ Mes documents publics \\/ PPI Vecteurs\"},\"workspace\":{\"name\":\"Espace personnel - aurelie.favier\"},\"owner\":{\"lastName\":\"Favier\",\"firstName\":\"Aur\\u00e9lie\"},\"doer\":{\"firstName\":\"Aur\\u00e9lie\",\"lastName\":\"Favier\",\"publicUrl\":\"aur\\u00e9lie.favier\",\"platformRoles\":[\"user\"],\"workspaceRoles\":[\"manager\"]}}','user','83.200.255.124','694dusq9i22pi900pbqn7bo9t0',NULL,1,1,11,NULL),(63,1,NULL,NULL,NULL,NULL,NULL,NULL,'user-login','2017-07-06 09:43:41','2017-07-06','{\"doer\":{\"firstName\":\"Xavier\",\"lastName\":\"Gonzalez\",\"publicUrl\":\"xavier.gonzalez\",\"platformRoles\":[\"user\",\"admin\"]}}','user','31.36.70.129','ro4hgdglcdju7nvt37omp0p9i2',NULL,1,0,NULL,NULL),(64,3,NULL,NULL,NULL,NULL,NULL,NULL,'user-login','2017-07-12 00:04:59','2017-07-12','{\"doer\":{\"firstName\":\"Aur\\u00e9lie\",\"lastName\":\"Favier\",\"publicUrl\":\"aur\\u00e9lie.favier\",\"platformRoles\":[\"user\"]}}','user','2.6.31.85','ltsc2n4s4foers1p7qbmsrmg24',NULL,1,0,NULL,NULL),(65,3,NULL,NULL,NULL,NULL,NULL,NULL,'user-widget-create','2017-07-12 00:06:49','2017-07-12','{\"tabId\":4,\"tabName\":\"Seconde\",\"tabType\":\"desktop\",\"tabIcon\":null,\"widgetId\":5,\"widgetName\":\"resources_widget\",\"widgetIsConfigurable\":true,\"widgetIsExportable\":false,\"widgetIsDisplayableInWorkspace\":true,\"widgetIsDisplayableInDesktop\":true,\"id\":3,\"name\":\"Cours Vecteurs\",\"icon\":null,\"isAdmin\":false,\"isDesktop\":true,\"widgetHomeTabConfigId\":3,\"order\":1,\"type\":\"desktop\",\"visible\":true,\"locked\":false,\"widgetDisplayConfigId\":3,\"row\":-1,\"column\":-1,\"width\":4,\"height\":3,\"color\":null,\"doer\":{\"firstName\":\"Aur\\u00e9lie\",\"lastName\":\"Favier\",\"publicUrl\":\"aur\\u00e9lie.favier\",\"platformRoles\":[\"user\"]}}','user','2.6.31.85','ltsc2n4s4foers1p7qbmsrmg24',NULL,1,1,NULL,NULL),(66,3,NULL,NULL,NULL,NULL,NULL,NULL,'user-widget-edit','2017-07-12 00:07:16','2017-07-12','{\"widgetId\":5,\"widgetName\":\"resources_widget\",\"widgetIsConfigurable\":true,\"widgetIsExportable\":false,\"widgetIsDisplayableInWorkspace\":true,\"widgetIsDisplayableInDesktop\":true,\"id\":3,\"name\":\"Cours Vecteurs\",\"icon\":null,\"isAdmin\":false,\"isDesktop\":true,\"widgetDisplayConfigId\":3,\"row\":-1,\"column\":-1,\"width\":4,\"height\":3,\"color\":null,\"doer\":{\"firstName\":\"Aur\\u00e9lie\",\"lastName\":\"Favier\",\"publicUrl\":\"aur\\u00e9lie.favier\",\"platformRoles\":[\"user\"]}}','user','2.6.31.85','ltsc2n4s4foers1p7qbmsrmg24',NULL,1,1,NULL,NULL),(67,3,NULL,NULL,NULL,NULL,NULL,NULL,'user-widget-edit','2017-07-12 00:07:55','2017-07-12','{\"widgetId\":5,\"widgetName\":\"resources_widget\",\"widgetIsConfigurable\":true,\"widgetIsExportable\":false,\"widgetIsDisplayableInWorkspace\":true,\"widgetIsDisplayableInDesktop\":true,\"id\":3,\"name\":\"Cours Vecteurs\",\"icon\":null,\"isAdmin\":false,\"isDesktop\":true,\"widgetDisplayConfigId\":3,\"row\":-1,\"column\":-1,\"width\":4,\"height\":3,\"color\":null,\"doer\":{\"firstName\":\"Aur\\u00e9lie\",\"lastName\":\"Favier\",\"publicUrl\":\"aur\\u00e9lie.favier\",\"platformRoles\":[\"user\"]}}','user','2.6.31.85','ltsc2n4s4foers1p7qbmsrmg24',NULL,1,1,NULL,NULL),(68,3,NULL,NULL,NULL,NULL,NULL,NULL,'user-widget-edit','2017-07-12 00:07:57','2017-07-12','{\"widgetId\":5,\"widgetName\":\"resources_widget\",\"widgetIsConfigurable\":true,\"widgetIsExportable\":false,\"widgetIsDisplayableInWorkspace\":true,\"widgetIsDisplayableInDesktop\":true,\"id\":3,\"name\":\"Cours Vecteurs\",\"icon\":null,\"isAdmin\":false,\"isDesktop\":true,\"widgetDisplayConfigId\":3,\"row\":-1,\"column\":-1,\"width\":4,\"height\":3,\"color\":null,\"doer\":{\"firstName\":\"Aur\\u00e9lie\",\"lastName\":\"Favier\",\"publicUrl\":\"aur\\u00e9lie.favier\",\"platformRoles\":[\"user\"]}}','user','2.6.31.85','ltsc2n4s4foers1p7qbmsrmg24',NULL,1,1,NULL,NULL);
 /*!40000 ALTER TABLE `claro_log` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -3829,7 +3829,7 @@ CREATE TABLE `claro_log_doer_platform_roles` (
 
 LOCK TABLES `claro_log_doer_platform_roles` WRITE;
 /*!40000 ALTER TABLE `claro_log_doer_platform_roles` DISABLE KEYS */;
-INSERT INTO `claro_log_doer_platform_roles` VALUES (5,1),(5,3),(6,1),(6,3),(7,1),(7,3),(8,1),(8,3),(9,1),(9,3),(10,1),(10,3),(11,1),(11,3),(12,1),(12,3),(13,1),(13,3),(14,1),(14,3),(15,1),(15,3),(16,1),(16,3),(20,1),(21,1),(21,3),(22,1),(22,3),(23,1),(23,3),(27,1),(28,1),(29,1),(29,3),(30,1),(30,3),(31,1),(31,3),(32,1),(32,3),(33,1),(33,3),(34,1),(34,3),(35,1),(35,3),(36,1),(36,3),(37,1),(37,3),(38,1),(38,3),(39,1),(39,3),(40,1),(40,3),(41,1),(41,3),(42,1),(43,1),(44,1),(44,3),(45,1),(45,3),(46,1),(46,3),(47,1),(47,3),(48,1),(48,3),(49,1),(49,3),(50,1),(50,3),(51,1),(51,3),(52,1),(52,3),(53,1),(53,3),(54,1),(54,3),(55,1),(55,3),(56,1),(56,3);
+INSERT INTO `claro_log_doer_platform_roles` VALUES (5,1),(5,3),(6,1),(6,3),(7,1),(7,3),(8,1),(8,3),(9,1),(9,3),(10,1),(10,3),(11,1),(11,3),(12,1),(12,3),(13,1),(13,3),(14,1),(14,3),(15,1),(15,3),(16,1),(16,3),(20,1),(21,1),(21,3),(22,1),(22,3),(23,1),(23,3),(27,1),(28,1),(29,1),(29,3),(30,1),(30,3),(31,1),(31,3),(32,1),(32,3),(33,1),(33,3),(34,1),(34,3),(35,1),(35,3),(36,1),(36,3),(37,1),(37,3),(38,1),(38,3),(39,1),(39,3),(40,1),(40,3),(41,1),(41,3),(42,1),(43,1),(44,1),(44,3),(45,1),(45,3),(46,1),(46,3),(47,1),(47,3),(48,1),(48,3),(49,1),(49,3),(50,1),(50,3),(51,1),(51,3),(52,1),(52,3),(53,1),(53,3),(54,1),(54,3),(55,1),(55,3),(56,1),(56,3),(57,1),(58,1),(59,1),(60,1),(61,1),(62,1),(63,1),(63,3),(64,1),(65,1),(66,1),(67,1),(68,1);
 /*!40000 ALTER TABLE `claro_log_doer_platform_roles` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -3857,7 +3857,7 @@ CREATE TABLE `claro_log_doer_workspace_roles` (
 
 LOCK TABLES `claro_log_doer_workspace_roles` WRITE;
 /*!40000 ALTER TABLE `claro_log_doer_workspace_roles` DISABLE KEYS */;
-INSERT INTO `claro_log_doer_workspace_roles` VALUES (6,9),(7,9),(28,15),(40,9),(41,9),(49,9),(50,9),(52,9),(53,9),(54,9);
+INSERT INTO `claro_log_doer_workspace_roles` VALUES (6,9),(7,9),(28,15),(40,9),(41,9),(49,9),(50,9),(52,9),(53,9),(54,9),(58,15),(59,15),(61,15),(62,15);
 /*!40000 ALTER TABLE `claro_log_doer_workspace_roles` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -4008,10 +4008,10 @@ CREATE TABLE `claro_ordered_tool` (
   KEY `IDX_6CF1320E82D40A1F` (`workspace_id`),
   KEY `IDX_6CF1320E8F7B22CC` (`tool_id`),
   KEY `IDX_6CF1320EA76ED395` (`user_id`),
-  CONSTRAINT `FK_6CF1320EA76ED395` FOREIGN KEY (`user_id`) REFERENCES `claro_user` (`id`) ON DELETE CASCADE,
   CONSTRAINT `FK_6CF1320E82D40A1F` FOREIGN KEY (`workspace_id`) REFERENCES `claro_workspace` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `FK_6CF1320E8F7B22CC` FOREIGN KEY (`tool_id`) REFERENCES `claro_tools` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=64 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  CONSTRAINT `FK_6CF1320E8F7B22CC` FOREIGN KEY (`tool_id`) REFERENCES `claro_tools` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `FK_6CF1320EA76ED395` FOREIGN KEY (`user_id`) REFERENCES `claro_user` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=75 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4020,7 +4020,7 @@ CREATE TABLE `claro_ordered_tool` (
 
 LOCK TABLES `claro_ordered_tool` WRITE;
 /*!40000 ALTER TABLE `claro_ordered_tool` DISABLE KEYS */;
-INSERT INTO `claro_ordered_tool` VALUES (1,NULL,2,NULL,1,'parameters',1,0,0),(2,NULL,3,NULL,1,'resource_manager',1,0,0),(3,NULL,7,NULL,1,'my_contacts',1,0,0),(4,NULL,10,NULL,1,'message',1,0,0),(5,NULL,2,1,1,'parameters',1,0,0),(6,NULL,3,1,2,'resource_manager',1,0,0),(7,NULL,7,1,3,'my_contacts',1,0,0),(8,NULL,10,1,4,'message',1,0,0),(9,1,3,NULL,1,'resource_manager',0,0,0),(10,1,1,NULL,2,'home',0,0,0),(11,NULL,1,1,5,'home',0,0,0),(12,NULL,8,1,5,'agenda_',1,0,0),(13,NULL,9,1,6,'formalibre_reservation_agenda',1,0,0),(14,NULL,11,1,7,'formalibre_support_tool',1,0,0),(15,NULL,13,1,8,'formalibre_presence_tool',1,0,0),(16,NULL,14,1,9,'claroline_activity_tool',1,0,0),(17,NULL,15,1,10,'my-learning-objectives',1,0,0),(18,NULL,16,1,11,'my_portfolios',1,0,0),(19,NULL,19,1,12,'all_my_badges',1,0,0),(20,NULL,20,1,13,'ujm_questions',1,0,0),(21,NULL,21,1,14,'dashboard',1,0,0),(22,NULL,2,2,1,'parameters',1,0,0),(23,NULL,3,2,2,'resource_manager',1,0,0),(24,NULL,7,2,3,'my_contacts',1,0,0),(25,NULL,10,2,4,'message',1,0,0),(26,2,3,NULL,1,'resource_manager',0,0,0),(27,2,1,NULL,2,'home',0,0,0),(28,NULL,2,3,1,'parameters',1,0,0),(29,NULL,3,3,2,'resource_manager',1,0,0),(30,NULL,7,3,3,'my_contacts',1,0,0),(31,NULL,10,3,4,'message',1,0,0),(32,3,3,NULL,1,'resource_manager',0,0,0),(33,3,1,NULL,2,'home',0,0,0),(34,NULL,1,2,1,'home',0,1,0),(35,NULL,2,2,2,'parameters',0,1,0),(36,NULL,3,2,3,'resource_manager',0,1,0),(37,NULL,7,2,4,'my_contacts',0,1,0),(38,NULL,8,2,5,'agenda_',0,1,0),(39,NULL,9,2,6,'formalibre_reservation_agenda',0,1,0),(40,NULL,10,2,7,'message',0,1,0),(41,NULL,11,2,8,'formalibre_support_tool',0,1,0),(42,NULL,13,2,9,'formalibre_presence_tool',0,1,0),(43,NULL,14,2,10,'claroline_activity_tool',0,1,0),(44,NULL,15,2,11,'my-learning-objectives',0,1,0),(45,NULL,16,2,12,'my_portfolios',0,1,0),(46,NULL,19,2,13,'all_my_badges',0,1,0),(47,NULL,20,2,14,'ujm_questions',0,1,0),(48,NULL,21,2,15,'dashboard',0,1,0),(49,NULL,1,1,1,'home',0,1,0),(50,NULL,2,1,2,'parameters',0,1,0),(51,NULL,3,1,1,'resource_manager',1,1,0),(52,NULL,7,1,2,'my_contacts',0,1,0),(53,NULL,8,1,3,'agenda_',0,1,0),(54,NULL,9,1,4,'formalibre_reservation_agenda',0,1,0),(55,NULL,10,1,5,'message',0,1,0),(56,NULL,11,1,6,'formalibre_support_tool',1,1,0),(57,NULL,13,1,7,'formalibre_presence_tool',0,1,0),(58,NULL,14,1,8,'claroline_activity_tool',1,1,0),(59,NULL,15,1,9,'my-learning-objectives',0,1,0),(60,NULL,16,1,10,'my_portfolios',0,1,0),(61,NULL,19,1,11,'all_my_badges',0,1,0),(62,NULL,20,1,12,'ujm_questions',0,1,0),(63,NULL,21,1,13,'dashboard',0,1,0);
+INSERT INTO `claro_ordered_tool` VALUES (1,NULL,2,NULL,1,'parameters',1,0,0),(2,NULL,3,NULL,1,'resource_manager',1,0,0),(3,NULL,7,NULL,1,'my_contacts',1,0,0),(4,NULL,10,NULL,1,'message',1,0,0),(5,NULL,2,1,1,'parameters',1,0,0),(6,NULL,3,1,2,'resource_manager',1,0,0),(7,NULL,7,1,3,'my_contacts',1,0,0),(8,NULL,10,1,4,'message',1,0,0),(9,1,3,NULL,1,'resource_manager',0,0,0),(10,1,1,NULL,2,'home',0,0,0),(11,NULL,1,1,5,'home',0,0,0),(12,NULL,8,1,5,'agenda_',1,0,0),(13,NULL,9,1,6,'formalibre_reservation_agenda',1,0,0),(14,NULL,11,1,7,'formalibre_support_tool',1,0,0),(15,NULL,13,1,8,'formalibre_presence_tool',1,0,0),(16,NULL,14,1,9,'claroline_activity_tool',1,0,0),(17,NULL,15,1,10,'my-learning-objectives',1,0,0),(18,NULL,16,1,11,'my_portfolios',1,0,0),(19,NULL,19,1,12,'all_my_badges',1,0,0),(20,NULL,20,1,13,'ujm_questions',1,0,0),(21,NULL,21,1,14,'dashboard',1,0,0),(22,NULL,2,2,1,'parameters',1,0,0),(23,NULL,3,2,2,'resource_manager',1,0,0),(24,NULL,7,2,3,'my_contacts',1,0,0),(25,NULL,10,2,4,'message',1,0,0),(26,2,3,NULL,1,'resource_manager',0,0,0),(27,2,1,NULL,2,'home',0,0,0),(28,NULL,2,3,1,'parameters',1,0,0),(29,NULL,3,3,2,'resource_manager',1,0,0),(30,NULL,7,3,3,'my_contacts',1,0,0),(31,NULL,10,3,4,'message',1,0,0),(32,3,3,NULL,1,'resource_manager',0,0,0),(33,3,1,NULL,2,'home',0,0,0),(34,NULL,1,2,1,'home',0,1,0),(35,NULL,2,2,2,'parameters',0,1,0),(36,NULL,3,2,3,'resource_manager',0,1,0),(37,NULL,7,2,4,'my_contacts',0,1,0),(38,NULL,8,2,5,'agenda_',0,1,0),(39,NULL,9,2,6,'formalibre_reservation_agenda',0,1,0),(40,NULL,10,2,7,'message',0,1,0),(41,NULL,11,2,8,'formalibre_support_tool',0,1,0),(42,NULL,13,2,9,'formalibre_presence_tool',0,1,0),(43,NULL,14,2,10,'claroline_activity_tool',0,1,0),(44,NULL,15,2,11,'my-learning-objectives',0,1,0),(45,NULL,16,2,12,'my_portfolios',0,1,0),(46,NULL,19,2,13,'all_my_badges',0,1,0),(47,NULL,20,2,14,'ujm_questions',0,1,0),(48,NULL,21,2,15,'dashboard',0,1,0),(49,NULL,1,1,1,'home',0,1,0),(50,NULL,2,1,2,'parameters',0,1,0),(51,NULL,3,1,1,'resource_manager',1,1,0),(52,NULL,7,1,2,'my_contacts',0,1,0),(53,NULL,8,1,3,'agenda_',0,1,0),(54,NULL,9,1,4,'formalibre_reservation_agenda',0,1,0),(55,NULL,10,1,5,'message',0,1,0),(56,NULL,11,1,6,'formalibre_support_tool',1,1,0),(57,NULL,13,1,7,'formalibre_presence_tool',0,1,0),(58,NULL,14,1,8,'claroline_activity_tool',1,1,0),(59,NULL,15,1,9,'my-learning-objectives',0,1,0),(60,NULL,16,1,10,'my_portfolios',0,1,0),(61,NULL,19,1,11,'all_my_badges',0,1,0),(62,NULL,20,1,12,'ujm_questions',0,1,0),(63,NULL,21,1,13,'dashboard',0,1,0),(64,NULL,1,NULL,5,'home',0,0,0),(65,NULL,8,NULL,6,'agenda_',0,0,0),(66,NULL,9,NULL,7,'formalibre_reservation_agenda',0,0,0),(67,NULL,11,NULL,8,'formalibre_support_tool',0,0,0),(68,NULL,13,NULL,9,'formalibre_presence_tool',0,0,0),(69,NULL,14,NULL,10,'claroline_activity_tool',0,0,0),(70,NULL,15,NULL,11,'my-learning-objectives',0,0,0),(71,NULL,16,NULL,12,'my_portfolios',0,0,0),(72,NULL,19,NULL,13,'all_my_badges',0,0,0),(73,NULL,20,NULL,14,'ujm_questions',0,0,0),(74,NULL,21,NULL,15,'dashboard',0,0,0);
 /*!40000 ALTER TABLE `claro_ordered_tool` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -4069,8 +4069,8 @@ CREATE TABLE `claro_panel_facet_role` (
   PRIMARY KEY (`id`),
   KEY `IDX_A66BF654D60322AC` (`role_id`),
   KEY `IDX_A66BF654E99038C0` (`panelFacet_id`),
-  CONSTRAINT `FK_A66BF654E99038C0` FOREIGN KEY (`panelFacet_id`) REFERENCES `claro_panel_facet` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `FK_A66BF654D60322AC` FOREIGN KEY (`role_id`) REFERENCES `claro_role` (`id`) ON DELETE CASCADE
+  CONSTRAINT `FK_A66BF654D60322AC` FOREIGN KEY (`role_id`) REFERENCES `claro_role` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `FK_A66BF654E99038C0` FOREIGN KEY (`panelFacet_id`) REFERENCES `claro_panel_facet` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -4291,8 +4291,8 @@ CREATE TABLE `claro_rel_workspace_tag` (
   UNIQUE KEY `rel_workspace_tag_unique_combination` (`workspace_id`,`tag_id`),
   KEY `IDX_7883931082D40A1F` (`workspace_id`),
   KEY `IDX_78839310BAD26311` (`tag_id`),
-  CONSTRAINT `FK_78839310BAD26311` FOREIGN KEY (`tag_id`) REFERENCES `claro_workspace_tag` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `FK_7883931082D40A1F` FOREIGN KEY (`workspace_id`) REFERENCES `claro_workspace` (`id`) ON DELETE CASCADE
+  CONSTRAINT `FK_7883931082D40A1F` FOREIGN KEY (`workspace_id`) REFERENCES `claro_workspace` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `FK_78839310BAD26311` FOREIGN KEY (`tag_id`) REFERENCES `claro_workspace_tag` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -4403,7 +4403,7 @@ CREATE TABLE `claro_resource_node` (
   CONSTRAINT `FK_A76799FF727ACA70` FOREIGN KEY (`parent_id`) REFERENCES `claro_resource_node` (`id`) ON DELETE CASCADE,
   CONSTRAINT `FK_A76799FF82D40A1F` FOREIGN KEY (`workspace_id`) REFERENCES `claro_workspace` (`id`) ON DELETE CASCADE,
   CONSTRAINT `FK_A76799FF98EC6B7B` FOREIGN KEY (`resource_type_id`) REFERENCES `claro_resource_type` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4412,7 +4412,7 @@ CREATE TABLE `claro_resource_node` (
 
 LOCK TABLES `claro_resource_node` WRITE;
 /*!40000 ALTER TABLE `claro_resource_node` DISABLE KEYS */;
-INSERT INTO `claro_resource_node` VALUES (1,2,1,7,NULL,1,NULL,'2017-05-18 23:47:06','2017-05-18 23:47:06','Espace personnel - admin',1,'Espace personnel - admin-1`',NULL,'custom/directory','Claroline\\CoreBundle\\Entity\\Resource\\Directory',NULL,NULL,1,NULL,1,'CDC2A502-1F6B-4A05-8386-4D72267827FB',0),(2,2,1,7,1,1,NULL,'2017-05-18 23:47:06','2017-05-18 23:47:06','Mes documents publics',2,'Espace personnel - admin-1`Mes documents publics-2`',1,'custom/directory','Claroline\\CoreBundle\\Entity\\Resource\\Directory',NULL,NULL,1,NULL,1,'57E4B943-21EE-4D07-A04F-699A233F3C56',0),(3,2,2,7,NULL,2,NULL,'2017-06-15 14:22:35','2017-06-15 14:35:47','Espace personnelCrazyboy',1,'Espace personnelCrazyboy-3`',NULL,'custom/directory','Claroline\\CoreBundle\\Entity\\Resource\\Directory',NULL,NULL,1,NULL,1,'0C4E1EB3-667F-4D4A-A317-D67601C57348',0),(4,2,2,7,3,2,NULL,'2017-06-15 14:22:35','2017-06-15 14:22:36','Mes documents publics',2,'Espace personnelCrazyboy-3`Mes documents publics-4`',1,'custom/directory','Claroline\\CoreBundle\\Entity\\Resource\\Directory',NULL,NULL,1,NULL,1,'16DEFC30-C062-43C4-9E17-7E1862EF5806',0),(5,2,3,7,NULL,3,NULL,'2017-06-15 14:30:14','2017-06-15 14:30:14','Espace personnel - aurelie.favier',1,'Espace personnel - aurelie.favier-5`',NULL,'custom/directory','Claroline\\CoreBundle\\Entity\\Resource\\Directory',NULL,NULL,1,NULL,1,'04687CB7-D756-4CC8-8D47-9D30400D9294',0),(6,2,3,7,5,3,NULL,'2017-06-15 14:30:14','2017-06-15 14:30:14','Mes documents publics',2,'Espace personnel - aurelie.favier-5`Mes documents publics-6`',1,'custom/directory','Claroline\\CoreBundle\\Entity\\Resource\\Directory',NULL,NULL,1,NULL,1,'6E38516E-47B3-4200-B18B-BCD7B9701783',0),(7,1,1,1,NULL,NULL,NULL,'2017-06-28 09:40:35','2017-06-28 09:40:35','SuitesArithmetiques_Graphique.ggb',1,'SuitesArithmetiques_Graphique.ggb-7`',NULL,'application/vnd.geogebra.file','Claroline\\CoreBundle\\Entity\\Resource\\File',NULL,NULL,1,NULL,1,'5899CC58-92C3-43C5-9C50-72A1FB199F07',0),(8,5,1,3,2,1,NULL,'2017-06-28 09:40:39','2017-06-28 09:40:39','Suites arithmétiques avec Geogebra',3,'Espace personnel - admin-1`Mes documents publics-2`Suites arithmétiques avec Geogebra-8`',1,'custom/activity','Claroline\\CoreBundle\\Entity\\Resource\\Activity',NULL,NULL,1,NULL,1,'269A3013-8DE3-4133-B364-06D982125D47',0),(9,1,1,1,NULL,NULL,NULL,'2017-06-28 09:58:29','2017-06-28 09:58:29','SuitesArithmetiques_Graphique.ggb',1,'SuitesArithmetiques_Graphique.ggb-9`',NULL,'application/vnd.geogebra.file','Claroline\\CoreBundle\\Entity\\Resource\\File',NULL,NULL,1,NULL,1,'0E844D31-D39E-4C81-90E1-8838F9F12711',0);
+INSERT INTO `claro_resource_node` VALUES (1,2,1,7,NULL,1,NULL,'2017-05-18 23:47:06','2017-05-18 23:47:06','Espace personnel - admin',1,'Espace personnel - admin-1`',NULL,'custom/directory','Claroline\\CoreBundle\\Entity\\Resource\\Directory',NULL,NULL,1,NULL,1,'CDC2A502-1F6B-4A05-8386-4D72267827FB',0),(2,2,1,7,1,1,NULL,'2017-05-18 23:47:06','2017-05-18 23:47:06','Mes documents publics',2,'Espace personnel - admin-1`Mes documents publics-2`',1,'custom/directory','Claroline\\CoreBundle\\Entity\\Resource\\Directory',NULL,NULL,1,NULL,1,'57E4B943-21EE-4D07-A04F-699A233F3C56',0),(3,2,2,7,NULL,2,NULL,'2017-06-15 14:22:35','2017-06-15 14:35:47','Espace personnelCrazyboy',1,'Espace personnelCrazyboy-3`',NULL,'custom/directory','Claroline\\CoreBundle\\Entity\\Resource\\Directory',NULL,NULL,1,NULL,1,'0C4E1EB3-667F-4D4A-A317-D67601C57348',0),(4,2,2,7,3,2,NULL,'2017-06-15 14:22:35','2017-06-15 14:22:36','Mes documents publics',2,'Espace personnelCrazyboy-3`Mes documents publics-4`',1,'custom/directory','Claroline\\CoreBundle\\Entity\\Resource\\Directory',NULL,NULL,1,NULL,1,'16DEFC30-C062-43C4-9E17-7E1862EF5806',0),(5,2,3,7,NULL,3,NULL,'2017-06-15 14:30:14','2017-06-15 14:30:14','Espace personnel - aurelie.favier',1,'Espace personnel - aurelie.favier-5`',NULL,'custom/directory','Claroline\\CoreBundle\\Entity\\Resource\\Directory',NULL,NULL,1,NULL,1,'04687CB7-D756-4CC8-8D47-9D30400D9294',0),(6,2,3,7,5,3,NULL,'2017-06-15 14:30:14','2017-06-15 14:30:14','Mes documents publics',2,'Espace personnel - aurelie.favier-5`Mes documents publics-6`',1,'custom/directory','Claroline\\CoreBundle\\Entity\\Resource\\Directory',NULL,NULL,1,NULL,1,'6E38516E-47B3-4200-B18B-BCD7B9701783',0),(7,1,1,1,NULL,NULL,NULL,'2017-06-28 09:40:35','2017-06-28 09:40:35','SuitesArithmetiques_Graphique.ggb',1,'SuitesArithmetiques_Graphique.ggb-7`',NULL,'application/vnd.geogebra.file','Claroline\\CoreBundle\\Entity\\Resource\\File',NULL,NULL,1,NULL,1,'5899CC58-92C3-43C5-9C50-72A1FB199F07',0),(8,5,1,3,2,1,NULL,'2017-06-28 09:40:39','2017-06-28 09:40:39','Suites arithmétiques avec Geogebra',3,'Espace personnel - admin-1`Mes documents publics-2`Suites arithmétiques avec Geogebra-8`',1,'custom/activity','Claroline\\CoreBundle\\Entity\\Resource\\Activity',NULL,NULL,1,NULL,1,'269A3013-8DE3-4133-B364-06D982125D47',0),(9,1,1,1,NULL,NULL,NULL,'2017-06-28 09:58:29','2017-06-28 09:58:29','SuitesArithmetiques_Graphique.ggb',1,'SuitesArithmetiques_Graphique.ggb-9`',NULL,'application/vnd.geogebra.file','Claroline\\CoreBundle\\Entity\\Resource\\File',NULL,NULL,1,NULL,1,'0E844D31-D39E-4C81-90E1-8838F9F12711',0),(10,1,3,89,NULL,NULL,NULL,'2017-06-29 09:29:41','2017-06-29 09:29:41','2nde_G4_S3_PPI.pdf',1,'2nde_G4_S3_PPI.pdf-10`',NULL,'application/pdf','Claroline\\CoreBundle\\Entity\\Resource\\File',NULL,NULL,1,NULL,1,'B7E3FE6F-0E62-4F5F-975B-4469C8045528',0),(11,5,3,3,6,3,NULL,'2017-06-29 09:30:32','2017-06-29 09:30:32','PPI Vecteurs',3,'Espace personnel - aurelie.favier-5`Mes documents publics-6`PPI Vecteurs-11`',1,'custom/activity','Claroline\\CoreBundle\\Entity\\Resource\\Activity',NULL,NULL,1,NULL,1,'B9763C84-6460-4FFC-8FF5-70A9AF5734A0',0);
 /*!40000 ALTER TABLE `claro_resource_node` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -4435,7 +4435,7 @@ CREATE TABLE `claro_resource_rights` (
   KEY `mask_idx` (`mask`),
   CONSTRAINT `FK_3848F483B87FAB32` FOREIGN KEY (`resourceNode_id`) REFERENCES `claro_resource_node` (`id`) ON DELETE CASCADE,
   CONSTRAINT `FK_3848F483D60322AC` FOREIGN KEY (`role_id`) REFERENCES `claro_role` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4444,7 +4444,7 @@ CREATE TABLE `claro_resource_rights` (
 
 LOCK TABLES `claro_resource_rights` WRITE;
 /*!40000 ALTER TABLE `claro_resource_rights` DISABLE KEYS */;
-INSERT INTO `claro_resource_rights` VALUES (1,4,0,1),(2,1,0,1),(3,8,5,1),(4,4,5,2),(5,1,0,2),(6,4,0,3),(7,1,0,3),(8,11,5,3),(9,4,5,4),(10,1,0,4),(11,4,0,5),(12,1,0,5),(13,14,5,5),(14,4,5,6),(15,1,0,6),(16,4,5,7),(17,1,0,7),(18,1,0,8),(19,4,5,8),(20,4,5,9),(21,1,0,9);
+INSERT INTO `claro_resource_rights` VALUES (1,4,0,1),(2,1,0,1),(3,8,5,1),(4,4,5,2),(5,1,0,2),(6,4,0,3),(7,1,0,3),(8,11,5,3),(9,4,5,4),(10,1,0,4),(11,4,0,5),(12,1,0,5),(13,14,5,5),(14,4,5,6),(15,1,0,6),(16,4,5,7),(17,1,0,7),(18,1,0,8),(19,4,5,8),(20,4,5,9),(21,1,0,9),(22,4,5,10),(23,1,0,10),(24,1,0,11),(25,4,5,11);
 /*!40000 ALTER TABLE `claro_resource_rights` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -4462,8 +4462,8 @@ CREATE TABLE `claro_resource_shortcut` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `UNIQ_5E7F4AB8B87FAB32` (`resourceNode_id`),
   KEY `IDX_5E7F4AB8158E0B66` (`target_id`),
-  CONSTRAINT `FK_5E7F4AB8B87FAB32` FOREIGN KEY (`resourceNode_id`) REFERENCES `claro_resource_node` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `FK_5E7F4AB8158E0B66` FOREIGN KEY (`target_id`) REFERENCES `claro_resource_node` (`id`) ON DELETE CASCADE
+  CONSTRAINT `FK_5E7F4AB8158E0B66` FOREIGN KEY (`target_id`) REFERENCES `claro_resource_node` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `FK_5E7F4AB8B87FAB32` FOREIGN KEY (`resourceNode_id`) REFERENCES `claro_resource_node` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -4521,7 +4521,7 @@ CREATE TABLE `claro_resources_widget_config` (
   PRIMARY KEY (`id`),
   KEY `IDX_CB15C56DAB7B5A55` (`widgetInstance_id`),
   CONSTRAINT `FK_CB15C56DAB7B5A55` FOREIGN KEY (`widgetInstance_id`) REFERENCES `claro_widget_instance` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4530,6 +4530,7 @@ CREATE TABLE `claro_resources_widget_config` (
 
 LOCK TABLES `claro_resources_widget_config` WRITE;
 /*!40000 ALTER TABLE `claro_resources_widget_config` DISABLE KEYS */;
+INSERT INTO `claro_resources_widget_config` VALUES (1,'{\"mode\":0,\"tags\":[\"2nde vecteurs\"]}',3);
 /*!40000 ALTER TABLE `claro_resources_widget_config` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -4727,8 +4728,8 @@ CREATE TABLE `claro_scorm_12_sco` (
   PRIMARY KEY (`id`),
   KEY `IDX_F900C289167AFF3D` (`scorm_resource_id`),
   KEY `IDX_F900C28948C689D5` (`sco_parent_id`),
-  CONSTRAINT `FK_F900C28948C689D5` FOREIGN KEY (`sco_parent_id`) REFERENCES `claro_scorm_12_sco` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `FK_F900C289167AFF3D` FOREIGN KEY (`scorm_resource_id`) REFERENCES `claro_scorm_12_resource` (`id`) ON DELETE CASCADE
+  CONSTRAINT `FK_F900C289167AFF3D` FOREIGN KEY (`scorm_resource_id`) REFERENCES `claro_scorm_12_resource` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `FK_F900C28948C689D5` FOREIGN KEY (`sco_parent_id`) REFERENCES `claro_scorm_12_sco` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -4837,8 +4838,8 @@ CREATE TABLE `claro_scorm_2004_sco` (
   PRIMARY KEY (`id`),
   KEY `IDX_E88F1DDD167AFF3D` (`scorm_resource_id`),
   KEY `IDX_E88F1DDD48C689D5` (`sco_parent_id`),
-  CONSTRAINT `FK_E88F1DDD48C689D5` FOREIGN KEY (`sco_parent_id`) REFERENCES `claro_scorm_2004_sco` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `FK_E88F1DDD167AFF3D` FOREIGN KEY (`scorm_resource_id`) REFERENCES `claro_scorm_2004_resource` (`id`) ON DELETE CASCADE
+  CONSTRAINT `FK_E88F1DDD167AFF3D` FOREIGN KEY (`scorm_resource_id`) REFERENCES `claro_scorm_2004_resource` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `FK_E88F1DDD48C689D5` FOREIGN KEY (`sco_parent_id`) REFERENCES `claro_scorm_2004_sco` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -4951,7 +4952,7 @@ CREATE TABLE `claro_simple_text_widget_config` (
   PRIMARY KEY (`id`),
   KEY `IDX_C389EBCCAB7B5A55` (`widgetInstance_id`),
   CONSTRAINT `FK_C389EBCCAB7B5A55` FOREIGN KEY (`widgetInstance_id`) REFERENCES `claro_widget_instance` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4982,10 +4983,10 @@ CREATE TABLE `claro_subcontent` (
   KEY `IDX_D72E133CDD62C21B` (`child_id`),
   KEY `IDX_D72E133CAA23F6C8` (`next_id`),
   KEY `IDX_D72E133CE9583FF0` (`back_id`),
-  CONSTRAINT `FK_D72E133CE9583FF0` FOREIGN KEY (`back_id`) REFERENCES `claro_subcontent` (`id`) ON DELETE CASCADE,
   CONSTRAINT `FK_D72E133C2055B9A2` FOREIGN KEY (`father_id`) REFERENCES `claro_content` (`id`) ON DELETE CASCADE,
   CONSTRAINT `FK_D72E133CAA23F6C8` FOREIGN KEY (`next_id`) REFERENCES `claro_subcontent` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `FK_D72E133CDD62C21B` FOREIGN KEY (`child_id`) REFERENCES `claro_content` (`id`) ON DELETE CASCADE
+  CONSTRAINT `FK_D72E133CDD62C21B` FOREIGN KEY (`child_id`) REFERENCES `claro_content` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `FK_D72E133CE9583FF0` FOREIGN KEY (`back_id`) REFERENCES `claro_subcontent` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -5479,8 +5480,8 @@ CREATE TABLE `claro_team_users` (
   PRIMARY KEY (`team_id`,`user_id`),
   KEY `IDX_B10C67F3296CD8AE` (`team_id`),
   KEY `IDX_B10C67F3A76ED395` (`user_id`),
-  CONSTRAINT `FK_B10C67F3A76ED395` FOREIGN KEY (`user_id`) REFERENCES `claro_user` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `FK_B10C67F3296CD8AE` FOREIGN KEY (`team_id`) REFERENCES `claro_team` (`id`) ON DELETE CASCADE
+  CONSTRAINT `FK_B10C67F3296CD8AE` FOREIGN KEY (`team_id`) REFERENCES `claro_team` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `FK_B10C67F3A76ED395` FOREIGN KEY (`user_id`) REFERENCES `claro_user` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -5535,8 +5536,8 @@ CREATE TABLE `claro_text_revision` (
   PRIMARY KEY (`id`),
   KEY `IDX_F61948DE698D3548` (`text_id`),
   KEY `IDX_F61948DEA76ED395` (`user_id`),
-  CONSTRAINT `FK_F61948DEA76ED395` FOREIGN KEY (`user_id`) REFERENCES `claro_user` (`id`) ON DELETE SET NULL,
-  CONSTRAINT `FK_F61948DE698D3548` FOREIGN KEY (`text_id`) REFERENCES `claro_text` (`id`) ON DELETE CASCADE
+  CONSTRAINT `FK_F61948DE698D3548` FOREIGN KEY (`text_id`) REFERENCES `claro_text` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `FK_F61948DEA76ED395` FOREIGN KEY (`user_id`) REFERENCES `claro_user` (`id`) ON DELETE SET NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -5870,8 +5871,8 @@ CREATE TABLE `claro_user_group` (
   PRIMARY KEY (`user_id`,`group_id`),
   KEY `IDX_ED8B34C7A76ED395` (`user_id`),
   KEY `IDX_ED8B34C7FE54D947` (`group_id`),
-  CONSTRAINT `FK_ED8B34C7FE54D947` FOREIGN KEY (`group_id`) REFERENCES `claro_group` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `FK_ED8B34C7A76ED395` FOREIGN KEY (`user_id`) REFERENCES `claro_user` (`id`) ON DELETE CASCADE
+  CONSTRAINT `FK_ED8B34C7A76ED395` FOREIGN KEY (`user_id`) REFERENCES `claro_user` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `FK_ED8B34C7FE54D947` FOREIGN KEY (`group_id`) REFERENCES `claro_group` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -5897,8 +5898,8 @@ CREATE TABLE `claro_user_location` (
   PRIMARY KEY (`location_id`,`user_id`),
   KEY `IDX_932BBCCB64D218E` (`location_id`),
   KEY `IDX_932BBCCBA76ED395` (`user_id`),
-  CONSTRAINT `FK_932BBCCBA76ED395` FOREIGN KEY (`user_id`) REFERENCES `claro_user` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `FK_932BBCCB64D218E` FOREIGN KEY (`location_id`) REFERENCES `claro__location` (`id`) ON DELETE CASCADE
+  CONSTRAINT `FK_932BBCCB64D218E` FOREIGN KEY (`location_id`) REFERENCES `claro__location` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `FK_932BBCCBA76ED395` FOREIGN KEY (`user_id`) REFERENCES `claro_user` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -5985,8 +5986,8 @@ CREATE TABLE `claro_user_role` (
   PRIMARY KEY (`user_id`,`role_id`),
   KEY `IDX_797E43FFA76ED395` (`user_id`),
   KEY `IDX_797E43FFD60322AC` (`role_id`),
-  CONSTRAINT `FK_797E43FFD60322AC` FOREIGN KEY (`role_id`) REFERENCES `claro_role` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `FK_797E43FFA76ED395` FOREIGN KEY (`user_id`) REFERENCES `claro_user` (`id`) ON DELETE CASCADE
+  CONSTRAINT `FK_797E43FFA76ED395` FOREIGN KEY (`user_id`) REFERENCES `claro_user` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `FK_797E43FFD60322AC` FOREIGN KEY (`role_id`) REFERENCES `claro_role` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -6018,8 +6019,8 @@ CREATE TABLE `claro_video_track` (
   PRIMARY KEY (`id`),
   KEY `IDX_D25DC06529C1004E` (`video_id`),
   KEY `IDX_D25DC065ED87669A` (`trackFile_id`),
-  CONSTRAINT `FK_D25DC065ED87669A` FOREIGN KEY (`trackFile_id`) REFERENCES `claro_file` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `FK_D25DC06529C1004E` FOREIGN KEY (`video_id`) REFERENCES `claro_file` (`id`) ON DELETE CASCADE
+  CONSTRAINT `FK_D25DC06529C1004E` FOREIGN KEY (`video_id`) REFERENCES `claro_file` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `FK_D25DC065ED87669A` FOREIGN KEY (`trackFile_id`) REFERENCES `claro_file` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -6121,7 +6122,7 @@ CREATE TABLE `claro_widget_display_config` (
   CONSTRAINT `FK_EBBE497244BF891` FOREIGN KEY (`widget_instance_id`) REFERENCES `claro_widget_instance` (`id`) ON DELETE CASCADE,
   CONSTRAINT `FK_EBBE497282D40A1F` FOREIGN KEY (`workspace_id`) REFERENCES `claro_workspace` (`id`) ON DELETE CASCADE,
   CONSTRAINT `FK_EBBE4972A76ED395` FOREIGN KEY (`user_id`) REFERENCES `claro_user` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6130,6 +6131,7 @@ CREATE TABLE `claro_widget_display_config` (
 
 LOCK TABLES `claro_widget_display_config` WRITE;
 /*!40000 ALTER TABLE `claro_widget_display_config` DISABLE KEYS */;
+INSERT INTO `claro_widget_display_config` VALUES (3,NULL,3,3,-1,-1,4,3,NULL,'{\"textTitleColor\":\"#0038ff\"}');
 /*!40000 ALTER TABLE `claro_widget_display_config` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -6155,11 +6157,11 @@ CREATE TABLE `claro_widget_home_tab_config` (
   KEY `IDX_D48CC23E7D08FA9E` (`home_tab_id`),
   KEY `IDX_D48CC23EA76ED395` (`user_id`),
   KEY `IDX_D48CC23E82D40A1F` (`workspace_id`),
-  CONSTRAINT `FK_D48CC23E82D40A1F` FOREIGN KEY (`workspace_id`) REFERENCES `claro_workspace` (`id`) ON DELETE CASCADE,
   CONSTRAINT `FK_D48CC23E44BF891` FOREIGN KEY (`widget_instance_id`) REFERENCES `claro_widget_instance` (`id`) ON DELETE CASCADE,
   CONSTRAINT `FK_D48CC23E7D08FA9E` FOREIGN KEY (`home_tab_id`) REFERENCES `claro_home_tab` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `FK_D48CC23E82D40A1F` FOREIGN KEY (`workspace_id`) REFERENCES `claro_workspace` (`id`) ON DELETE CASCADE,
   CONSTRAINT `FK_D48CC23EA76ED395` FOREIGN KEY (`user_id`) REFERENCES `claro_user` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6168,6 +6170,7 @@ CREATE TABLE `claro_widget_home_tab_config` (
 
 LOCK TABLES `claro_widget_home_tab_config` WRITE;
 /*!40000 ALTER TABLE `claro_widget_home_tab_config` DISABLE KEYS */;
+INSERT INTO `claro_widget_home_tab_config` VALUES (3,3,4,3,NULL,1,'desktop',1,0);
 /*!40000 ALTER TABLE `claro_widget_home_tab_config` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -6195,7 +6198,7 @@ CREATE TABLE `claro_widget_instance` (
   CONSTRAINT `FK_5F89A38582D40A1F` FOREIGN KEY (`workspace_id`) REFERENCES `claro_workspace` (`id`) ON DELETE CASCADE,
   CONSTRAINT `FK_5F89A385A76ED395` FOREIGN KEY (`user_id`) REFERENCES `claro_user` (`id`) ON DELETE CASCADE,
   CONSTRAINT `FK_5F89A385FBE885E2` FOREIGN KEY (`widget_id`) REFERENCES `claro_widget` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6204,6 +6207,7 @@ CREATE TABLE `claro_widget_instance` (
 
 LOCK TABLES `claro_widget_instance` WRITE;
 /*!40000 ALTER TABLE `claro_widget_instance` DISABLE KEYS */;
+INSERT INTO `claro_widget_instance` VALUES (3,NULL,3,5,0,1,'Cours Vecteurs',NULL,NULL);
 /*!40000 ALTER TABLE `claro_widget_instance` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -6299,8 +6303,8 @@ CREATE TABLE `claro_workspace_favourite` (
   UNIQUE KEY `workspace_favourite_unique_combination` (`workspace_id`,`user_id`),
   KEY `IDX_711A30B82D40A1F` (`workspace_id`),
   KEY `IDX_711A30BA76ED395` (`user_id`),
-  CONSTRAINT `FK_711A30BA76ED395` FOREIGN KEY (`user_id`) REFERENCES `claro_user` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `FK_711A30B82D40A1F` FOREIGN KEY (`workspace_id`) REFERENCES `claro_workspace` (`id`) ON DELETE CASCADE
+  CONSTRAINT `FK_711A30B82D40A1F` FOREIGN KEY (`workspace_id`) REFERENCES `claro_workspace` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `FK_711A30BA76ED395` FOREIGN KEY (`user_id`) REFERENCES `claro_user` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -6409,8 +6413,8 @@ CREATE TABLE `claro_workspace_model_resource` (
   PRIMARY KEY (`id`),
   KEY `IDX_F5D706351BAD783F` (`resource_node_id`),
   KEY `IDX_F5D706357975B7E7` (`model_id`),
-  CONSTRAINT `FK_F5D706357975B7E7` FOREIGN KEY (`model_id`) REFERENCES `claro_workspace_model` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `FK_F5D706351BAD783F` FOREIGN KEY (`resource_node_id`) REFERENCES `claro_resource_node` (`id`) ON DELETE CASCADE
+  CONSTRAINT `FK_F5D706351BAD783F` FOREIGN KEY (`resource_node_id`) REFERENCES `claro_resource_node` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `FK_F5D706357975B7E7` FOREIGN KEY (`model_id`) REFERENCES `claro_workspace_model` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -6436,8 +6440,8 @@ CREATE TABLE `claro_workspace_model_user` (
   PRIMARY KEY (`user_id`,`workspacemodel_id`),
   KEY `IDX_5318388FA76ED395` (`user_id`),
   KEY `IDX_5318388FD500BD91` (`workspacemodel_id`),
-  CONSTRAINT `FK_5318388FD500BD91` FOREIGN KEY (`workspacemodel_id`) REFERENCES `claro_workspace_model` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `FK_5318388FA76ED395` FOREIGN KEY (`user_id`) REFERENCES `claro_user` (`id`) ON DELETE CASCADE
+  CONSTRAINT `FK_5318388FA76ED395` FOREIGN KEY (`user_id`) REFERENCES `claro_user` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `FK_5318388FD500BD91` FOREIGN KEY (`workspacemodel_id`) REFERENCES `claro_workspace_model` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -7545,9 +7549,9 @@ CREATE TABLE `formalibre_presencebundle_presence` (
   KEY `IDX_33952B616CF389F6` (`user_student_id`),
   KEY `IDX_33952B61EC8B7ADE` (`period_id`),
   KEY `IDX_33952B61D887D038` (`course_session`),
-  CONSTRAINT `FK_33952B61D887D038` FOREIGN KEY (`course_session`) REFERENCES `claro_cursusbundle_course_session` (`id`) ON DELETE CASCADE,
   CONSTRAINT `FK_33952B616BF700BD` FOREIGN KEY (`status_id`) REFERENCES `formalibre_presencebundle_status` (`id`) ON DELETE CASCADE,
   CONSTRAINT `FK_33952B616CF389F6` FOREIGN KEY (`user_student_id`) REFERENCES `claro_user` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `FK_33952B61D887D038` FOREIGN KEY (`course_session`) REFERENCES `claro_cursusbundle_course_session` (`id`) ON DELETE CASCADE,
   CONSTRAINT `FK_33952B61E6E7B8F1` FOREIGN KEY (`user_teacher_id`) REFERENCES `claro_user` (`id`) ON DELETE CASCADE,
   CONSTRAINT `FK_33952B61EC8B7ADE` FOREIGN KEY (`period_id`) REFERENCES `formalibre_presencebundle_period` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -7719,8 +7723,8 @@ CREATE TABLE `formalibre_reservation_resource_rights` (
   PRIMARY KEY (`id`),
   KEY `IDX_92EF974689329D25` (`resource_id`),
   KEY `IDX_92EF9746D60322AC` (`role_id`),
-  CONSTRAINT `FK_92EF9746D60322AC` FOREIGN KEY (`role_id`) REFERENCES `claro_role` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `FK_92EF974689329D25` FOREIGN KEY (`resource_id`) REFERENCES `formalibre_reservation_resource` (`id`) ON DELETE CASCADE
+  CONSTRAINT `FK_92EF974689329D25` FOREIGN KEY (`resource_id`) REFERENCES `formalibre_reservation_resource` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `FK_92EF9746D60322AC` FOREIGN KEY (`role_id`) REFERENCES `claro_role` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -7799,7 +7803,7 @@ CREATE TABLE `formalibre_support_configuration` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `details` longtext COLLATE utf8_unicode_ci COMMENT '(DC2Type:json_array)',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -7808,6 +7812,7 @@ CREATE TABLE `formalibre_support_configuration` (
 
 LOCK TABLES `formalibre_support_configuration` WRITE;
 /*!40000 ALTER TABLE `formalibre_support_configuration` DISABLE KEYS */;
+INSERT INTO `formalibre_support_configuration` VALUES (1,'{\"with_credits\":false,\"contacts\":[]}');
 /*!40000 ALTER TABLE `formalibre_support_configuration` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -8006,8 +8011,8 @@ CREATE TABLE `hevinci_ability_activity` (
   PRIMARY KEY (`ability_id`,`activity_id`),
   KEY `IDX_46D92D328016D8B2` (`ability_id`),
   KEY `IDX_46D92D3281C06096` (`activity_id`),
-  CONSTRAINT `FK_46D92D3281C06096` FOREIGN KEY (`activity_id`) REFERENCES `claro_activity` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `FK_46D92D328016D8B2` FOREIGN KEY (`ability_id`) REFERENCES `hevinci_ability` (`id`) ON DELETE CASCADE
+  CONSTRAINT `FK_46D92D328016D8B2` FOREIGN KEY (`ability_id`) REFERENCES `hevinci_ability` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `FK_46D92D3281C06096` FOREIGN KEY (`activity_id`) REFERENCES `claro_activity` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -8345,8 +8350,8 @@ CREATE TABLE `hevinci_objective_group` (
   PRIMARY KEY (`objective_id`,`group_id`),
   KEY `IDX_FFDC9E073484933` (`objective_id`),
   KEY `IDX_FFDC9E0FE54D947` (`group_id`),
-  CONSTRAINT `FK_FFDC9E0FE54D947` FOREIGN KEY (`group_id`) REFERENCES `claro_group` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `FK_FFDC9E073484933` FOREIGN KEY (`objective_id`) REFERENCES `hevinci_learning_objective` (`id`) ON DELETE CASCADE
+  CONSTRAINT `FK_FFDC9E073484933` FOREIGN KEY (`objective_id`) REFERENCES `hevinci_learning_objective` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `FK_FFDC9E0FE54D947` FOREIGN KEY (`group_id`) REFERENCES `claro_group` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -8377,8 +8382,8 @@ CREATE TABLE `hevinci_objective_progress` (
   PRIMARY KEY (`id`),
   KEY `IDX_CAC2DC3873484933` (`objective_id`),
   KEY `IDX_CAC2DC38A76ED395` (`user_id`),
-  CONSTRAINT `FK_CAC2DC38A76ED395` FOREIGN KEY (`user_id`) REFERENCES `claro_user` (`id`) ON DELETE SET NULL,
-  CONSTRAINT `FK_CAC2DC3873484933` FOREIGN KEY (`objective_id`) REFERENCES `hevinci_learning_objective` (`id`) ON DELETE SET NULL
+  CONSTRAINT `FK_CAC2DC3873484933` FOREIGN KEY (`objective_id`) REFERENCES `hevinci_learning_objective` (`id`) ON DELETE SET NULL,
+  CONSTRAINT `FK_CAC2DC38A76ED395` FOREIGN KEY (`user_id`) REFERENCES `claro_user` (`id`) ON DELETE SET NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -8409,8 +8414,8 @@ CREATE TABLE `hevinci_objective_progress_log` (
   PRIMARY KEY (`id`),
   KEY `IDX_F125F34773484933` (`objective_id`),
   KEY `IDX_F125F347A76ED395` (`user_id`),
-  CONSTRAINT `FK_F125F347A76ED395` FOREIGN KEY (`user_id`) REFERENCES `claro_user` (`id`) ON DELETE SET NULL,
-  CONSTRAINT `FK_F125F34773484933` FOREIGN KEY (`objective_id`) REFERENCES `hevinci_learning_objective` (`id`) ON DELETE SET NULL
+  CONSTRAINT `FK_F125F34773484933` FOREIGN KEY (`objective_id`) REFERENCES `hevinci_learning_objective` (`id`) ON DELETE SET NULL,
+  CONSTRAINT `FK_F125F347A76ED395` FOREIGN KEY (`user_id`) REFERENCES `claro_user` (`id`) ON DELETE SET NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -8436,8 +8441,8 @@ CREATE TABLE `hevinci_objective_user` (
   PRIMARY KEY (`objective_id`,`user_id`),
   KEY `IDX_6D032C1573484933` (`objective_id`),
   KEY `IDX_6D032C15A76ED395` (`user_id`),
-  CONSTRAINT `FK_6D032C15A76ED395` FOREIGN KEY (`user_id`) REFERENCES `claro_user` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `FK_6D032C1573484933` FOREIGN KEY (`objective_id`) REFERENCES `hevinci_learning_objective` (`id`) ON DELETE CASCADE
+  CONSTRAINT `FK_6D032C1573484933` FOREIGN KEY (`objective_id`) REFERENCES `hevinci_learning_objective` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `FK_6D032C15A76ED395` FOREIGN KEY (`user_id`) REFERENCES `claro_user` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -8708,8 +8713,8 @@ CREATE TABLE `icap__blog_post_tag` (
   PRIMARY KEY (`post_id`,`tag_id`),
   KEY `IDX_C3C6F4794B89032C` (`post_id`),
   KEY `IDX_C3C6F479BAD26311` (`tag_id`),
-  CONSTRAINT `FK_C3C6F479BAD26311` FOREIGN KEY (`tag_id`) REFERENCES `icap__blog_tag` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `FK_C3C6F4794B89032C` FOREIGN KEY (`post_id`) REFERENCES `icap__blog_post` (`id`) ON DELETE CASCADE
+  CONSTRAINT `FK_C3C6F4794B89032C` FOREIGN KEY (`post_id`) REFERENCES `icap__blog_post` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `FK_C3C6F479BAD26311` FOREIGN KEY (`tag_id`) REFERENCES `icap__blog_tag` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -8791,8 +8796,8 @@ CREATE TABLE `icap__blog_widget_list_blog` (
   PRIMARY KEY (`id`),
   KEY `IDX_294D4E02AB7B5A55` (`widgetInstance_id`),
   KEY `IDX_294D4E02B87FAB32` (`resourceNode_id`),
-  CONSTRAINT `FK_294D4E02B87FAB32` FOREIGN KEY (`resourceNode_id`) REFERENCES `claro_resource_node` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `FK_294D4E02AB7B5A55` FOREIGN KEY (`widgetInstance_id`) REFERENCES `claro_widget_instance` (`id`) ON DELETE CASCADE
+  CONSTRAINT `FK_294D4E02AB7B5A55` FOREIGN KEY (`widgetInstance_id`) REFERENCES `claro_widget_instance` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `FK_294D4E02B87FAB32` FOREIGN KEY (`resourceNode_id`) REFERENCES `claro_resource_node` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -8946,8 +8951,8 @@ CREATE TABLE `icap__dropzonebundle_document` (
   PRIMARY KEY (`id`),
   KEY `IDX_744084241BAD783F` (`resource_node_id`),
   KEY `IDX_744084244D224760` (`drop_id`),
-  CONSTRAINT `FK_744084244D224760` FOREIGN KEY (`drop_id`) REFERENCES `icap__dropzonebundle_drop` (`id`),
-  CONSTRAINT `FK_744084241BAD783F` FOREIGN KEY (`resource_node_id`) REFERENCES `claro_resource_node` (`id`) ON DELETE SET NULL
+  CONSTRAINT `FK_744084241BAD783F` FOREIGN KEY (`resource_node_id`) REFERENCES `claro_resource_node` (`id`) ON DELETE SET NULL,
+  CONSTRAINT `FK_744084244D224760` FOREIGN KEY (`drop_id`) REFERENCES `icap__dropzonebundle_drop` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -9046,8 +9051,8 @@ CREATE TABLE `icap__dropzonebundle_dropzone` (
   UNIQUE KEY `UNIQ_6782FC23B87FAB32` (`resourceNode_id`),
   UNIQUE KEY `UNIQ_6782FC23E6B974D2` (`event_agenda_drop`),
   UNIQUE KEY `UNIQ_6782FC238D9E1321` (`event_agenda_correction`),
-  CONSTRAINT `FK_6782FC238D9E1321` FOREIGN KEY (`event_agenda_correction`) REFERENCES `claro_event` (`id`) ON DELETE SET NULL,
   CONSTRAINT `FK_6782FC235342CDF` FOREIGN KEY (`hidden_directory_id`) REFERENCES `claro_resource_node` (`id`),
+  CONSTRAINT `FK_6782FC238D9E1321` FOREIGN KEY (`event_agenda_correction`) REFERENCES `claro_event` (`id`) ON DELETE SET NULL,
   CONSTRAINT `FK_6782FC23B87FAB32` FOREIGN KEY (`resourceNode_id`) REFERENCES `claro_resource_node` (`id`) ON DELETE CASCADE,
   CONSTRAINT `FK_6782FC23E6B974D2` FOREIGN KEY (`event_agenda_drop`) REFERENCES `claro_event` (`id`) ON DELETE SET NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -9399,8 +9404,8 @@ CREATE TABLE `icap__portfolio_comments` (
   PRIMARY KEY (`id`),
   KEY `IDX_D4662DE3B96B5643` (`portfolio_id`),
   KEY `IDX_D4662DE3F624B39D` (`sender_id`),
-  CONSTRAINT `FK_D4662DE3F624B39D` FOREIGN KEY (`sender_id`) REFERENCES `claro_user` (`id`),
-  CONSTRAINT `FK_D4662DE3B96B5643` FOREIGN KEY (`portfolio_id`) REFERENCES `icap__portfolio` (`id`)
+  CONSTRAINT `FK_D4662DE3B96B5643` FOREIGN KEY (`portfolio_id`) REFERENCES `icap__portfolio` (`id`),
+  CONSTRAINT `FK_D4662DE3F624B39D` FOREIGN KEY (`sender_id`) REFERENCES `claro_user` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -9458,8 +9463,8 @@ CREATE TABLE `icap__portfolio_guides` (
   UNIQUE KEY `portfolio_users_unique_idx` (`portfolio_id`,`user_id`),
   KEY `IDX_27EAB640A76ED395` (`user_id`),
   KEY `IDX_27EAB640B96B5643` (`portfolio_id`),
-  CONSTRAINT `FK_27EAB640B96B5643` FOREIGN KEY (`portfolio_id`) REFERENCES `icap__portfolio` (`id`),
-  CONSTRAINT `FK_27EAB640A76ED395` FOREIGN KEY (`user_id`) REFERENCES `claro_user` (`id`)
+  CONSTRAINT `FK_27EAB640A76ED395` FOREIGN KEY (`user_id`) REFERENCES `claro_user` (`id`),
+  CONSTRAINT `FK_27EAB640B96B5643` FOREIGN KEY (`portfolio_id`) REFERENCES `icap__portfolio` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -9487,8 +9492,8 @@ CREATE TABLE `icap__portfolio_teams` (
   UNIQUE KEY `portfolio_teams_unique_idx` (`portfolio_id`,`team_id`),
   KEY `IDX_BBC17F49296CD8AE` (`team_id`),
   KEY `IDX_BBC17F49B96B5643` (`portfolio_id`),
-  CONSTRAINT `FK_BBC17F49B96B5643` FOREIGN KEY (`portfolio_id`) REFERENCES `icap__portfolio` (`id`),
-  CONSTRAINT `FK_BBC17F49296CD8AE` FOREIGN KEY (`team_id`) REFERENCES `claro_team` (`id`)
+  CONSTRAINT `FK_BBC17F49296CD8AE` FOREIGN KEY (`team_id`) REFERENCES `claro_team` (`id`),
+  CONSTRAINT `FK_BBC17F49B96B5643` FOREIGN KEY (`portfolio_id`) REFERENCES `icap__portfolio` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -9516,8 +9521,8 @@ CREATE TABLE `icap__portfolio_users` (
   UNIQUE KEY `portfolio_users_unique_idx` (`portfolio_id`,`user_id`),
   KEY `IDX_3980F8F8A76ED395` (`user_id`),
   KEY `IDX_3980F8F8B96B5643` (`portfolio_id`),
-  CONSTRAINT `FK_3980F8F8B96B5643` FOREIGN KEY (`portfolio_id`) REFERENCES `icap__portfolio` (`id`),
-  CONSTRAINT `FK_3980F8F8A76ED395` FOREIGN KEY (`user_id`) REFERENCES `claro_user` (`id`)
+  CONSTRAINT `FK_3980F8F8A76ED395` FOREIGN KEY (`user_id`) REFERENCES `claro_user` (`id`),
+  CONSTRAINT `FK_3980F8F8B96B5643` FOREIGN KEY (`portfolio_id`) REFERENCES `icap__portfolio` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -9549,8 +9554,8 @@ CREATE TABLE `icap__portfolio_widget` (
   PRIMARY KEY (`id`),
   KEY `IDX_EF643D7FB96B5643` (`portfolio_id`),
   KEY `IDX_EF643D7FFBE885E2` (`widget_id`),
-  CONSTRAINT `FK_EF643D7FFBE885E2` FOREIGN KEY (`widget_id`) REFERENCES `icap__portfolio_abstract_widget` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `FK_EF643D7FB96B5643` FOREIGN KEY (`portfolio_id`) REFERENCES `icap__portfolio` (`id`) ON DELETE CASCADE
+  CONSTRAINT `FK_EF643D7FB96B5643` FOREIGN KEY (`portfolio_id`) REFERENCES `icap__portfolio` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `FK_EF643D7FFBE885E2` FOREIGN KEY (`widget_id`) REFERENCES `icap__portfolio_abstract_widget` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -9600,8 +9605,8 @@ CREATE TABLE `icap__portfolio_widget_badges_badge` (
   PRIMARY KEY (`id`),
   KEY `IDX_25D41B98F7A2C2FC` (`badge_id`),
   KEY `IDX_25D41B98FBE885E2` (`widget_id`),
-  CONSTRAINT `FK_25D41B98FBE885E2` FOREIGN KEY (`widget_id`) REFERENCES `icap__portfolio_widget_badges` (`id`),
-  CONSTRAINT `FK_25D41B98F7A2C2FC` FOREIGN KEY (`badge_id`) REFERENCES `claro_badge` (`id`)
+  CONSTRAINT `FK_25D41B98F7A2C2FC` FOREIGN KEY (`badge_id`) REFERENCES `claro_badge` (`id`),
+  CONSTRAINT `FK_25D41B98FBE885E2` FOREIGN KEY (`widget_id`) REFERENCES `icap__portfolio_widget_badges` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -9899,8 +9904,8 @@ CREATE TABLE `icap__socialmedia_comment` (
   PRIMARY KEY (`id`),
   KEY `IDX_6FC00C3089329D25` (`resource_id`),
   KEY `IDX_6FC00C30A76ED395` (`user_id`),
-  CONSTRAINT `FK_6FC00C30A76ED395` FOREIGN KEY (`user_id`) REFERENCES `claro_user` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `FK_6FC00C3089329D25` FOREIGN KEY (`resource_id`) REFERENCES `claro_resource_node` (`id`) ON DELETE CASCADE
+  CONSTRAINT `FK_6FC00C3089329D25` FOREIGN KEY (`resource_id`) REFERENCES `claro_resource_node` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `FK_6FC00C30A76ED395` FOREIGN KEY (`user_id`) REFERENCES `claro_user` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -9930,8 +9935,8 @@ CREATE TABLE `icap__socialmedia_like` (
   PRIMARY KEY (`id`),
   KEY `IDX_7C98AD9089329D25` (`resource_id`),
   KEY `IDX_7C98AD90A76ED395` (`user_id`),
-  CONSTRAINT `FK_7C98AD90A76ED395` FOREIGN KEY (`user_id`) REFERENCES `claro_user` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `FK_7C98AD9089329D25` FOREIGN KEY (`resource_id`) REFERENCES `claro_resource_node` (`id`) ON DELETE CASCADE
+  CONSTRAINT `FK_7C98AD9089329D25` FOREIGN KEY (`resource_id`) REFERENCES `claro_resource_node` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `FK_7C98AD90A76ED395` FOREIGN KEY (`user_id`) REFERENCES `claro_user` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -9962,8 +9967,8 @@ CREATE TABLE `icap__socialmedia_note` (
   PRIMARY KEY (`id`),
   KEY `IDX_1F46173789329D25` (`resource_id`),
   KEY `IDX_1F461737A76ED395` (`user_id`),
-  CONSTRAINT `FK_1F461737A76ED395` FOREIGN KEY (`user_id`) REFERENCES `claro_user` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `FK_1F46173789329D25` FOREIGN KEY (`resource_id`) REFERENCES `claro_resource_node` (`id`) ON DELETE CASCADE
+  CONSTRAINT `FK_1F46173789329D25` FOREIGN KEY (`resource_id`) REFERENCES `claro_resource_node` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `FK_1F461737A76ED395` FOREIGN KEY (`user_id`) REFERENCES `claro_user` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -9994,8 +9999,8 @@ CREATE TABLE `icap__socialmedia_share` (
   PRIMARY KEY (`id`),
   KEY `IDX_4DB117C589329D25` (`resource_id`),
   KEY `IDX_4DB117C5A76ED395` (`user_id`),
-  CONSTRAINT `FK_4DB117C5A76ED395` FOREIGN KEY (`user_id`) REFERENCES `claro_user` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `FK_4DB117C589329D25` FOREIGN KEY (`resource_id`) REFERENCES `claro_resource_node` (`id`) ON DELETE CASCADE
+  CONSTRAINT `FK_4DB117C589329D25` FOREIGN KEY (`resource_id`) REFERENCES `claro_resource_node` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `FK_4DB117C5A76ED395` FOREIGN KEY (`user_id`) REFERENCES `claro_user` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -10062,8 +10067,8 @@ CREATE TABLE `icap__website` (
   UNIQUE KEY `UNIQ_452309F879066886` (`root_id`),
   UNIQUE KEY `UNIQ_452309F83ADB05F1` (`options_id`),
   UNIQUE KEY `UNIQ_452309F8571EDDA` (`homepage_id`),
-  CONSTRAINT `FK_452309F8571EDDA` FOREIGN KEY (`homepage_id`) REFERENCES `icap__website_page` (`id`) ON DELETE SET NULL,
   CONSTRAINT `FK_452309F83ADB05F1` FOREIGN KEY (`options_id`) REFERENCES `icap__website_options` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `FK_452309F8571EDDA` FOREIGN KEY (`homepage_id`) REFERENCES `icap__website_page` (`id`) ON DELETE SET NULL,
   CONSTRAINT `FK_452309F879066886` FOREIGN KEY (`root_id`) REFERENCES `icap__website_page` (`id`) ON DELETE CASCADE,
   CONSTRAINT `FK_452309F8B87FAB32` FOREIGN KEY (`resourceNode_id`) REFERENCES `claro_resource_node` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -10358,8 +10363,8 @@ CREATE TABLE `innova_collecticielbundle_choice_notation` (
   PRIMARY KEY (`id`),
   KEY `IDX_9ABE6A929680B7F7` (`notation_id`),
   KEY `IDX_9ABE6A9224B233E4` (`criteria_notation_id`),
-  CONSTRAINT `FK_9ABE6A929680B7F7` FOREIGN KEY (`notation_id`) REFERENCES `innova_collecticielbundle_notation` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `FK_9ABE6A9224B233E4` FOREIGN KEY (`criteria_notation_id`) REFERENCES `innova_collecticielbundle_grading_notation` (`id`) ON DELETE CASCADE
+  CONSTRAINT `FK_9ABE6A9224B233E4` FOREIGN KEY (`criteria_notation_id`) REFERENCES `innova_collecticielbundle_grading_notation` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `FK_9ABE6A929680B7F7` FOREIGN KEY (`notation_id`) REFERENCES `innova_collecticielbundle_notation` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -10458,9 +10463,9 @@ CREATE TABLE `innova_collecticielbundle_correction` (
   KEY `IDX_BA9AF20BA76ED395` (`user_id`),
   KEY `IDX_BA9AF20B4D224760` (`drop_id`),
   KEY `IDX_BA9AF20BA8C6E7BD` (`drop_zone_id`),
-  CONSTRAINT `FK_BA9AF20BA8C6E7BD` FOREIGN KEY (`drop_zone_id`) REFERENCES `innova_collecticielbundle_dropzone` (`id`) ON DELETE CASCADE,
   CONSTRAINT `FK_BA9AF20B4D224760` FOREIGN KEY (`drop_id`) REFERENCES `innova_collecticielbundle_drop` (`id`) ON DELETE SET NULL,
-  CONSTRAINT `FK_BA9AF20BA76ED395` FOREIGN KEY (`user_id`) REFERENCES `claro_user` (`id`)
+  CONSTRAINT `FK_BA9AF20BA76ED395` FOREIGN KEY (`user_id`) REFERENCES `claro_user` (`id`),
+  CONSTRAINT `FK_BA9AF20BA8C6E7BD` FOREIGN KEY (`drop_zone_id`) REFERENCES `innova_collecticielbundle_dropzone` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -10520,9 +10525,9 @@ CREATE TABLE `innova_collecticielbundle_document` (
   KEY `IDX_1C357F0C1BAD783F` (`resource_node_id`),
   KEY `IDX_1C357F0C4D224760` (`drop_id`),
   KEY `IDX_1C357F0CF624B39D` (`sender_id`),
-  CONSTRAINT `FK_1C357F0CF624B39D` FOREIGN KEY (`sender_id`) REFERENCES `claro_user` (`id`),
   CONSTRAINT `FK_1C357F0C1BAD783F` FOREIGN KEY (`resource_node_id`) REFERENCES `claro_resource_node` (`id`) ON DELETE SET NULL,
-  CONSTRAINT `FK_1C357F0C4D224760` FOREIGN KEY (`drop_id`) REFERENCES `innova_collecticielbundle_drop` (`id`)
+  CONSTRAINT `FK_1C357F0C4D224760` FOREIGN KEY (`drop_id`) REFERENCES `innova_collecticielbundle_drop` (`id`),
+  CONSTRAINT `FK_1C357F0CF624B39D` FOREIGN KEY (`sender_id`) REFERENCES `claro_user` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -10807,10 +10812,10 @@ CREATE TABLE `innova_collecticielbundle_return_receipt` (
   KEY `IDX_78A1DB96A76ED395` (`user_id`),
   KEY `IDX_78A1DB9654FC3EC3` (`dropzone_id`),
   KEY `IDX_78A1DB96FD252543` (`return_receipt_type_id`),
-  CONSTRAINT `FK_78A1DB96FD252543` FOREIGN KEY (`return_receipt_type_id`) REFERENCES `innova_collecticielbundle_return_receipt_type` (`id`) ON DELETE CASCADE,
   CONSTRAINT `FK_78A1DB9654FC3EC3` FOREIGN KEY (`dropzone_id`) REFERENCES `innova_collecticielbundle_dropzone` (`id`),
   CONSTRAINT `FK_78A1DB96A76ED395` FOREIGN KEY (`user_id`) REFERENCES `claro_user` (`id`),
-  CONSTRAINT `FK_78A1DB96C33F7837` FOREIGN KEY (`document_id`) REFERENCES `innova_collecticielbundle_document` (`id`)
+  CONSTRAINT `FK_78A1DB96C33F7837` FOREIGN KEY (`document_id`) REFERENCES `innova_collecticielbundle_document` (`id`),
+  CONSTRAINT `FK_78A1DB96FD252543` FOREIGN KEY (`return_receipt_type_id`) REFERENCES `innova_collecticielbundle_return_receipt_type` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -10950,8 +10955,8 @@ CREATE TABLE `innova_path_widget_config_tags` (
   PRIMARY KEY (`widget_config_id`,`tag_id`),
   KEY `IDX_95075D98685E7B00` (`widget_config_id`),
   KEY `IDX_95075D98BAD26311` (`tag_id`),
-  CONSTRAINT `FK_95075D98BAD26311` FOREIGN KEY (`tag_id`) REFERENCES `claro_tagbundle_tag` (`id`),
-  CONSTRAINT `FK_95075D98685E7B00` FOREIGN KEY (`widget_config_id`) REFERENCES `innova_path_widget_config` (`id`)
+  CONSTRAINT `FK_95075D98685E7B00` FOREIGN KEY (`widget_config_id`) REFERENCES `innova_path_widget_config` (`id`),
+  CONSTRAINT `FK_95075D98BAD26311` FOREIGN KEY (`tag_id`) REFERENCES `claro_tagbundle_tag` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -11041,8 +11046,8 @@ CREATE TABLE `innova_step_inherited_resources` (
   PRIMARY KEY (`id`),
   KEY `IDX_C7E87ECC73B21E9C` (`step_id`),
   KEY `IDX_C7E87ECC89329D25` (`resource_id`),
-  CONSTRAINT `FK_C7E87ECC89329D25` FOREIGN KEY (`resource_id`) REFERENCES `claro_resource_node` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `FK_C7E87ECC73B21E9C` FOREIGN KEY (`step_id`) REFERENCES `innova_step` (`id`) ON DELETE CASCADE
+  CONSTRAINT `FK_C7E87ECC73B21E9C` FOREIGN KEY (`step_id`) REFERENCES `innova_step` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `FK_C7E87ECC89329D25` FOREIGN KEY (`resource_id`) REFERENCES `claro_resource_node` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -11096,8 +11101,8 @@ CREATE TABLE `innova_stepcondition_criteriagroup` (
   PRIMARY KEY (`id`),
   KEY `IDX_F33A94EA727ACA70` (`parent_id`),
   KEY `IDX_F33A94EAD71D3B68` (`stepcondition_id`),
-  CONSTRAINT `FK_F33A94EAD71D3B68` FOREIGN KEY (`stepcondition_id`) REFERENCES `innova_stepcondition` (`id`),
-  CONSTRAINT `FK_F33A94EA727ACA70` FOREIGN KEY (`parent_id`) REFERENCES `innova_stepcondition_criteriagroup` (`id`) ON DELETE CASCADE
+  CONSTRAINT `FK_F33A94EA727ACA70` FOREIGN KEY (`parent_id`) REFERENCES `innova_stepcondition_criteriagroup` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `FK_F33A94EAD71D3B68` FOREIGN KEY (`stepcondition_id`) REFERENCES `innova_stepcondition` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -11203,8 +11208,8 @@ CREATE TABLE `media_resource` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `UNIQ_B3F0DAA43ADB05F1` (`options_id`),
   UNIQUE KEY `UNIQ_B3F0DAA4B87FAB32` (`resourceNode_id`),
-  CONSTRAINT `FK_B3F0DAA4B87FAB32` FOREIGN KEY (`resourceNode_id`) REFERENCES `claro_resource_node` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `FK_B3F0DAA43ADB05F1` FOREIGN KEY (`options_id`) REFERENCES `media_resource_options` (`id`)
+  CONSTRAINT `FK_B3F0DAA43ADB05F1` FOREIGN KEY (`options_id`) REFERENCES `media_resource_options` (`id`),
+  CONSTRAINT `FK_B3F0DAA4B87FAB32` FOREIGN KEY (`resourceNode_id`) REFERENCES `claro_resource_node` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -11478,9 +11483,9 @@ CREATE TABLE `ujm_association` (
   KEY `IDX_2DD0DD0F2CBE8797` (`match_question_id`),
   KEY `IDX_2DD0DD0F33B92F39` (`label_id`),
   KEY `IDX_2DD0DD0FF4792058` (`proposal_id`),
-  CONSTRAINT `FK_2DD0DD0FF4792058` FOREIGN KEY (`proposal_id`) REFERENCES `ujm_proposal` (`id`),
   CONSTRAINT `FK_2DD0DD0F2CBE8797` FOREIGN KEY (`match_question_id`) REFERENCES `ujm_interaction_matching` (`id`),
-  CONSTRAINT `FK_2DD0DD0F33B92F39` FOREIGN KEY (`label_id`) REFERENCES `ujm_label` (`id`)
+  CONSTRAINT `FK_2DD0DD0F33B92F39` FOREIGN KEY (`label_id`) REFERENCES `ujm_label` (`id`),
+  CONSTRAINT `FK_2DD0DD0FF4792058` FOREIGN KEY (`proposal_id`) REFERENCES `ujm_proposal` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -11631,8 +11636,8 @@ CREATE TABLE `ujm_document_interaction` (
   PRIMARY KEY (`interaction_id`,`document_id`),
   KEY `IDX_FF792E7A886DEE8F` (`interaction_id`),
   KEY `IDX_FF792E7AC33F7837` (`document_id`),
-  CONSTRAINT `FK_FF792E7AC33F7837` FOREIGN KEY (`document_id`) REFERENCES `ujm_document` (`id`),
-  CONSTRAINT `FK_FF792E7A886DEE8F` FOREIGN KEY (`interaction_id`) REFERENCES `ujm_interaction` (`id`)
+  CONSTRAINT `FK_FF792E7A886DEE8F` FOREIGN KEY (`interaction_id`) REFERENCES `ujm_interaction` (`id`),
+  CONSTRAINT `FK_FF792E7AC33F7837` FOREIGN KEY (`document_id`) REFERENCES `ujm_document` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -11658,8 +11663,8 @@ CREATE TABLE `ujm_document_question` (
   PRIMARY KEY (`question_id`,`document_id`),
   KEY `IDX_52D4A3F11E27F6BF` (`question_id`),
   KEY `IDX_52D4A3F1C33F7837` (`document_id`),
-  CONSTRAINT `FK_52D4A3F1C33F7837` FOREIGN KEY (`document_id`) REFERENCES `ujm_document` (`id`),
-  CONSTRAINT `FK_52D4A3F11E27F6BF` FOREIGN KEY (`question_id`) REFERENCES `ujm_question` (`id`)
+  CONSTRAINT `FK_52D4A3F11E27F6BF` FOREIGN KEY (`question_id`) REFERENCES `ujm_question` (`id`),
+  CONSTRAINT `FK_52D4A3F1C33F7837` FOREIGN KEY (`document_id`) REFERENCES `ujm_document` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -11729,8 +11734,8 @@ CREATE TABLE `ujm_exercise_group` (
   PRIMARY KEY (`exercise_id`,`group_id`),
   KEY `IDX_78179004E934951A` (`exercise_id`),
   KEY `IDX_78179004FE54D947` (`group_id`),
-  CONSTRAINT `FK_78179004FE54D947` FOREIGN KEY (`group_id`) REFERENCES `ujm_group` (`id`),
-  CONSTRAINT `FK_78179004E934951A` FOREIGN KEY (`exercise_id`) REFERENCES `ujm_exercise` (`id`)
+  CONSTRAINT `FK_78179004E934951A` FOREIGN KEY (`exercise_id`) REFERENCES `ujm_exercise` (`id`),
+  CONSTRAINT `FK_78179004FE54D947` FOREIGN KEY (`group_id`) REFERENCES `ujm_group` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -11809,8 +11814,8 @@ CREATE TABLE `ujm_expertise_user` (
   PRIMARY KEY (`expertise_id`,`user_id`),
   KEY `IDX_F60D61B9D5B92F9` (`expertise_id`),
   KEY `IDX_F60D61BA76ED395` (`user_id`),
-  CONSTRAINT `FK_F60D61BA76ED395` FOREIGN KEY (`user_id`) REFERENCES `claro_user` (`id`),
-  CONSTRAINT `FK_F60D61B9D5B92F9` FOREIGN KEY (`expertise_id`) REFERENCES `ujm_expertise` (`id`)
+  CONSTRAINT `FK_F60D61B9D5B92F9` FOREIGN KEY (`expertise_id`) REFERENCES `ujm_expertise` (`id`),
+  CONSTRAINT `FK_F60D61BA76ED395` FOREIGN KEY (`user_id`) REFERENCES `claro_user` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -11869,8 +11874,8 @@ CREATE TABLE `ujm_grid_odd` (
   PRIMARY KEY (`id`),
   KEY `IDX_858E80E4126F525E` (`item_id`),
   KEY `IDX_858E80E4B745DCF` (`pair_question_id`),
-  CONSTRAINT `FK_858E80E4B745DCF` FOREIGN KEY (`pair_question_id`) REFERENCES `ujm_question_pair` (`id`),
-  CONSTRAINT `FK_858E80E4126F525E` FOREIGN KEY (`item_id`) REFERENCES `ujm_grid_item` (`id`)
+  CONSTRAINT `FK_858E80E4126F525E` FOREIGN KEY (`item_id`) REFERENCES `ujm_grid_item` (`id`),
+  CONSTRAINT `FK_858E80E4B745DCF` FOREIGN KEY (`pair_question_id`) REFERENCES `ujm_question_pair` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -12236,8 +12241,8 @@ CREATE TABLE `ujm_link_hint_paper` (
   PRIMARY KEY (`hint_id`,`paper_id`),
   KEY `IDX_B76F00F9519161AB` (`hint_id`),
   KEY `IDX_B76F00F9E6758861` (`paper_id`),
-  CONSTRAINT `FK_B76F00F9E6758861` FOREIGN KEY (`paper_id`) REFERENCES `ujm_paper` (`id`),
-  CONSTRAINT `FK_B76F00F9519161AB` FOREIGN KEY (`hint_id`) REFERENCES `ujm_hint` (`id`)
+  CONSTRAINT `FK_B76F00F9519161AB` FOREIGN KEY (`hint_id`) REFERENCES `ujm_hint` (`id`),
+  CONSTRAINT `FK_B76F00F9E6758861` FOREIGN KEY (`paper_id`) REFERENCES `ujm_paper` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -12484,8 +12489,8 @@ CREATE TABLE `ujm_question` (
   UNIQUE KEY `UNIQ_2F606977D17F50A6` (`uuid`),
   KEY `IDX_2F606977A76ED395` (`user_id`),
   KEY `IDX_2F60697712469DE2` (`category_id`),
-  CONSTRAINT `FK_2F606977A76ED395` FOREIGN KEY (`user_id`) REFERENCES `claro_user` (`id`) ON DELETE SET NULL,
-  CONSTRAINT `FK_2F60697712469DE2` FOREIGN KEY (`category_id`) REFERENCES `ujm_category` (`id`)
+  CONSTRAINT `FK_2F60697712469DE2` FOREIGN KEY (`category_id`) REFERENCES `ujm_category` (`id`),
+  CONSTRAINT `FK_2F606977A76ED395` FOREIGN KEY (`user_id`) REFERENCES `claro_user` (`id`) ON DELETE SET NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -12629,8 +12634,8 @@ CREATE TABLE `ujm_share` (
   PRIMARY KEY (`user_id`,`question_id`),
   KEY `IDX_238BD307A76ED395` (`user_id`),
   KEY `IDX_238BD3071E27F6BF` (`question_id`),
-  CONSTRAINT `FK_238BD307A76ED395` FOREIGN KEY (`user_id`) REFERENCES `claro_user` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `FK_238BD3071E27F6BF` FOREIGN KEY (`question_id`) REFERENCES `ujm_question` (`id`) ON DELETE CASCADE
+  CONSTRAINT `FK_238BD3071E27F6BF` FOREIGN KEY (`question_id`) REFERENCES `ujm_question` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `FK_238BD307A76ED395` FOREIGN KEY (`user_id`) REFERENCES `claro_user` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -12722,8 +12727,8 @@ CREATE TABLE `ujm_subscription` (
   PRIMARY KEY (`id`),
   KEY `IDX_A17BA225A76ED395` (`user_id`),
   KEY `IDX_A17BA225E934951A` (`exercise_id`),
-  CONSTRAINT `FK_A17BA225E934951A` FOREIGN KEY (`exercise_id`) REFERENCES `ujm_exercise` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `FK_A17BA225A76ED395` FOREIGN KEY (`user_id`) REFERENCES `claro_user` (`id`)
+  CONSTRAINT `FK_A17BA225A76ED395` FOREIGN KEY (`user_id`) REFERENCES `claro_user` (`id`),
+  CONSTRAINT `FK_A17BA225E934951A` FOREIGN KEY (`exercise_id`) REFERENCES `ujm_exercise` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -12903,4 +12908,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-06-28 11:09:12
+-- Dump completed on 2017-08-12 19:07:47
